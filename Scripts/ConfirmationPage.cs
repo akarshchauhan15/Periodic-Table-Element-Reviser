@@ -2,8 +2,10 @@ using Godot;
 
 public partial class ConfirmationPage : Control
 {
-    static Label Given;
-    static Label Return;
+    Label Given;
+    Label Return;
+
+    SelectionPage Selection;
 
     public override void _Ready()
     {
@@ -11,11 +13,12 @@ public partial class ConfirmationPage : Control
         Return = GetNode<Label>("ReturnLabel");
 
         GetNode<Button>("ContinueButton").Pressed += ProceedToAction;
+        Selection = GetNode<SelectionPage>("../SelectionPage");
     }
-    public static void SetLabels()
+    public void SetLabels()
     {
-        Given.Text = Element.OptionValues[SeletionPage.GivenIndex];
-        Return.Text = Element.OptionValues[SeletionPage.ReturnIndex];
+        Given.Text = Element.OptionValues[Selection.GivenIndex];
+        Return.Text = Element.OptionValues[Selection.ReturnIndex];
     }
     private void ProceedToAction()
     {

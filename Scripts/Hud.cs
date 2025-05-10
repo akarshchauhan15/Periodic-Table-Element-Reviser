@@ -11,7 +11,6 @@ public partial class Hud : Control
 
         foreach (string PageName in PageNames)
             Pages.Add(GetNode<Control>($"{PageName}Page"));
-
     }
     public static void ContinuePage(Control CurrentPage)
     {

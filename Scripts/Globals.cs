@@ -1,5 +1,5 @@
 using Godot;
-using System.Collections.Generic;
+using Godot.Collections;
 public partial class Element : GodotObject
 {
     public string Name { get; set; }
@@ -30,9 +30,7 @@ public class Elements
     public static Element Berylium = new Element("Berylium", "Be", 4, 9);
     public static Element Boron = new Element("Boron", "B", 5, 11);
 
-    public static List<Element> GetElementList()
-    {
-        List<Element> ElementList = 
+    public static Array<Element> ElementList =
         [
             Hydrogen,
             Helium,
@@ -40,6 +38,4 @@ public class Elements
             Berylium,
             Boron,
         ];
-        return ElementList;
-    }
 }
