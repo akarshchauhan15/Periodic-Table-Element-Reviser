@@ -1,5 +1,6 @@
 using Godot;
 using Godot.Collections;
+using System.Linq;
 public partial class Element : GodotObject
 {
     public string Name { get; set; }
@@ -7,7 +8,7 @@ public partial class Element : GodotObject
     public int AtomicNumber {  get; set; }
     public float AtomicMass { get; set; }
 
-    public  Element(string name, string symbol, int atomicNumber, float atomicMass)
+    public Element(string name, string symbol, int atomicNumber, float atomicMass)
     {
         Name = name;
         Symbol = symbol;
@@ -38,4 +39,37 @@ public class Elements
             Berylium,
             Boron,
         ];
+}
+public partial class ElementCollection : GodotObject
+{
+    public static string DisplayName {  get; set; }
+    public static int[] ElementsPresent { get; set; }
+
+    public ElementCollection(string displayName, int[] elementsPresent) 
+    {
+        DisplayName = displayName;
+        ElementsPresent = elementsPresent;
+    }
+    public ElementCollection(string displayName, int StartRange, int EndRange)
+    {
+        DisplayName = displayName;
+
+        for (int i = StartRange; i <= EndRange; i++) 
+            ElementsPresent.Append<int>(i);
+    }
+    public static Array<Element> GetElementsList()
+    {
+        Array<Element> CurrentList = new Array<Element>();
+        foreach (int Index in ElementsPresent)
+            CurrentList.Add(Elements.ElementList[Index]);
+
+        return CurrentList;
+    }
+}
+public class ElementCollections
+{
+    public static Dictionary<string, ElementCollection> FromBeginning = new Dictionary<string, ElementCollection>
+    {
+        {"First 10", new ElementCollection("First 10", 1, 10)}
+    };
 }
