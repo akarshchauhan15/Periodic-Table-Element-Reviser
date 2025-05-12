@@ -39,11 +39,11 @@ public partial class ActionPage : Control
             TimeLabel.Text = TimeElapsed.ToString().PadDecimals(0).PadZeros(2);
         }
     }
-    public void Initialize()
+    public void Initialize(Array<Element> List)
     {
         DisplayLabel.Text = Element.OptionValues[Selection.GivenIndex];
       
-        ElementList = Elements.ElementList;
+        ElementList = List;
 
         InputValue.GrabFocus();
         InputValue.PlaceholderText = Element.OptionValues[Selection.ReturnIndex];

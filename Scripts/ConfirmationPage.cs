@@ -12,7 +12,7 @@ public partial class ConfirmationPage : Control
         Given = GetNode<Label>("GivenLabel");
         Return = GetNode<Label>("ReturnLabel");
 
-        GetNode<Button>("ContinueButton").Pressed += ProceedToAction;
+        GetNode<Button>("ContinueButton").Pressed += ProceedToCollection;
         Selection = GetNode<SelectionPage>("../SelectionPage");
     }
     public void SetLabels()
@@ -20,9 +20,8 @@ public partial class ConfirmationPage : Control
         Given.Text = Element.OptionValues[Selection.GivenIndex];
         Return.Text = Element.OptionValues[Selection.ReturnIndex];
     }
-    private void ProceedToAction()
+    private void ProceedToCollection()
     {
         Hud.ContinuePage(this);
-        GetNode<ActionPage>("../ActionPage").Initialize();
     }
 }

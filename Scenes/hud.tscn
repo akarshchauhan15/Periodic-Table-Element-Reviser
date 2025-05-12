@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bbgxqqjlxgn76"]
+[gd_scene load_steps=11 format=3 uid="uid://bbgxqqjlxgn76"]
 
 [ext_resource type="Script" uid="uid://c8f3mfoslsglk" path="res://Scripts/Hud.cs" id="1_fccik"]
 [ext_resource type="Script" uid="uid://c5hga8f36vgtl" path="res://Scripts/HomePage.cs" id="2_8jye8"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cttnb2i7ncikn" path="res://Scripts/SelectionPage.cs" id="4_8jye8"]
 [ext_resource type="Script" uid="uid://ceak2is0nhxxx" path="res://Scripts/ConfirmationPage.cs" id="4_36asn"]
 [ext_resource type="Script" uid="uid://pm3eiwcc7pt5" path="res://Scripts/ActionPage.cs" id="5_t1xeu"]
+[ext_resource type="Script" uid="uid://dxqgt2puthqtf" path="res://Scripts/CollectionPage.cs" id="6_5ep0j"]
 [ext_resource type="Theme" uid="uid://jk2lfweyj25d" path="res://Themes/WindowsMetro.theme" id="8_43w4t"]
 [ext_resource type="Script" uid="uid://btnsfmomyx6vs" path="res://Scripts/ResultPage.cs" id="9_7gr8i"]
 
@@ -154,7 +155,98 @@ offset_bottom = 1855.0
 theme = ExtResource("8_43w4t")
 text = "Return"
 
+[node name="CollectionPage" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_5ep0j")
+
+[node name="Title" type="Label" parent="CollectionPage"]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 71.0
+offset_right = 872.0
+offset_bottom = 194.0
+theme_override_fonts/font = ExtResource("2_bjfho")
+theme_override_font_sizes/font_size = 100
+text = "Selection"
+autowrap_mode = 2
+
+[node name="Return" type="Label" parent="CollectionPage"]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 820.0
+offset_right = 1010.0
+offset_bottom = 880.0
+theme_override_fonts/font = ExtResource("2_bjfho")
+theme_override_font_sizes/font_size = 50
+text = "The collection of element."
+autowrap_mode = 2
+
+[node name="Given" type="Label" parent="CollectionPage"]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 334.0
+offset_right = 1010.0
+offset_bottom = 520.0
+theme_override_fonts/font = ExtResource("2_bjfho")
+theme_override_font_sizes/font_size = 50
+text = "The type of collection of elements used for providing information."
+autowrap_mode = 2
+
+[node name="Type" type="OptionButton" parent="CollectionPage"]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 520.0
+offset_right = 1010.0
+offset_bottom = 641.0
+theme = ExtResource("8_43w4t")
+alignment = 1
+selected = 0
+allow_reselect = true
+item_count = 4
+popup/item_0/text = "From Beginning"
+popup/item_0/id = 0
+popup/item_1/text = "Groups"
+popup/item_1/id = 1
+popup/item_2/text = "Periods"
+popup/item_2/id = 2
+popup/item_3/text = "Blocks"
+popup/item_3/id = 3
+
+[node name="Collection" type="OptionButton" parent="CollectionPage"]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 948.0
+offset_right = 1010.0
+offset_bottom = 1069.0
+theme = ExtResource("8_43w4t")
+alignment = 1
+selected = 0
+item_count = 1
+popup/item_0/text = "First 10"
+popup/item_0/id = 0
+
+[node name="ContinueButton" type="Button" parent="CollectionPage"]
+layout_mode = 0
+offset_left = 571.0
+offset_top = 1744.0
+offset_right = 1010.0
+offset_bottom = 1855.0
+theme = ExtResource("8_43w4t")
+text = "Continue"
+
+[node name="BackButton" type="Button" parent="CollectionPage"]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 1744.0
+offset_right = 512.0
+offset_bottom = 1855.0
+theme = ExtResource("8_43w4t")
+text = "Return"
+
 [node name="ConfirmationPage" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0

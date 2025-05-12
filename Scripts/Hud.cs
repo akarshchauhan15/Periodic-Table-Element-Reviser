@@ -7,7 +7,7 @@ public partial class Hud : Control
 
     public override void _Ready()
     {
-        string[] PageNames = { "Home", "Selection", "Confirmation", "Action", "Result" };
+        string[] PageNames = { "Home", "Selection", "Collection", "Confirmation", "Action", "Result" };
 
         foreach (string PageName in PageNames)
             Pages.Add(GetNode<Control>($"{PageName}Page"));
