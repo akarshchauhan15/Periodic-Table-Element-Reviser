@@ -5,7 +5,8 @@ public partial class CollectionPage : Control
 {
     OptionButton Type;
     OptionButton Collection;
-    public Dictionary<string, ElementCollection> CurrentList = new Dictionary<string, ElementCollection>();
+    public Array<ElementCollection> SelectedType;
+    public static ElementCollection SelectedCollection;
 
     public override void _Ready()
     {
@@ -13,26 +14,35 @@ public partial class CollectionPage : Control
         Collection = GetNode<OptionButton>("Collection");
 
         Type.ItemSelected += OnTypeSelected;
-        GetNode<Button>("ContinueButton").Pressed += ProceedToAction;
+        GetNode<Button>("ContinueButton").Pressed += ProceedToConfirmation;
+        GetNode<Button>("BackButton").Pressed += BackToSelection;
+    }
+    public void LoadValues()
+    {
+        int LastType = (int) ConfigController.Config.GetValue("LastSelected", "ElementCollectionType", 0);
+        OnTypeSelected(LastType);
+        Type.Select(LastType);
+
+        Collection.Select((int)ConfigController.Config.GetValue("LastSelected", "ElementCollectionList", 0));
     }
     private void OnTypeSelected(long Index)
     {
-        CurrentList = ElementCollections.CollectionArray[(int)Index];
-
-        System.Collections.Generic.ICollection<string> TempList;
-        TempList = ElementCollections.CollectionArray[(int)Index].Keys;
+        SelectedType = ElementCollections.CollectionArray[(int)Index];
 
         Collection.Clear();
-        foreach (string Key in TempList) 
-        {
-            Collection.AddItem(Key);
-        }
+        foreach (ElementCollection elementCollection in SelectedType)   
+            Collection.AddItem(elementCollection.Get(ElementCollection.PropertyName.DisplayName).ToString());
+
         Collection.Select(0);
     }
-    private void ProceedToAction()
+    private void ProceedToConfirmation()
     {
-        Hud.ContinuePage(this);
-        CurrentList[""]
-        GetNode<ActionPage>("../ActionPage").Initialize();
+        ConfigController.SaveSettings("LastSelected", "ElementCollectionType", Type.Selected);
+        ConfigController.SaveSettings("LastSelected", "ElementCollectionList", Collection.Selected);
+
+        SelectedCollection = SelectedType[Collection.Selected];
+        GetNode<ConfirmationPage>("../ConfirmationPage").SetLabels();
+        Hud.ContinuePage(this);  
     }
+    private void BackToSelection() => Hud.PreviousPage(this);
 }

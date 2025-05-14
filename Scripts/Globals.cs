@@ -1,7 +1,5 @@
 using Godot;
 using Godot.Collections;
-using System.Linq;
-using System.Security.Cryptography;
 public partial class Element : GodotObject
 {
     public string Name { get; set; }
@@ -21,69 +19,80 @@ public partial class Element : GodotObject
         {0, "Element Name"},
         {1, "Symbol"},
         {2, "Atomic Number"},
-        {3, "Atomic Mass"}
+        {3, "Atomic Mass"},
         };
 }
 
 public partial class ElementCollection : GodotObject
 {
-    public static int[] ElementsPresent { get; set; }
+    public string DisplayName {  get; set; }
+    public Array<int> ElementsPresent = new Array<int>();
 
-    public ElementCollection(int[] elementsPresent) 
+    public ElementCollection(string displayName, int[] elementsPresent)
     {
-        ElementsPresent = elementsPresent;
+        DisplayName = displayName;
+        ElementsPresent.AddRange(elementsPresent);
     }
-    public ElementCollection(int[][] rangeArray, int[] addElements = null)
+
+    public ElementCollection(string Name, int[][] rangeArray)
     {
+        DisplayName = Name;
         foreach(int[] Range in rangeArray)
         {
-            if (Range.Length > 2)
+            if (Range.Length != 2)
                 continue;
 
             for (int i = Range[0]; i <= Range[1]; i++)
-                ElementsPresent.Append(i);
+                ElementsPresent.Add(i);
         }
-        ElementsPresent.Union(addElements);
     }
-    public static Array<Element> GetElementsList()
+
+    public Array<Element> GetElementsList()
     {
         Array<Element> CurrentList = new Array<Element>();
         foreach (int Index in ElementsPresent)
-            CurrentList.Add(Elements.ElementList[Index]);
+            CurrentList.Add(Elements.ElementList[Index-1]);
 
         return CurrentList;
     }
 }
 public class ElementCollections
 {
-    public static readonly Dictionary<string, ElementCollection> FromBeginning = new Dictionary<string, ElementCollection>
+    public static Array<ElementCollection> FromBeginning = new Array<ElementCollection>
     {
-        { "First 10", new ElementCollection([[1, 10]]) },
-        { "First 18", new ElementCollection([[1, 18]]) },
-        { "First 36", new ElementCollection([[1, 36]]) },
-        { "First 54", new ElementCollection([[1, 54]]) },
+        new ElementCollection("First 10", [[1,10]]),
+        new ElementCollection("First 18", [[1, 18]]),
+        new ElementCollection("First 36", [[1, 36]]),
+        new ElementCollection("First 54", [[1, 54]]),
+        new ElementCollection("First 86", [[1, 86]]),
     };
 
-    public static readonly Dictionary<string, ElementCollection> Groups = new Dictionary<string, ElementCollection>
+    public static Array<ElementCollection> Groups = new Array<ElementCollection>
     {
-        { "Group 1", new ElementCollection([1, 3, 11, 19, 37, 55, 87])},
-        { "Group 2", new ElementCollection([4, 12, 20, 38, 56, 88])}
+        new ElementCollection("Group 2", [[3, 10]]),
+        new ElementCollection("Group 3", [[11, 18]])
     };
 
-    public static readonly Dictionary<string, ElementCollection> Periods = new Dictionary<string, ElementCollection>
+    public static Array<ElementCollection> Periods = new Array<ElementCollection>
     {
-        { "Period 1", new ElementCollection([4, 12, 20, 38, 56, 88]) },
+        new ElementCollection("Period A", [[1, 3, 11, 19, 37, 55, 87]])
     };
 
-    public static readonly Dictionary<string, ElementCollection> Blocks = new Dictionary<string, ElementCollection>
+    public static Array<ElementCollection> Blocks = new Array<ElementCollection>
     {
-        {"S Block", new ElementCollection([1, 2, 3, 4, 11, 12, 19, 20, 37, 38, 55, 56, 87, 88]) },
-        {"F Block", new ElementCollection([[57, 71], [89, 103]]) }
+        new ElementCollection("S Block", [1, 2, 3, 4, 11, 12, 19, 20, 37, 38, 55, 56, 87, 88]),
+        new ElementCollection("F Block", [[57, 71], [89, 103]])
     };
 
-    public static readonly Array<Dictionary<string, ElementCollection>> CollectionArray = new Array<Dictionary<string, ElementCollection>>
+    public static Array<ElementCollection> Others = new Array<ElementCollection>
     {
-        FromBeginning, Groups, Periods, Blocks,
+        new ElementCollection("Lanthanides", [[57, 71]]),
+        new ElementCollection("Actinides", [[89, 103]])
+    };
+
+    public static Array<Array<ElementCollection>> CollectionArray = new Array<Array<ElementCollection>>
+    {
+        FromBeginning, Groups, Periods, Blocks, Others
     };
 }
 public class Elements

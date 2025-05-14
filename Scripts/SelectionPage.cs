@@ -16,12 +16,13 @@ public partial class SelectionPage : Control
 
         GivenOption.ItemSelected += SelectGivenOption;
         ReturnOption.ItemSelected += SelectReturnOption;
-        GetNode<Button>("ContinueButton").Pressed += ProceedToConfirmation;
+        GetNode<Button>("ContinueButton").Pressed += ProceedToCollection;
+        GetNode<Button>("BackButton").Pressed += BackToHome;
     }
     public void LoadValues()
     {
-        SelectGivenOption((long) ConfigController.Config.GetValue("LastSelected", "Given"));
-        SelectReturnOption((long)ConfigController.Config.GetValue("LastSelected", "Return"));
+        SelectGivenOption((long) ConfigController.Config.GetValue("LastSelected", "Given", 0));
+        SelectReturnOption((long)ConfigController.Config.GetValue("LastSelected", "Return", 2));
 
         ReturnOption.Select(ReturnIndex);
         GivenOption.Select(GivenIndex);
@@ -64,12 +65,13 @@ public partial class SelectionPage : Control
                 return Element.PropertyName.Name;
         }
     }
-    private void ProceedToConfirmation()
+    private void ProceedToCollection()
     {
         ConfigController.SaveSettings("LastSelected", "Given", GivenIndex);
         ConfigController.SaveSettings("LastSelected", "Return", ReturnIndex);
 
-        GetNode<ConfirmationPage>("../ConfirmationPage").SetLabels();
+        GetNode<CollectionPage>("../CollectionPage").LoadValues();
         Hud.ContinuePage(this);
     }
+    private void BackToHome() => Hud.PreviousPage(this);
 }
