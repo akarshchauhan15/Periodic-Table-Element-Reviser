@@ -1,19 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://bbgxqqjlxgn76"]
+[gd_scene load_steps=11 format=3 uid="uid://bbgxqqjlxgn76"]
 
 [ext_resource type="Script" uid="uid://c8f3mfoslsglk" path="res://Scripts/Hud.cs" id="1_fccik"]
 [ext_resource type="Script" uid="uid://c5hga8f36vgtl" path="res://Scripts/HomePage.cs" id="2_8jye8"]
 [ext_resource type="FontFile" uid="uid://cmxb8rjoyv082" path="res://Assets/Fonts/Roboto.ttf" id="2_bjfho"]
-[ext_resource type="Script" uid="uid://cl8ik4h52i153" path="res://Scripts/SeletionPage.cs" id="3_bjfho"]
 [ext_resource type="Texture2D" uid="uid://4e6hc42t1yb3" path="res://Assets/Icons/arrow-down.svg" id="4_6fbih"]
+[ext_resource type="Script" uid="uid://cttnb2i7ncikn" path="res://Scripts/SelectionPage.cs" id="4_8jye8"]
 [ext_resource type="Script" uid="uid://ceak2is0nhxxx" path="res://Scripts/ConfirmationPage.cs" id="4_36asn"]
 [ext_resource type="Script" uid="uid://pm3eiwcc7pt5" path="res://Scripts/ActionPage.cs" id="5_t1xeu"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fccik"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
+[ext_resource type="Script" uid="uid://dxqgt2puthqtf" path="res://Scripts/CollectionPage.cs" id="6_5ep0j"]
+[ext_resource type="Theme" uid="uid://jk2lfweyj25d" path="res://Themes/WindowsMetro.theme" id="8_43w4t"]
+[ext_resource type="Script" uid="uid://btnsfmomyx6vs" path="res://Scripts/ResultPage.cs" id="9_7gr8i"]
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -37,36 +33,50 @@ metadata/_edit_lock_ = true
 
 [node name="HomePage" type="Control" parent="."]
 visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("2_8jye8")
 
 [node name="Label" type="Label" parent="HomePage"]
 layout_mode = 0
 offset_left = 103.0
 offset_top = 107.0
-offset_right = 490.0
-offset_bottom = 588.0
+offset_right = 719.0
+offset_bottom = 684.0
 theme_override_fonts/font = ExtResource("2_bjfho")
-theme_override_font_sizes/font_size = 100
-text = "Atomic Table Element Reviser"
+theme_override_font_sizes/font_size = 120
+text = "Periodic Table Element Reviser"
 autowrap_mode = 2
 
 [node name="StartButton" type="Button" parent="HomePage"]
-layout_mode = 0
-offset_left = 212.0
-offset_top = 1582.0
-offset_right = 872.0
-offset_bottom = 1768.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -283.0
+offset_top = -344.0
+offset_right = 278.0
+offset_bottom = -203.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("8_43w4t")
 text = "Start"
 
 [node name="SelectionPage" type="Control" parent="."]
 visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("3_bjfho")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_8jye8")
 
 [node name="Title" type="Label" parent="SelectionPage"]
 layout_mode = 0
@@ -81,10 +91,10 @@ autowrap_mode = 2
 
 [node name="Return" type="Label" parent="SelectionPage"]
 layout_mode = 0
-offset_left = 40.0
-offset_top = 750.0
-offset_right = 844.0
-offset_bottom = 873.0
+offset_left = 73.0
+offset_top = 784.0
+offset_right = 1010.0
+offset_bottom = 907.0
 theme_override_fonts/font = ExtResource("2_bjfho")
 theme_override_font_sizes/font_size = 50
 text = "The return value to be provided by the user."
@@ -92,10 +102,10 @@ autowrap_mode = 2
 
 [node name="Given" type="Label" parent="SelectionPage"]
 layout_mode = 0
-offset_left = 40.0
+offset_left = 73.0
 offset_top = 334.0
-offset_right = 872.0
-offset_bottom = 457.0
+offset_right = 1010.0
+offset_bottom = 520.0
 theme_override_fonts/font = ExtResource("2_bjfho")
 theme_override_font_sizes/font_size = 50
 text = "The given value, based on which the user provides an input."
@@ -103,11 +113,13 @@ autowrap_mode = 2
 
 [node name="GivenOption" type="OptionButton" parent="SelectionPage"]
 layout_mode = 0
-offset_left = 40.0
-offset_top = 512.0
-offset_right = 1037.0
-offset_bottom = 633.0
-theme_override_styles/normal = SubResource("StyleBoxFlat_fccik")
+offset_left = 73.0
+offset_top = 520.0
+offset_right = 1010.0
+offset_bottom = 641.0
+theme = ExtResource("8_43w4t")
+alignment = 1
+selected = 0
 allow_reselect = true
 item_count = 4
 popup/item_0/text = "Element Name"
@@ -121,11 +133,13 @@ popup/item_3/id = 3
 
 [node name="ReturnOption" type="OptionButton" parent="SelectionPage"]
 layout_mode = 0
-offset_left = 40.0
-offset_top = 913.0
-offset_right = 1037.0
-offset_bottom = 1034.0
-theme_override_styles/normal = SubResource("StyleBoxFlat_fccik")
+offset_left = 73.0
+offset_top = 948.0
+offset_right = 1010.0
+offset_bottom = 1069.0
+theme = ExtResource("8_43w4t")
+alignment = 1
+selected = 1
 item_count = 4
 popup/item_0/text = "Element Name"
 popup/item_0/id = 0
@@ -137,18 +151,155 @@ popup/item_3/text = "Atomic Mass"
 popup/item_3/id = 3
 
 [node name="ContinueButton" type="Button" parent="SelectionPage"]
-layout_mode = 0
-offset_left = 550.0
-offset_top = 1714.0
-offset_right = 989.0
-offset_bottom = 1855.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 31.0
+offset_top = -176.0
+offset_right = 470.0
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("8_43w4t")
 text = "Continue"
+
+[node name="BackButton" type="Button" parent="SelectionPage"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -467.0
+offset_top = -176.0
+offset_right = -28.0
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("8_43w4t")
+text = "Return"
+
+[node name="CollectionPage" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_5ep0j")
+
+[node name="Title" type="Label" parent="CollectionPage"]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 71.0
+offset_right = 872.0
+offset_bottom = 194.0
+theme_override_fonts/font = ExtResource("2_bjfho")
+theme_override_font_sizes/font_size = 100
+text = "Selection"
+autowrap_mode = 2
+
+[node name="Return" type="Label" parent="CollectionPage"]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 820.0
+offset_right = 1010.0
+offset_bottom = 880.0
+theme_override_fonts/font = ExtResource("2_bjfho")
+theme_override_font_sizes/font_size = 50
+text = "The collection of element."
+autowrap_mode = 2
+
+[node name="Given" type="Label" parent="CollectionPage"]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 334.0
+offset_right = 1010.0
+offset_bottom = 520.0
+theme_override_fonts/font = ExtResource("2_bjfho")
+theme_override_font_sizes/font_size = 50
+text = "The type of collection of elements used for providing information."
+autowrap_mode = 2
+
+[node name="Type" type="OptionButton" parent="CollectionPage"]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 520.0
+offset_right = 1010.0
+offset_bottom = 641.0
+theme = ExtResource("8_43w4t")
+alignment = 1
+selected = 0
+allow_reselect = true
+item_count = 5
+popup/item_0/text = "From Beginning"
+popup/item_0/id = 0
+popup/item_1/text = "Groups"
+popup/item_1/id = 1
+popup/item_2/text = "Periods"
+popup/item_2/id = 2
+popup/item_3/text = "Blocks"
+popup/item_3/id = 3
+popup/item_4/text = "Others"
+popup/item_4/id = 4
+
+[node name="Collection" type="OptionButton" parent="CollectionPage"]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 948.0
+offset_right = 1010.0
+offset_bottom = 1069.0
+theme = ExtResource("8_43w4t")
+alignment = 1
+selected = 0
+item_count = 1
+popup/item_0/text = "First 10"
+popup/item_0/id = 0
+
+[node name="ContinueButton" type="Button" parent="CollectionPage"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 31.0
+offset_top = -176.0
+offset_right = 470.0
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("8_43w4t")
+text = "Continue"
+
+[node name="BackButton" type="Button" parent="CollectionPage"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -467.0
+offset_top = -176.0
+offset_right = -28.0
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("8_43w4t")
+text = "Return"
 
 [node name="ConfirmationPage" type="Control" parent="."]
 visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("4_36asn")
 
 [node name="Label" type="Label" parent="ConfirmationPage"]
@@ -163,11 +314,15 @@ text = "Confirmation"
 autowrap_mode = 2
 
 [node name="GivenLabel" type="Label" parent="ConfirmationPage"]
-layout_mode = 0
-offset_left = 137.0
-offset_top = 414.0
-offset_right = 936.0
-offset_bottom = 537.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -399.0
+offset_top = 334.0
+offset_right = 400.0
+offset_bottom = 457.0
+grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_bjfho")
 theme_override_font_sizes/font_size = 90
 text = "Element Name"
@@ -175,42 +330,179 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="ReturnLabel" type="Label" parent="ConfirmationPage"]
-layout_mode = 0
-offset_left = 137.0
-offset_top = 750.0
-offset_right = 936.0
-offset_bottom = 873.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -399.0
+offset_top = 721.0
+offset_right = 400.0
+offset_bottom = 844.0
+grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_bjfho")
 theme_override_font_sizes/font_size = 90
 text = "Symbol"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="ConfirmationPage"]
+[node name="ElementsLabel" type="Label" parent="ConfirmationPage"]
 layout_mode = 0
-offset_left = 426.0
-offset_top = 537.0
-offset_right = 639.0
-offset_bottom = 750.0
+offset_left = 73.0
+offset_top = 1012.0
+offset_right = 1010.0
+offset_bottom = 1227.0
+theme_override_fonts/font = ExtResource("2_bjfho")
+theme_override_font_sizes/font_size = 60
+text = "From s block elements"
+autowrap_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ConfirmationPage"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -105.0
+offset_top = 479.0
+offset_right = 108.0
+offset_bottom = 692.0
+grow_horizontal = 2
 texture = ExtResource("4_6fbih")
 expand_mode = 2
 stretch_mode = 4
 
 [node name="ContinueButton" type="Button" parent="ConfirmationPage"]
-layout_mode = 0
-offset_left = 550.0
-offset_top = 1714.0
-offset_right = 989.0
-offset_bottom = 1855.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 31.0
+offset_top = -176.0
+offset_right = 470.0
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("8_43w4t")
 text = "Continue"
 
+[node name="BackButton" type="Button" parent="ConfirmationPage"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -467.0
+offset_top = -176.0
+offset_right = -28.0
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("8_43w4t")
+text = "Return"
+
 [node name="ActionPage" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("5_t1xeu")
 
 [node name="DisplayLabel" type="Label" parent="ActionPage"]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 307.0
+offset_right = 1018.0
+offset_bottom = 378.0
+theme_override_fonts/font = ExtResource("2_bjfho")
+theme_override_font_sizes/font_size = 60
+text = "Element Name"
+autowrap_mode = 2
+
+[node name="GivenValueLabel" type="Label" parent="ActionPage"]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 395.0
+offset_right = 1037.0
+offset_bottom = 758.0
+theme_override_fonts/font = ExtResource("2_bjfho")
+theme_override_font_sizes/font_size = 150
+text = "Hydrogen"
+autowrap_mode = 1
+
+[node name="LineEdit" type="LineEdit" parent="ActionPage"]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 820.0
+offset_right = 1018.0
+offset_bottom = 954.0
+theme = ExtResource("8_43w4t")
+theme_override_font_sizes/font_size = 100
+placeholder_text = "Atomic Number"
+max_length = 20
+keep_editing_on_text_submit = true
+emoji_menu_enabled = false
+virtual_keyboard_type = 3
+caret_blink = true
+caret_blink_interval = 0.5
+
+[node name="Progress" type="Label" parent="ActionPage"]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 71.0
+offset_right = 393.0
+offset_bottom = 154.0
+theme_override_fonts/font = ExtResource("2_bjfho")
+theme_override_font_sizes/font_size = 70
+text = "1/5"
+autowrap_mode = 2
+
+[node name="TimeElapsed" type="Label" parent="ActionPage"]
+layout_mode = 0
+offset_left = 719.0
+offset_top = 71.0
+offset_right = 1003.0
+offset_bottom = 154.0
+theme_override_fonts/font = ExtResource("2_bjfho")
+theme_override_font_sizes/font_size = 70
+text = "55:55"
+horizontal_alignment = 2
+autowrap_mode = 2
+
+[node name="ExitButton" type="Button" parent="ActionPage"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -467.0
+offset_top = -176.0
+offset_right = -28.0
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("8_43w4t")
+text = "Exit"
+
+[node name="KeyboardTimer" type="Timer" parent="ActionPage"]
+wait_time = 0.5
+one_shot = true
+
+[node name="ResultPage" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_7gr8i")
+
+[node name="Label" type="Label" parent="ResultPage"]
 layout_mode = 0
 offset_left = 73.0
 offset_top = 71.0
@@ -218,31 +510,94 @@ offset_right = 686.0
 offset_bottom = 189.0
 theme_override_fonts/font = ExtResource("2_bjfho")
 theme_override_font_sizes/font_size = 100
+text = "Result"
 autowrap_mode = 2
 
-[node name="GivenValueLabel" type="Label" parent="ActionPage"]
+[node name="Label2" type="Label" parent="ResultPage"]
 layout_mode = 0
 offset_left = 73.0
-offset_top = 264.0
-offset_right = 1037.0
-offset_bottom = 512.0
+offset_top = 267.0
+offset_right = 257.0
+offset_bottom = 350.0
 theme_override_fonts/font = ExtResource("2_bjfho")
-theme_override_font_sizes/font_size = 120
-text = "Boron"
-autowrap_mode = 1
+theme_override_font_sizes/font_size = 70
+text = "Score"
+autowrap_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="ActionPage"]
+[node name="Score" type="Label" parent="ResultPage"]
 layout_mode = 0
-offset_left = 73.0
-offset_top = 750.0
-offset_right = 1007.0
-offset_bottom = 916.0
-caret_blink = true
-caret_blink_interval = 0.5
-caret_force_displayed = true
+offset_left = 602.0
+offset_top = 267.0
+offset_right = 1002.0
+offset_bottom = 350.0
+theme_override_fonts/font = ExtResource("2_bjfho")
+theme_override_font_sizes/font_size = 70
+horizontal_alignment = 2
+autowrap_mode = 2
 
-[node name="ResultPage" type="Control" parent="."]
-visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="TimeTaken" type="Label" parent="ResultPage"]
+layout_mode = 0
+offset_left = 719.0
+offset_top = 71.0
+offset_right = 1002.0
+offset_bottom = 154.0
+theme_override_fonts/font = ExtResource("2_bjfho")
+theme_override_font_sizes/font_size = 70
+text = "55:55"
+horizontal_alignment = 2
+autowrap_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ResultPage"]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.037
+anchor_top = 0.222
+anchor_right = 0.966
+anchor_bottom = 0.877
+offset_left = 0.0400009
+offset_top = 0.759979
+offset_right = -0.280029
+offset_bottom = -0.840088
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ResultPage/ScrollContainer"]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ContinueButton" type="Button" parent="ResultPage"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 31.0
+offset_top = -176.0
+offset_right = 470.0
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("8_43w4t")
+text = "Continue"
+
+[node name="RetryButton" type="Button" parent="ResultPage"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -467.0
+offset_top = -176.0
+offset_right = -28.0
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("8_43w4t")
+text = "Retry"

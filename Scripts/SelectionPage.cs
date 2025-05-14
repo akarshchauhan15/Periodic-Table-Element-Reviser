@@ -1,15 +1,13 @@
 using Godot;
-using System;
-using System.Reflection;
 
-public partial class SeletionPage : Control
+public partial class SelectionPage : Control
 {
     OptionButton GivenOption;
     OptionButton ReturnOption;
-    public static int GivenIndex;
-    public static int ReturnIndex;
-    public static StringName SelectedGivenOption;
-    public static StringName SelectedReturnOption;
+    public int GivenIndex;
+    public int ReturnIndex;
+    public StringName SelectedGivenOption;
+    public StringName SelectedReturnOption;
 
     public override void _Ready()
     {
@@ -18,21 +16,21 @@ public partial class SeletionPage : Control
 
         GivenOption.ItemSelected += SelectGivenOption;
         ReturnOption.ItemSelected += SelectReturnOption;
-        GetNode<Button>("ContinueButton").Pressed += ProceedToConfirmation;
+        GetNode<Button>("ContinueButton").Pressed += ProceedToCollection;
+        GetNode<Button>("BackButton").Pressed += BackToHome;
     }
     public void LoadValues()
     {
-        GivenIndex = (int) ConfigController.Config.GetValue("LastSelected", "Given");
-        ReturnIndex = (int) ConfigController.Config.GetValue("LastSelected", "Return");
+        SelectGivenOption((long) ConfigController.Config.GetValue("LastSelected", "Given", 0));
+        SelectReturnOption((long)ConfigController.Config.GetValue("LastSelected", "Return", 2));
 
-        GivenOption.Select(GivenIndex);
-        ReturnOption.SetItemDisabled(GivenIndex, true);
         ReturnOption.Select(ReturnIndex);
+        GivenOption.Select(GivenIndex);
     }
     private void SelectGivenOption(long Index)
     {
         GivenIndex = (int) Index;
-        SetValueToVariable(SelectedGivenOption, Index);
+        SelectedGivenOption = SetValueToVariable(Index);
 
         for (int i = 0; i < 4; i++)
         {
@@ -43,39 +41,37 @@ public partial class SeletionPage : Control
             }
             ReturnOption.SetItemDisabled(i, false);
         }
-
         if (ReturnOption.GetSelectedId() == Index)     
             ReturnOption.Select(((int)Index+1)%4);
     }
     private void SelectReturnOption(long Index)
     {
         ReturnIndex = (int) Index;
-        SetValueToVariable(SelectedReturnOption, Index);
+        SelectedReturnOption = SetValueToVariable(Index);
     }
-    private void SetValueToVariable(StringName SelectedVariable, long Index)
+    private StringName SetValueToVariable(long Index)
     {
         switch (Index)
         {
             case 0:
-                SelectedVariable = Element.PropertyName.Name;
-                break;
+                return Element.PropertyName.Name;
             case 1:
-                SelectedVariable = Element.PropertyName.Symbol;
-                break;
+                return Element.PropertyName.Symbol;
             case 2:
-                SelectedVariable = Element.PropertyName.AtomicNumber;
-                break;
+                return Element.PropertyName.AtomicNumber;
             case 3:
-                SelectedVariable = Element.PropertyName.AtomicMass;
-                break;
+                return Element.PropertyName.AtomicMass;
+            default:
+                return Element.PropertyName.Name;
         }
     }
-    private void ProceedToConfirmation()
+    private void ProceedToCollection()
     {
         ConfigController.SaveSettings("LastSelected", "Given", GivenIndex);
         ConfigController.SaveSettings("LastSelected", "Return", ReturnIndex);
 
-        ConfirmationPage.SetLabels();
+        GetNode<CollectionPage>("../CollectionPage").LoadValues();
         Hud.ContinuePage(this);
     }
+    private void BackToHome() => Hud.PreviousPage(this);
 }

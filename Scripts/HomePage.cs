@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class HomePage : Control
 {
@@ -9,7 +8,7 @@ public partial class HomePage : Control
     }
     private void ProceedToSelection()
     {
-        GetNode<SeletionPage>("../SelectionPage").LoadValues();
+        GetNode<SelectionPage>("../SelectionPage").LoadValues();
         Hud.ContinuePage(this);
     }
 }

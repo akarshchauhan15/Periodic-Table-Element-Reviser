@@ -1,0 +1,83 @@
+[gd_scene load_steps=3 format=3 uid="uid://cedfb0i70wjc5"]
+
+[ext_resource type="FontFile" uid="uid://cmxb8rjoyv082" path="res://Assets/Fonts/Roboto.ttf" id="1_4t8le"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q6f7p"]
+bg_color = Color(1, 1, 1, 0.0509804)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[node name="ScoreListElement" type="Panel"]
+custom_minimum_size = Vector2(1000, 146)
+offset_right = 1080.0
+offset_bottom = 146.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_q6f7p")
+
+[node name="Given" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 34.0
+offset_top = -41.5
+offset_right = 334.0
+offset_bottom = 41.5
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_4t8le")
+theme_override_font_sizes/font_size = 70
+text = "Hydrogen"
+
+[node name="Return" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -369.0
+offset_top = -41.5
+offset_right = -20.0
+offset_bottom = 41.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.365982, 0.557667, 0.761719, 1)
+theme_override_fonts/font = ExtResource("1_4t8le")
+theme_override_font_sizes/font_size = 70
+text = "1"
+horizontal_alignment = 2
+
+[node name="Wrong" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -41.0
+offset_right = -20.0
+offset_bottom = 42.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.717647, 0.435294, 0.435294, 1)
+theme_override_fonts/font = ExtResource("1_4t8le")
+theme_override_font_sizes/font_size = 70
+text = "1"
+horizontal_alignment = 2
+
+[node name="Correct" type="Label" parent="Wrong"]
+layout_mode = 1
+offset_left = -462.0
+offset_right = -60.0
+offset_bottom = 83.0
+theme_override_colors/font_color = Color(0.418656, 0.695313, 0.361237, 1)
+theme_override_fonts/font = ExtResource("1_4t8le")
+theme_override_font_sizes/font_size = 70
+text = "1"
+horizontal_alignment = 2
