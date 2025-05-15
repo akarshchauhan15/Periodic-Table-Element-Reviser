@@ -23,7 +23,10 @@ public partial class ThemeManager : Node
         ["ConfirmationPage/BackButton", "ShadowedButton"],
         ["ActionPage/ExitButton", "ShadowedButton"],
         ["ResultPage/ContinueButton", "HighlightedButton"],
-        ["ResultPage/RetryButton", "ShadowedButton"]
+        ["ResultPage/RetryButton", "ShadowedButton"],
+        ["SettingsPage/SoundButton", "ShadowedButton"],
+        ["SettingsPage/ExitButton", "ShadowedButton"],
+        ["SettingsPage/ThemeOption"],
     ];
 
     public override void _Ready()

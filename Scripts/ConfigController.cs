@@ -15,6 +15,7 @@ public partial class ConfigController : Node
             Config.SetValue("LastSelected", "ElementCollectionType", 0);
             Config.SetValue("LastSelected", "ElementCollectionList", 0);
             Config.SetValue("Settings", "Theme", 0);
+            Config.SetValue("Settings", "Sound", true);
             Config.Save(Path);
         }
         else

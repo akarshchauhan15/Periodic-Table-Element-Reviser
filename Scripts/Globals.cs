@@ -34,7 +34,7 @@ public partial class ElementCollection : GodotObject
         ElementsPresent.AddRange(elementsPresent);
     }
 
-    public ElementCollection(string Name, int[][] rangeArray)
+    public ElementCollection(string Name, int[][] rangeArray, int[] additionalElements = null)
     {
         DisplayName = Name;
         foreach(int[] Range in rangeArray)
@@ -45,6 +45,8 @@ public partial class ElementCollection : GodotObject
             for (int i = Range[0]; i <= Range[1]; i++)
                 ElementsPresent.Add(i);
         }
+        if (additionalElements != null)
+        ElementsPresent.AddRange(additionalElements);
     }
 
     public Array<Element> GetElementsList()
@@ -69,19 +71,26 @@ public class ElementCollections
 
     public static Array<ElementCollection> Groups = new Array<ElementCollection>
     {
-        new ElementCollection("Group 2", [[3, 10]]),
-        new ElementCollection("Group 3", [[11, 18]])
+        new ElementCollection("Group A", [1, 3, 11, 19, 37, 55, 87]),
+        new ElementCollection("Group B", [4, 12, 20, 38, 56, 88])
     };
 
     public static Array<ElementCollection> Periods = new Array<ElementCollection>
     {
-        new ElementCollection("Period A", [[1, 3, 11, 19, 37, 55, 87]])
+        new ElementCollection("Period 2", [[3, 10]]),
+        new ElementCollection("Period 3", [[11, 18]]),
+        new ElementCollection("Period 4", [[19, 36]]),
+        new ElementCollection("Period 5", [[37, 54]]),
+        new ElementCollection("Period 6", [[55, 86]]),
+        new ElementCollection("Period 6 w/o Lanthanides", [[55, 56], [72, 86]]),
     };
 
     public static Array<ElementCollection> Blocks = new Array<ElementCollection>
     {
-        new ElementCollection("S Block", [1, 2, 3, 4, 11, 12, 19, 20, 37, 38, 55, 56, 87, 88]),
-        new ElementCollection("F Block", [[57, 71], [89, 103]])
+        new ElementCollection("s-Block", [1, 2, 3, 4, 11, 12, 19, 20, 37, 38, 55, 56, 87, 88]),
+        new ElementCollection("p-Block", [[5, 10], [13, 18], [31, 36], [49, 54], [81, 86]]),
+        new ElementCollection("d-Block", [[21, 30], [39, 48], [72, 80]], [57, 89]),
+        new ElementCollection("f-Block", [[57, 71], [89, 103]])
     };
 
     public static Array<ElementCollection> Others = new Array<ElementCollection>

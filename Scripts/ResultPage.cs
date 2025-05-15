@@ -44,8 +44,8 @@ public partial class ResultPage : Control
             }
             else
             {
-                ScoreElement.GetNode<Label>("Wrong").Text = Action.ElementList[i].Get(Selection.SelectedReturnOption).ToString();
-                ScoreElement.GetNode<Label>("Wrong/Correct").Text = Action.WrongReturns[WrongCounter];
+                ScoreElement.GetNode<Label>("Wrong").Text = Action.WrongReturns[WrongCounter];
+                ScoreElement.GetNode<Label>("Wrong/Correct").Text = Action.ElementList[i].Get(Selection.SelectedReturnOption).ToString();
                 ScoreElement.GetNode<Label>("Wrong").Show();
                 ScoreElement.Set("", Colors.Red);
                 WrongCounter++;
