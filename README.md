@@ -9,6 +9,4 @@ The game is currently availiable for Android.
 - Click start on the confirmation page to begin playing.
 - Enter the respective answer for the question asked.
 - After all elements are done, the results will be revealed on the next page.
-- The scrollable list contains the answers user typed and correct one next to them if the answer is wrong.
-- 
-# Images
+- The scrollable list contains the answers user typed or correct one next to them if it is wrong.
