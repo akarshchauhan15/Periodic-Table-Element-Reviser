@@ -1,14 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://bbgxqqjlxgn76"]
+[gd_scene load_steps=12 format=3 uid="uid://bbgxqqjlxgn76"]
 
 [ext_resource type="Script" uid="uid://c8f3mfoslsglk" path="res://Scripts/Hud.cs" id="1_fccik"]
 [ext_resource type="Script" uid="uid://c5hga8f36vgtl" path="res://Scripts/HomePage.cs" id="2_8jye8"]
 [ext_resource type="FontFile" uid="uid://cmxb8rjoyv082" path="res://Assets/Fonts/Roboto.ttf" id="2_bjfho"]
+[ext_resource type="Theme" uid="uid://bunmufssyl5ho" path="res://Themes/Modern.theme" id="4_4f5kr"]
 [ext_resource type="Texture2D" uid="uid://4e6hc42t1yb3" path="res://Assets/Icons/arrow-down.svg" id="4_6fbih"]
 [ext_resource type="Script" uid="uid://cttnb2i7ncikn" path="res://Scripts/SelectionPage.cs" id="4_8jye8"]
 [ext_resource type="Script" uid="uid://ceak2is0nhxxx" path="res://Scripts/ConfirmationPage.cs" id="4_36asn"]
 [ext_resource type="Script" uid="uid://pm3eiwcc7pt5" path="res://Scripts/ActionPage.cs" id="5_t1xeu"]
 [ext_resource type="Script" uid="uid://dxqgt2puthqtf" path="res://Scripts/CollectionPage.cs" id="6_5ep0j"]
-[ext_resource type="Theme" uid="uid://jk2lfweyj25d" path="res://Themes/WindowsMetro.theme" id="8_43w4t"]
+[ext_resource type="Theme" uid="uid://jk2lfweyj25d" path="res://Themes/Metro.theme" id="8_43w4t"]
 [ext_resource type="Script" uid="uid://btnsfmomyx6vs" path="res://Scripts/ResultPage.cs" id="9_7gr8i"]
 
 [node name="HUD" type="Control"]
@@ -65,7 +66,8 @@ offset_right = 278.0
 offset_bottom = -203.0
 grow_horizontal = 2
 grow_vertical = 0
-theme = ExtResource("8_43w4t")
+theme = ExtResource("4_4f5kr")
+theme_type_variation = &"HighlightedButton"
 text = "Start"
 
 [node name="SelectionPage" type="Control" parent="."]
@@ -117,7 +119,7 @@ offset_left = 73.0
 offset_top = 520.0
 offset_right = 1010.0
 offset_bottom = 641.0
-theme = ExtResource("8_43w4t")
+theme = ExtResource("4_4f5kr")
 alignment = 1
 selected = 0
 allow_reselect = true
@@ -137,7 +139,7 @@ offset_left = 73.0
 offset_top = 948.0
 offset_right = 1010.0
 offset_bottom = 1069.0
-theme = ExtResource("8_43w4t")
+theme = ExtResource("4_4f5kr")
 alignment = 1
 selected = 1
 item_count = 4
@@ -158,12 +160,13 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = 31.0
-offset_top = -176.0
+offset_top = -190.0
 offset_right = 470.0
 offset_bottom = -65.0
 grow_horizontal = 2
 grow_vertical = 0
-theme = ExtResource("8_43w4t")
+theme = ExtResource("4_4f5kr")
+theme_type_variation = &"HighlightedButton"
 text = "Continue"
 
 [node name="BackButton" type="Button" parent="SelectionPage"]
@@ -174,12 +177,13 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -467.0
-offset_top = -176.0
+offset_top = -190.0
 offset_right = -28.0
 offset_bottom = -65.0
 grow_horizontal = 2
 grow_vertical = 0
-theme = ExtResource("8_43w4t")
+theme = ExtResource("4_4f5kr")
+theme_type_variation = &"ShadowedButton"
 text = "Return"
 
 [node name="CollectionPage" type="Control" parent="."]
@@ -268,7 +272,7 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = 31.0
-offset_top = -176.0
+offset_top = -190.0
 offset_right = 470.0
 offset_bottom = -65.0
 grow_horizontal = 2
@@ -284,7 +288,7 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -467.0
-offset_top = -176.0
+offset_top = -190.0
 offset_right = -28.0
 offset_bottom = -65.0
 grow_horizontal = 2
@@ -378,13 +382,13 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = 31.0
-offset_top = -176.0
+offset_top = -190.0
 offset_right = 470.0
 offset_bottom = -65.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("8_43w4t")
-text = "Continue"
+text = "Start"
 
 [node name="BackButton" type="Button" parent="ConfirmationPage"]
 layout_mode = 1
@@ -394,7 +398,7 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -467.0
-offset_top = -176.0
+offset_top = -190.0
 offset_right = -28.0
 offset_bottom = -65.0
 grow_horizontal = 2
@@ -403,6 +407,7 @@ theme = ExtResource("8_43w4t")
 text = "Return"
 
 [node name="ActionPage" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -439,8 +444,7 @@ offset_left = 84.0
 offset_top = 820.0
 offset_right = 1018.0
 offset_bottom = 954.0
-theme = ExtResource("8_43w4t")
-theme_override_font_sizes/font_size = 100
+theme = ExtResource("4_4f5kr")
 placeholder_text = "Atomic Number"
 max_length = 20
 keep_editing_on_text_submit = true
@@ -480,7 +484,7 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -467.0
-offset_top = -176.0
+offset_top = -190.0
 offset_right = -28.0
 offset_bottom = -65.0
 grow_horizontal = 2
@@ -578,7 +582,7 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = 31.0
-offset_top = -176.0
+offset_top = -190.0
 offset_right = 470.0
 offset_bottom = -65.0
 grow_horizontal = 2
@@ -594,10 +598,104 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -467.0
-offset_top = -176.0
+offset_top = -190.0
 offset_right = -28.0
 offset_bottom = -65.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("8_43w4t")
 text = "Retry"
+
+[node name="SettingsPage" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="SettingsPage"]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 71.0
+offset_right = 700.0
+offset_bottom = 213.0
+theme_override_fonts/font = ExtResource("2_bjfho")
+theme_override_font_sizes/font_size = 120
+text = "Settings"
+autowrap_mode = 2
+
+[node name="Credits" type="Label" parent="SettingsPage"]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 820.0
+offset_right = 689.0
+offset_bottom = 962.0
+theme_override_fonts/font = ExtResource("2_bjfho")
+theme_override_font_sizes/font_size = 120
+text = "Credits"
+autowrap_mode = 2
+
+[node name="Theme" type="Label" parent="SettingsPage"]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 327.0
+offset_right = 300.0
+offset_bottom = 410.0
+theme_override_fonts/font = ExtResource("2_bjfho")
+theme_override_font_sizes/font_size = 70
+text = "Theme"
+
+[node name="Sound" type="Label" parent="SettingsPage"]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 510.0
+offset_right = 282.0
+offset_bottom = 593.0
+theme_override_fonts/font = ExtResource("2_bjfho")
+theme_override_font_sizes/font_size = 70
+text = "Sound"
+
+[node name="ThemeOption" type="OptionButton" parent="SettingsPage"]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 300.0
+offset_right = 940.0
+offset_bottom = 427.0
+theme = ExtResource("4_4f5kr")
+alignment = 1
+selected = 0
+item_count = 3
+popup/item_0/text = "Modern"
+popup/item_0/id = 0
+popup/item_1/text = "Metro"
+popup/item_1/id = 1
+popup/item_2/text = "Mint"
+popup/item_2/id = 2
+
+[node name="Button" type="Button" parent="SettingsPage"]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 495.0
+offset_right = 940.0
+offset_bottom = 622.0
+theme = ExtResource("4_4f5kr")
+toggle_mode = true
+button_pressed = true
+text = "Enabled"
+
+[node name="ExitButton2" type="Button" parent="SettingsPage"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -467.0
+offset_top = -190.0
+offset_right = -28.0
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("8_43w4t")
+text = "Exit"
