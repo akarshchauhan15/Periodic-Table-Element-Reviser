@@ -31,8 +31,6 @@ public partial class ThemeManager : Node
 
     public override void _Ready()
     {
-        //Metro = (ResourceLoader.Load<Resource>("res://Themes/Metro.theme")).
-        //Modern = (ResourceLoader.Load<PackedScene>("res://Themes/Modern.theme")).Instantiate<Theme>();
         Metro = GD.Load<Theme>("res://Themes/Metro.theme");
         Modern = GD.Load<Theme>("res://Themes/Modern.theme");
         Themes = [Modern, Metro];

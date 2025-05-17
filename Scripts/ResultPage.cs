@@ -63,6 +63,5 @@ public partial class ResultPage : Control
         GetNode<ActionPage>("../ActionPage").Initialize();
         Hide();
         GetNode<ActionPage>("../ActionPage").Show();
-
     }
 }

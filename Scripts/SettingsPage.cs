@@ -22,6 +22,7 @@ public partial class SettingsPage : Control
         ["ConfirmationPage/ContinueButton", "HighlightedButton"],
         ["ConfirmationPage/BackButton", "ShadowedButton"],
         ["ActionPage/ExitButton", "ShadowedButton"],
+        ["ActionPage/LineEdit"],
         ["ResultPage/ContinueButton", "HighlightedButton"],
         ["ResultPage/RetryButton", "ShadowedButton"],
         ["SettingsPage/SoundButton", "ShadowedButton"],

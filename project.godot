@@ -11,10 +11,9 @@ config_version=5
 [application]
 
 config/name="Perodic Table Element Reviser"
-config/version="v0.2.0-alpha"
+config/version="v0.2.1-alpha"
 run/main_scene="uid://c8nw2nxv7d2tk"
 config/features=PackedStringArray("4.4", "C#", "Mobile")
-config/icon="uid://df1ghik0aovik"
 
 [autoload]
 

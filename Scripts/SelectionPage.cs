@@ -41,8 +41,11 @@ public partial class SelectionPage : Control
             }
             ReturnOption.SetItemDisabled(i, false);
         }
-        if (ReturnOption.GetSelectedId() == Index)     
-            ReturnOption.Select(((int)Index+1)%4);
+        if (ReturnOption.GetSelectedId() != Index)
+            return;
+
+        ReturnOption.Select(((int)Index + 1) % 4);
+        SelectReturnOption((Index + 1) % 4);
     }
     private void SelectReturnOption(long Index)
     {

@@ -200,7 +200,7 @@ offset_top = 107.0
 offset_right = 719.0
 offset_bottom = 684.0
 theme_override_fonts/font = ExtResource("2_bjfho")
-theme_override_font_sizes/font_size = 120
+theme_override_font_sizes/font_size = 130
 text = "Periodic Table Element Reviser"
 autowrap_mode = 2
 
@@ -209,10 +209,10 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 16.0
-offset_top = -136.0
-offset_right = 136.0
-offset_bottom = -16.0
+offset_left = 49.0
+offset_top = -162.0
+offset_right = 169.0
+offset_bottom = -42.0
 grow_vertical = 0
 texture_normal = ExtResource("12_piegi")
 ignore_texture_size = true
@@ -612,7 +612,7 @@ offset_bottom = 954.0
 theme = ExtResource("4_4f5kr")
 placeholder_text = "Atomic Number"
 max_length = 20
-keep_editing_on_text_submit = true
+context_menu_enabled = false
 emoji_menu_enabled = false
 virtual_keyboard_type = 3
 caret_blink = true
@@ -658,7 +658,7 @@ theme = SubResource("Theme_5ep0j")
 text = "Exit"
 
 [node name="KeyboardTimer" type="Timer" parent="ActionPage"]
-wait_time = 0.5
+wait_time = 0.3
 one_shot = true
 
 [node name="ResultPage" type="Control" parent="."]
@@ -865,9 +865,9 @@ uri = "https://github.com/akarshchauhan15/Periodic-Table-Element-Reviser"
 [node name="LinkButton2" type="LinkButton" parent="SettingsPage"]
 layout_mode = 0
 offset_left = 467.0
-offset_top = 1267.0
+offset_top = 1266.0
 offset_right = 978.0
-offset_bottom = 1350.0
+offset_bottom = 1349.0
 theme_override_colors/font_color = Color(0.784314, 0.745098, 1, 1)
 theme_override_constants/underline_spacing = 15
 theme_override_fonts/font = ExtResource("2_bjfho")
@@ -888,9 +888,9 @@ text = "Creator"
 [node name="Using" type="Label" parent="SettingsPage"]
 layout_mode = 0
 offset_left = 73.0
-offset_top = 1267.0
+offset_top = 1266.0
 offset_right = 303.0
-offset_bottom = 1350.0
+offset_bottom = 1349.0
 theme_override_fonts/font = ExtResource("2_bjfho")
 theme_override_font_sizes/font_size = 70
 text = "Using"
@@ -900,14 +900,14 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 40.0
-offset_top = -65.0
-offset_right = 360.0
-offset_bottom = -29.0
+offset_left = 84.0
+offset_top = -78.0
+offset_right = 404.0
+offset_bottom = -30.0
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_bjfho")
 theme_override_font_sizes/font_size = 40
-text = "version"
+text = "version-alpha???"
 
 [node name="ExitButton" type="Button" parent="SettingsPage"]
 layout_mode = 1

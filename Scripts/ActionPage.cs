@@ -103,8 +103,11 @@ public partial class ActionPage : Control
             WrongReturns.Add(Input);
             ElementCorrect.Add(false);
         }
+
         InputValue.Text = "";
         Counter++;
+
+        InputValue.Unedit();
         GiveValue();
     }
     private void EndGame()
@@ -113,7 +116,10 @@ public partial class ActionPage : Control
         GetNode<ResultPage>("../ResultPage").SetResults();
         Hud.ContinuePage(this);
     }
-    private void OnKeyboardTimerEnds() => InputValue.Edit();
+    private void OnKeyboardTimerEnds() {
+        InputValue.GrabFocus();
+        InputValue.Edit();
+    }
     private void ExitButtonDown() => ExitTime = TimeElapsed;
     private void ExitButtonUp() => ExitTime = 0;
 }
