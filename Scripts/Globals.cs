@@ -67,6 +67,9 @@ public class ElementCollections
         new ElementCollection("First 36", [[1, 36]]),
         new ElementCollection("First 54", [[1, 54]]),
         new ElementCollection("First 86", [[1, 86]]),
+        new ElementCollection("To 86 (no Lanthanides)", [[1, 56], [72, 86]]),
+        new ElementCollection("All 118", [[1, 118]]),
+        new ElementCollection("To 118 (no f-Block)", [[1, 56], [72, 88], [104, 118]])
     };
 
     public static Array<ElementCollection> Groups = new Array<ElementCollection>
@@ -83,6 +86,8 @@ public class ElementCollections
         new ElementCollection("Period 5", [[37, 54]]),
         new ElementCollection("Period 6", [[55, 86]]),
         new ElementCollection("Period 6 w/o Lanthanides", [[55, 56], [72, 86]]),
+        new ElementCollection("Period 7", [[87, 118]]),
+        new ElementCollection("Period 7 w/o Actinides", [[87, 88], [104, 118]])
     };
 
     public static Array<ElementCollection> Blocks = new Array<ElementCollection>
@@ -209,6 +214,21 @@ public class Elements
     public static Element Mendelevium = new Element("Mendelevium", "Md", 101, 258);
     public static Element Nobelium = new Element("Nobelium", "No", 102, 259);
     public static Element Lawrencium = new Element("Lawrencium", "Lr", 103, 266);
+    public static Element Rutherfordium = new Element("Rutherfordium", "Rf", 104, 267);
+    public static Element Dubnium = new Element("Dubnium", "Db", 105, 270);
+    public static Element Seaborgium = new Element("Seaborgium", "Sg", 106, 271);
+    public static Element Bohrium = new Element("Bohrium", "Bh", 107, 270);
+    public static Element Hassium = new Element("Hassium", "Hs", 108, 277);
+    public static Element Meitnerium = new Element("Meitnerium", "Mt", 109, 276);
+    public static Element Darmstadtium = new Element("Darmstadtium", "Ds", 110, 281);
+    public static Element Roentgenium = new Element("Roentgenium", "Rg", 111, 282);
+    public static Element Copernicium = new Element("Copernicium", "Cn", 112, 285);
+    public static Element Nihonium = new Element("Nihonium", "Nh", 113, 286);
+    public static Element Flerovium = new Element("Flerovium", "Fl", 114, 289);
+    public static Element Moscovium = new Element("Moscovium", "Mc", 115, 290);
+    public static Element Livermorium = new Element("Livermorium", "Lv", 116, 293);
+    public static Element Tennessine = new Element("Tennessine", "Ts", 117, 294);
+    public static Element Oganesson = new Element("Oganesson", "Og", 118, 294);
 
     public static Array<Element> ElementList = new Array<Element>
     {
@@ -314,6 +334,18 @@ public class Elements
     Fermium,
     Mendelevium,
     Nobelium,
-    Lawrencium
+    Lawrencium,
+    Rutherfordium,
+    Dubnium,
+    Hassium,
+    Meitnerium,
+    Darmstadtium,
+    Roentgenium,
+    Nihonium,
+    Flerovium,
+    Moscovium,
+    Livermorium,
+    Tennessine,
+    Oganesson
     };
 }
