@@ -1,9 +1,9 @@
 using Godot;
-using System;
 
 public partial class SettingsPage : Control
 {
-    public static bool IsSoundEnabled;
+    public static bool IsSoundEnabled = true;
+    public static float AnimationFadeDuration = 0.2f;
 
     OptionButton ThemeOption;
     Button SoundButton;
@@ -73,9 +73,5 @@ public partial class SettingsPage : Control
         IsSoundEnabled = SoundEnabled;
         ConfigController.SaveSettings("Settings", "Sound", SoundEnabled);
     }
-    private void OnExitPressed()
-    {
-        Hide();
-        GetNode<Control>("../HomePage").Show();
-    }
+    private void OnExitPressed() => GetParent<Hud>().AnimatePages(this, GetNode<HomePage>("../HomePage"));
 }

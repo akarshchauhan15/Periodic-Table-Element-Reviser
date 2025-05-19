@@ -10,6 +10,7 @@ public partial class ActionPage : Control
     public Label TimeLabel;
     Timer KeyboardTimer;
     Button ExitButton;
+    Panel Tip;
 
     public Array<Element> ElementList;
     public Array<bool> ElementCorrect = new Array<bool>();
@@ -23,6 +24,7 @@ public partial class ActionPage : Control
     public int Length = 0;
     bool ExitButtonPressed = false;
     double ExitTime = 0;
+    Tween tween;
 
     public override void _Ready()
     {
@@ -33,6 +35,7 @@ public partial class ActionPage : Control
         TimeLabel = GetNode<Label>("TimeElapsed");
         KeyboardTimer = GetNode<Timer>("KeyboardTimer");
         ExitButton = GetNode<Button>("ExitButton");
+        Tip = GetNode<Panel>("ExitTip");
 
         InputValue.TextSubmitted += GetInput;
         KeyboardTimer.Timeout += OnKeyboardTimerEnds;
@@ -49,8 +52,8 @@ public partial class ActionPage : Control
         TimeElapsed += delta;
         TimeLabel.Text = $"{(TimeElapsed / 60).ToString().PadDecimals(0).PadZeros(2)} : {(TimeElapsed % 60).ToString().PadDecimals(0).PadZeros(2)}";
 
-        if (ExitTime != 0 && (TimeElapsed - ExitTime > 0.5))
-            EndGame();
+        if (ExitTime != 0 && (TimeElapsed - ExitTime > 0.5))    
+            EndGame();;
     }
     public void Initialize()
     {
@@ -66,11 +69,17 @@ public partial class ActionPage : Control
         else
             InputValue.VirtualKeyboardType = LineEdit.VirtualKeyboardTypeEnum.Default;
 
+        if (tween != null)
+            tween.Kill();
+
+        Tip.Modulate = new Color(1, 1, 1, 0);
+
         Counter = 0;
         Score = 0;
         ElementCorrect = [];
         WrongReturns = [];
         TimeElapsed = 0;
+        InputValue.Text = "";
         Length = ElementList.Count;
         isPlaying = true;
 
@@ -107,19 +116,30 @@ public partial class ActionPage : Control
         InputValue.Text = "";
         Counter++;
 
-        InputValue.Unedit();
+        //InputValue.Unedit();
         GiveValue();
     }
     private void EndGame()
     {
         isPlaying = false;
         GetNode<ResultPage>("../ResultPage").SetResults();
-        Hud.ContinuePage(this);
+        GetParent<Hud>().ContinuePage(this);
     }
     private void OnKeyboardTimerEnds() {
         InputValue.GrabFocus();
         InputValue.Edit();
     }
-    private void ExitButtonDown() => ExitTime = TimeElapsed;
+    private void ExitButtonDown()
+    {
+        ExitTime = TimeElapsed;
+        if (tween != null)
+            tween.Kill();
+
+        tween = CreateTween();
+
+        tween.TweenProperty(Tip, "modulate:a", 1, 0.5 * (1 - Tip.Modulate.A));
+        tween.TweenInterval(1.5);
+        tween.TweenProperty(Tip, "modulate:a", 0, 0.5 * (1 - Tip.Modulate.A));
+    }
     private void ExitButtonUp() => ExitTime = 0;
 }

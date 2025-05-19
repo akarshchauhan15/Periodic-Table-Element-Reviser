@@ -55,13 +55,11 @@ public partial class ResultPage : Control
     }
     private void OnContinueButtonPressed()
     {
-        Hide();
-        GetNode<SelectionPage>("../SelectionPage").Show();
+        GetParent<Hud>().AnimatePages(this, GetNode<SelectionPage>("../SelectionPage"));
     }
     private void OnRetryButtonPressed()
     {
         GetNode<ActionPage>("../ActionPage").Initialize();
-        Hide();
-        GetNode<ActionPage>("../ActionPage").Show();
+        GetParent<Hud>().PreviousPage(this);
     }
 }

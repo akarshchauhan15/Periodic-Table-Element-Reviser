@@ -3,7 +3,7 @@ using Godot;
 public partial class ConfigController : Node
 {
     public static ConfigFile Config = new ConfigFile();
-    public static string Path = "res://settings.ini";
+    public static string Path = "user://settings.ini";
 
     public override void _Ready()
     {

@@ -42,7 +42,7 @@ public partial class CollectionPage : Control
 
         SelectedCollection = SelectedType[Collection.Selected];
         GetNode<ConfirmationPage>("../ConfirmationPage").SetLabels();
-        Hud.ContinuePage(this);  
+        GetParent<Hud>().ContinuePage(this);  
     }
-    private void BackToSelection() => Hud.PreviousPage(this);
+    private void BackToSelection() => GetParent<Hud>().PreviousPage(this);
 }

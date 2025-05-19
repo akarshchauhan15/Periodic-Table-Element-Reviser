@@ -10,11 +10,7 @@ public partial class HomePage : Control
     private void ProceedToSelection()
     {
         GetNode<SelectionPage>("../SelectionPage").LoadValues();
-        Hud.ContinuePage(this);
+        GetParent<Hud>().ContinuePage(this);
     }
-    private void OpenSettings()
-    {
-        Hide();
-        GetNode<Control>("../SettingsPage").Show();
-    }
+    private void OpenSettings() => GetParent<Hud>().AnimatePages(this, GetNode<SettingsPage>("../SettingsPage"));
 }

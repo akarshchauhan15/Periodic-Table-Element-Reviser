@@ -74,7 +74,7 @@ public partial class SelectionPage : Control
         ConfigController.SaveSettings("LastSelected", "Return", ReturnIndex);
 
         GetNode<CollectionPage>("../CollectionPage").LoadValues();
-        Hud.ContinuePage(this);
+        GetParent<Hud>().ContinuePage(this);
     }
-    private void BackToHome() => Hud.PreviousPage(this);
+    private void BackToHome() => GetParent<Hud>().PreviousPage(this);
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bbgxqqjlxgn76"]
+[gd_scene load_steps=35 format=3 uid="uid://bbgxqqjlxgn76"]
 
 [ext_resource type="Script" uid="uid://c8f3mfoslsglk" path="res://Scripts/Hud.cs" id="1_fccik"]
 [ext_resource type="Script" uid="uid://c5hga8f36vgtl" path="res://Scripts/HomePage.cs" id="2_8jye8"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://dxqgt2puthqtf" path="res://Scripts/CollectionPage.cs" id="6_5ep0j"]
 [ext_resource type="Script" uid="uid://btnsfmomyx6vs" path="res://Scripts/ResultPage.cs" id="9_7gr8i"]
 [ext_resource type="Script" uid="uid://cro5320o6vsw5" path="res://Scripts/SettingsPage.cs" id="11_4f5kr"]
+[ext_resource type="Texture2D" uid="uid://cem1hq2dp5tsf" path="res://Assets/Icons/info.svg" id="11_i2avg"]
 [ext_resource type="Texture2D" uid="uid://bfli7tepof6uk" path="res://Assets/Icons/settings_icon.svg" id="12_piegi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ep0j"]
@@ -654,8 +655,39 @@ offset_right = -28.0
 offset_bottom = -65.0
 grow_horizontal = 2
 grow_vertical = 0
-theme = SubResource("Theme_5ep0j")
+theme = ExtResource("4_4f5kr")
 text = "Exit"
+
+[node name="ExitTip" type="Panel" parent="ActionPage"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 257.0
+offset_top = 1069.0
+offset_right = 756.0
+offset_bottom = 1191.0
+theme = ExtResource("4_4f5kr")
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="ActionPage/ExitTip"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 26.0
+offset_right = 105.0
+offset_bottom = 97.0
+texture = ExtResource("11_i2avg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="ActionPage/ExitTip"]
+layout_mode = 1
+offset_left = 133.0
+offset_top = 26.0
+offset_right = 452.0
+offset_bottom = 97.0
+theme_override_fonts/font = ExtResource("2_bjfho")
+theme_override_font_sizes/font_size = 60
+text = "Hold To Exit"
+horizontal_alignment = 1
 
 [node name="KeyboardTimer" type="Timer" parent="ActionPage"]
 wait_time = 0.3
@@ -924,3 +956,12 @@ grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("4_4f5kr")
 text = "Exit"
+
+[node name="BlankPreventer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

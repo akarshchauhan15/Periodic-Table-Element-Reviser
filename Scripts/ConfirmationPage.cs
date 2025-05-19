@@ -25,10 +25,10 @@ public partial class ConfirmationPage : Control
         Return.Text = Element.OptionValues[Selection.ReturnIndex];
         Elements.Text = $"From {CollectionPage.SelectedCollection.DisplayName.ToLower()} elements";
     }
-    private void ProceedToAction()
+    public void ProceedToAction()
     {
         GetNode<ActionPage>("../ActionPage").Initialize();
-        Hud.ContinuePage(this);
+        GetParent<Hud>().ContinuePage(this);
     }
-    private void BackToCollection() => Hud.PreviousPage(this);
+    private void BackToCollection() => GetParent<Hud>().PreviousPage(this);
 }

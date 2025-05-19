@@ -67,15 +67,21 @@ public class ElementCollections
         new ElementCollection("First 36", [[1, 36]]),
         new ElementCollection("First 54", [[1, 54]]),
         new ElementCollection("First 86", [[1, 86]]),
-        new ElementCollection("To 86 (no Lanthanides)", [[1, 56], [72, 86]]),
+        new ElementCollection("To 86 w/o Lanthanides", [[1, 56], [72, 86]]),
         new ElementCollection("All 118", [[1, 118]]),
-        new ElementCollection("To 118 (no f-Block)", [[1, 56], [72, 88], [104, 118]])
+        new ElementCollection("To 118 w/o f-Block", [[1, 56], [72, 88], [104, 118]])
     };
 
     public static Array<ElementCollection> Groups = new Array<ElementCollection>
     {
-        new ElementCollection("Group A", [1, 3, 11, 19, 37, 55, 87]),
-        new ElementCollection("Group B", [4, 12, 20, 38, 56, 88])
+        new ElementCollection("Group 1 (Alkali Earth)", [1, 3, 11, 19, 37, 55, 87]),
+        new ElementCollection("Group 2 (Alkali Earth Metals)", [4, 12, 20, 38, 56, 88]),
+        new ElementCollection("Group 13", [5, 13, 31, 49, 81, 113]),
+        new ElementCollection("Group 14", [6, 14, 32, 50, 82, 114]),
+        new ElementCollection("Group 15", [7, 15, 33, 51, 83, 115]),
+        new ElementCollection("Group 16", [8, 16, 34, 52, 84, 116]),
+        new ElementCollection("Group 17", [9, 17, 35, 53, 85, 117]),
+        new ElementCollection("Group 18 (Noble Gases)", [2, 10, 18, 36, 54, 86, 118])
     };
 
     public static Array<ElementCollection> Periods = new Array<ElementCollection>
@@ -126,7 +132,7 @@ public class Elements
     public static Element Aluminium = new Element("Aluminium", "Al", 13, 27);
     public static Element Silicon = new Element("Silicon", "Si", 14, 28);
     public static Element Phosphorus = new Element("Phosphorus", "P", 15, 31);
-    public static Element Sulfur = new Element("Sulfur", "S", 16, 32);
+    public static Element Sulfur = new Element("Sulphur", "S", 16, 32);
     public static Element Chlorine = new Element("Chlorine", "Cl", 17, 35);
     public static Element Argon = new Element("Argon", "Ar", 18, 40);
     public static Element Potassium = new Element("Potassium", "K", 19, 39);
