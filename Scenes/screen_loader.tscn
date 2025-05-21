@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://5xqghc337sww"]
+
+[ext_resource type="Script" uid="uid://dn2imemqhpd5y" path="res://Scripts/ScreenLoader.cs" id="1_uqhvf"]
+[ext_resource type="Texture2D" uid="uid://du1y8h2loa63e" path="res://Assets/Icons/icon_only.svg" id="2_atfko"]
+
+[node name="ScreenLoader" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uqhvf")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.477905, 0.508327, 0.566406, 1)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -248.0
+offset_top = 720.0
+offset_right = 249.0
+offset_bottom = 1048.0
+grow_horizontal = 2
+texture = ExtResource("2_atfko")
+
+[node name="ProgressRect" type="TextureRect" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -248.0
+offset_top = 720.0
+offset_right = 249.0
+offset_bottom = 1048.0
+grow_horizontal = 2
+texture = ExtResource("2_atfko")
+expand_mode = 1
+stretch_mode = 2
