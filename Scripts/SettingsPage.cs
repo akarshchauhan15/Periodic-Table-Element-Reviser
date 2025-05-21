@@ -11,7 +11,7 @@ public partial class SettingsPage : Control
     Theme[] Themes;
 
     string[][] ControlLocations = [
-    ["HomePage/StartButton"],
+        ["HomePage/StartButton"],
         ["SelectionPage/ContinueButton", "HighlightedButton"],
         ["SelectionPage/BackButton", "ShadowedButton"],
         ["SelectionPage/GivenOption"],
@@ -28,7 +28,7 @@ public partial class SettingsPage : Control
         ["ResultPage/ContinueButton", "HighlightedButton"],
         ["ResultPage/RetryButton", "ShadowedButton"],
         ["ResultPage/ToggleButton"],
-        ["ResultPage/GreatPanel"],
+        ["ResultPage/WrongElements/GreatPanel"],
         ["SettingsPage/Settings/SoundButton", "ShadowedButton"],
         ["SettingsPage/ExitButton", "ShadowedButton"],
         ["SettingsPage/Settings/ThemeOption"],
@@ -62,7 +62,10 @@ public partial class SettingsPage : Control
             Control control = GetParent().GetNodeOrNull<Control>(Location[0]);
 
             if (control == null)
-                return;
+            {
+                GD.Print(Location[0]);
+                continue;
+            }
 
             control.Theme = Themes[Index];
 
