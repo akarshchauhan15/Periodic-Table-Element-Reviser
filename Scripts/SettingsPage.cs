@@ -1,4 +1,5 @@
 using Godot;
+using System.ComponentModel;
 
 public partial class SettingsPage : Control
 {
@@ -23,18 +24,21 @@ public partial class SettingsPage : Control
         ["ConfirmationPage/BackButton", "ShadowedButton"],
         ["ActionPage/ExitButton", "ShadowedButton"],
         ["ActionPage/LineEdit"],
+        ["ActionPage/ExitTip"],
         ["ResultPage/ContinueButton", "HighlightedButton"],
         ["ResultPage/RetryButton", "ShadowedButton"],
-        ["SettingsPage/SoundButton", "ShadowedButton"],
+        ["ResultPage/ToggleButton"],
+        ["ResultPage/GreatPanel"],
+        ["SettingsPage/Settings/SoundButton", "ShadowedButton"],
         ["SettingsPage/ExitButton", "ShadowedButton"],
-        ["SettingsPage/ThemeOption"],
+        ["SettingsPage/Settings/ThemeOption"],
     ];
     public override void _Ready()
     {
         Themes = [GD.Load<Theme>("res://Themes/Modern.theme"), GD.Load<Theme>("res://Themes/Metro.theme")];
 
-        ThemeOption = GetNode<OptionButton>("ThemeOption");
-        SoundButton = GetNode<Button>("SoundButton");
+        ThemeOption = GetNode<OptionButton>("Settings/ThemeOption");
+        SoundButton = GetNode<Button>("Settings/SoundButton");
 
         ThemeOption.ItemSelected += SetTheme;
         SoundButton.Toggled += SoundButtonToggled;
@@ -55,7 +59,11 @@ public partial class SettingsPage : Control
     {
         foreach (string[] Location in ControlLocations)
         {
-            Control control = GetParent().GetNode<Control>(Location[0]);
+            Control control = GetParent().GetNodeOrNull<Control>(Location[0]);
+
+            if (control == null)
+                return;
+
             control.Theme = Themes[Index];
 
             if (Location.Length == 2)

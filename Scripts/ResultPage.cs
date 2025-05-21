@@ -5,22 +5,31 @@ public partial class ResultPage : Control
     Label ScoreLabel;
     Label TimeTaken;
     PackedScene ScoreListElementScene;
-    VBoxContainer ScoreListElementContainer;
+    VBoxContainer AllScoreListElementContainer;
+    VBoxContainer WrongScoreListElementContainer;
+    Control WrongControl;
 
+    bool AllCorrect;
     public override void _Ready()
     {
         ScoreLabel = GetNode<Label>("Score");
         TimeTaken = GetNode<Label>("TimeTaken");
         ScoreListElementScene = ResourceLoader.Load<PackedScene>("res://Scenes/score_list_element.tscn");
-        ScoreListElementContainer = GetNode<VBoxContainer>("ScrollContainer/VBoxContainer");
+        AllScoreListElementContainer = GetNode<VBoxContainer>("AllElements/VBoxContainer");
+        WrongScoreListElementContainer = GetNode<VBoxContainer>("WrongElements/WrongElements/VBoxContainer");
+        WrongControl = GetNode<Control>("WrongElements");
 
+        GetNode<Button>("ToggleButton").Pressed += OnListToggled;
         GetNode<Button>("ContinueButton").Pressed += OnContinueButtonPressed;
         GetNode<Button>("RetryButton").Pressed += OnRetryButtonPressed;
     }
 
     public void SetResults()
     {
-        foreach (Panel Child in ScoreListElementContainer.GetChildren())
+        foreach (Panel Child in AllScoreListElementContainer.GetChildren())
+            Child.QueueFree();
+
+        foreach (Panel Child in WrongScoreListElementContainer.GetChildren())
             Child.QueueFree();
 
         ActionPage Action = GetNode<ActionPage>("../ActionPage");
@@ -48,10 +57,20 @@ public partial class ResultPage : Control
                 ScoreElement.GetNode<Label>("Wrong/Correct").Text = Action.ElementList[i].Get(Selection.SelectedReturnOption).ToString();
                 ScoreElement.GetNode<Label>("Wrong").Show();
                 ScoreElement.Set("", Colors.Red);
+
+                WrongScoreListElementContainer.AddChild(ScoreElement.Duplicate());
+
                 WrongCounter++;
             }
-            ScoreListElementContainer.AddChild(ScoreElement);
+            AllScoreListElementContainer.AddChild(ScoreElement);
         }
+        GetNode<Panel>("WrongElements/GreatPanel").Visible = (WrongCounter == 0);
+        WrongControl.Hide();
+    }
+    private void OnListToggled()
+    {
+        AllScoreListElementContainer.Visible = !AllScoreListElementContainer.Visible;
+        WrongControl.Visible = !WrongControl.Visible;
     }
     private void OnContinueButtonPressed()
     {

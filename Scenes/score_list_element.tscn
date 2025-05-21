@@ -11,9 +11,9 @@ border_width_bottom = 2
 border_color = Color(1, 1, 1, 1)
 
 [node name="ScoreListElement" type="Panel"]
-custom_minimum_size = Vector2(1000, 146)
+custom_minimum_size = Vector2(1000, 120)
 offset_right = 1080.0
-offset_bottom = 146.0
+offset_bottom = 120.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_q6f7p")
 

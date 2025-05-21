@@ -1,5 +1,6 @@
 using Godot;
 using Godot.Collections;
+using System.Linq.Expressions;
 
 public partial class ActionPage : Control
 {
@@ -17,6 +18,7 @@ public partial class ActionPage : Control
     public Array<string> WrongReturns = new Array<string>();
     SelectionPage Selection;
 
+    LineEdit.VirtualKeyboardTypeEnum KeyboardType;
     public int Score = 0;
     public static bool isPlaying = false;
     public double TimeElapsed = 0;
@@ -53,7 +55,7 @@ public partial class ActionPage : Control
         TimeLabel.Text = $"{(TimeElapsed / 60).ToString().PadDecimals(0).PadZeros(2)} : {(TimeElapsed % 60).ToString().PadDecimals(0).PadZeros(2)}";
 
         if (ExitTime != 0 && (TimeElapsed - ExitTime > 0.5))    
-            EndGame();;
+            EndGame();
     }
     public void Initialize()
     {
@@ -65,10 +67,11 @@ public partial class ActionPage : Control
         InputValue.PlaceholderText = Element.OptionValues[Selection.ReturnIndex];
 
         if (Selection.SelectedReturnOption == Element.PropertyName.AtomicNumber || Selection.SelectedReturnOption == Element.PropertyName.AtomicMass)
-            InputValue.VirtualKeyboardType = LineEdit.VirtualKeyboardTypeEnum.NumberDecimal;
+            KeyboardType = LineEdit.VirtualKeyboardTypeEnum.NumberDecimal;
         else
-            InputValue.VirtualKeyboardType = LineEdit.VirtualKeyboardTypeEnum.Default;
+            KeyboardType = LineEdit.VirtualKeyboardTypeEnum.Default;
 
+        InputValue.VirtualKeyboardType = KeyboardType;
         if (tween != null)
             tween.Kill();
 
@@ -116,7 +119,7 @@ public partial class ActionPage : Control
         InputValue.Text = "";
         Counter++;
 
-        //InputValue.Unedit();
+        InputValue.Unedit();
         GiveValue();
     }
     private void EndGame()

@@ -62,6 +62,7 @@ public class ElementCollections
 {
     public static Array<ElementCollection> FromBeginning = new Array<ElementCollection>
     {
+        new ElementCollection("First 2", [[1,2]]),
         new ElementCollection("First 10", [[1,10]]),
         new ElementCollection("First 18", [[1, 18]]),
         new ElementCollection("First 36", [[1, 36]]),

@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bbgxqqjlxgn76"]
+[gd_scene load_steps=37 format=3 uid="uid://bbgxqqjlxgn76"]
 
 [ext_resource type="Script" uid="uid://c8f3mfoslsglk" path="res://Scripts/Hud.cs" id="1_fccik"]
 [ext_resource type="Script" uid="uid://c5hga8f36vgtl" path="res://Scripts/HomePage.cs" id="2_8jye8"]
@@ -13,6 +13,8 @@
 [ext_resource type="Script" uid="uid://cro5320o6vsw5" path="res://Scripts/SettingsPage.cs" id="11_4f5kr"]
 [ext_resource type="Texture2D" uid="uid://cem1hq2dp5tsf" path="res://Assets/Icons/info.svg" id="11_i2avg"]
 [ext_resource type="Texture2D" uid="uid://bfli7tepof6uk" path="res://Assets/Icons/settings_icon.svg" id="12_piegi"]
+[ext_resource type="FontFile" uid="uid://bjgovg84m6sxx" path="res://Assets/Fonts/Lexend-Medium.ttf" id="13_ssfue"]
+[ext_resource type="Texture2D" uid="uid://c810wodtuiy7r" path="res://Assets/Icons/change_icon.svg" id="14_8bf2m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ep0j"]
 bg_color = Color(0.261719, 0.261719, 0.261719, 1)
@@ -613,9 +615,9 @@ offset_bottom = 954.0
 theme = ExtResource("4_4f5kr")
 placeholder_text = "Atomic Number"
 max_length = 20
+keep_editing_on_text_submit = true
 context_menu_enabled = false
 emoji_menu_enabled = false
-virtual_keyboard_type = 3
 caret_blink = true
 caret_blink_interval = 0.5
 
@@ -659,7 +661,6 @@ theme = ExtResource("4_4f5kr")
 text = "Exit"
 
 [node name="ExitTip" type="Panel" parent="ActionPage"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 257.0
 offset_top = 1069.0
@@ -717,9 +718,9 @@ autowrap_mode = 2
 [node name="Label2" type="Label" parent="ResultPage"]
 layout_mode = 0
 offset_left = 73.0
-offset_top = 267.0
+offset_top = 255.0
 offset_right = 257.0
-offset_bottom = 350.0
+offset_bottom = 338.0
 theme_override_fonts/font = ExtResource("2_bjfho")
 theme_override_font_sizes/font_size = 70
 text = "Score"
@@ -728,13 +729,23 @@ autowrap_mode = 2
 [node name="Score" type="Label" parent="ResultPage"]
 layout_mode = 0
 offset_left = 602.0
-offset_top = 267.0
+offset_top = 255.0
 offset_right = 1002.0
-offset_bottom = 350.0
+offset_bottom = 338.0
 theme_override_fonts/font = ExtResource("2_bjfho")
 theme_override_font_sizes/font_size = 70
 horizontal_alignment = 2
 autowrap_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ResultPage"]
+layout_mode = 0
+offset_left = 260.0
+offset_top = 260.0
+offset_right = 401.0
+offset_bottom = 331.0
+texture = ExtResource("14_8bf2m")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="TimeTaken" type="Label" parent="ResultPage"]
 layout_mode = 0
@@ -748,7 +759,7 @@ text = "55:55"
 horizontal_alignment = 2
 autowrap_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="ResultPage"]
+[node name="AllElements" type="ScrollContainer" parent="ResultPage"]
 custom_minimum_size = Vector2(1000, 0)
 layout_mode = 1
 anchors_preset = -1
@@ -765,11 +776,89 @@ grow_vertical = 2
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ResultPage/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ResultPage/AllElements"]
 custom_minimum_size = Vector2(1000, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="WrongElements" type="Control" parent="ResultPage"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="WrongElements" type="ScrollContainer" parent="ResultPage/WrongElements"]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.037
+anchor_top = 0.222
+anchor_right = 0.966
+anchor_bottom = 0.877
+offset_left = 0.0400009
+offset_top = 0.759979
+offset_right = -3.28003
+offset_bottom = -0.840088
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ResultPage/WrongElements/WrongElements"]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="GreatPanel" type="Panel" parent="ResultPage/WrongElements"]
+visible = false
+custom_minimum_size = Vector2(1000, 340)
+layout_mode = 2
+offset_left = 40.0
+offset_top = 427.0
+offset_right = 1040.0
+offset_bottom = 767.0
+theme = ExtResource("4_4f5kr")
+
+[node name="Label" type="Label" parent="ResultPage/WrongElements/GreatPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -233.0
+offset_top = 50.0
+offset_right = 233.0
+offset_bottom = 158.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("13_ssfue")
+theme_override_font_sizes/font_size = 80
+text = "Good Work!"
+
+[node name="Label2" type="Label" parent="ResultPage/WrongElements/GreatPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -265.0
+offset_top = 202.0
+offset_right = 263.0
+offset_bottom = 264.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("13_ssfue")
+theme_override_font_sizes/font_size = 40
+text = "You answered all correctly."
+
+[node name="ToggleButton" type="Button" parent="ResultPage"]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 213.0
+offset_right = 435.0
+offset_bottom = 364.0
+flat = true
 
 [node name="ContinueButton" type="Button" parent="ResultPage"]
 layout_mode = 1
@@ -813,7 +902,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("11_4f5kr")
 
-[node name="Label" type="Label" parent="SettingsPage"]
+[node name="Settings" type="Label" parent="SettingsPage"]
 layout_mode = 0
 offset_left = 84.0
 offset_top = 71.0
@@ -824,32 +913,30 @@ theme_override_font_sizes/font_size = 120
 text = "Settings"
 autowrap_mode = 2
 
-[node name="Theme" type="Label" parent="SettingsPage"]
+[node name="Theme" type="Label" parent="SettingsPage/Settings"]
 layout_mode = 0
-offset_left = 84.0
-offset_top = 327.0
-offset_right = 300.0
-offset_bottom = 410.0
+offset_top = 256.0
+offset_right = 216.0
+offset_bottom = 339.0
 theme_override_fonts/font = ExtResource("2_bjfho")
 theme_override_font_sizes/font_size = 70
 text = "Theme"
 
-[node name="Sound" type="Label" parent="SettingsPage"]
+[node name="Sound" type="Label" parent="SettingsPage/Settings"]
 layout_mode = 0
-offset_left = 84.0
-offset_top = 520.0
-offset_right = 282.0
-offset_bottom = 603.0
+offset_top = 449.0
+offset_right = 198.0
+offset_bottom = 532.0
 theme_override_fonts/font = ExtResource("2_bjfho")
 theme_override_font_sizes/font_size = 70
 text = "Sound"
 
-[node name="ThemeOption" type="OptionButton" parent="SettingsPage"]
+[node name="ThemeOption" type="OptionButton" parent="SettingsPage/Settings"]
 layout_mode = 0
-offset_left = 512.0
-offset_top = 300.0
-offset_right = 940.0
-offset_bottom = 427.0
+offset_left = 428.0
+offset_top = 229.0
+offset_right = 856.0
+offset_bottom = 356.0
 theme = ExtResource("4_4f5kr")
 alignment = 1
 selected = 0
@@ -859,12 +946,12 @@ popup/item_0/id = 0
 popup/item_1/text = "Metro"
 popup/item_1/id = 1
 
-[node name="SoundButton" type="Button" parent="SettingsPage"]
+[node name="SoundButton" type="Button" parent="SettingsPage/Settings"]
 layout_mode = 0
-offset_left = 512.0
-offset_top = 495.0
-offset_right = 940.0
-offset_bottom = 622.0
+offset_left = 428.0
+offset_top = 424.0
+offset_right = 856.0
+offset_bottom = 551.0
 theme = ExtResource("4_4f5kr")
 theme_type_variation = &"ShadowedButton"
 toggle_mode = true
@@ -881,12 +968,12 @@ theme_override_font_sizes/font_size = 120
 text = "Credits"
 autowrap_mode = 2
 
-[node name="LinkButton" type="LinkButton" parent="SettingsPage"]
+[node name="LinkButton" type="LinkButton" parent="SettingsPage/Credits"]
 layout_mode = 0
-offset_left = 467.0
-offset_top = 1069.0
-offset_right = 855.0
-offset_bottom = 1152.0
+offset_left = 394.0
+offset_top = 249.0
+offset_right = 905.0
+offset_bottom = 332.0
 theme_override_colors/font_color = Color(0.783783, 0.746094, 1, 1)
 theme_override_constants/underline_spacing = 15
 theme_override_fonts/font = ExtResource("2_bjfho")
@@ -894,12 +981,12 @@ theme_override_font_sizes/font_size = 70
 text = "Akarsh Chauhan"
 uri = "https://github.com/akarshchauhan15/Periodic-Table-Element-Reviser"
 
-[node name="LinkButton2" type="LinkButton" parent="SettingsPage"]
+[node name="LinkButton2" type="LinkButton" parent="SettingsPage/Credits"]
 layout_mode = 0
-offset_left = 467.0
-offset_top = 1266.0
-offset_right = 978.0
-offset_bottom = 1349.0
+offset_left = 394.0
+offset_top = 446.0
+offset_right = 905.0
+offset_bottom = 529.0
 theme_override_colors/font_color = Color(0.784314, 0.745098, 1, 1)
 theme_override_constants/underline_spacing = 15
 theme_override_fonts/font = ExtResource("2_bjfho")
@@ -907,22 +994,20 @@ theme_override_font_sizes/font_size = 70
 text = "Godot Engine"
 uri = "https://godotengine.org/"
 
-[node name="Creator" type="Label" parent="SettingsPage"]
+[node name="Creator" type="Label" parent="SettingsPage/Credits"]
 layout_mode = 0
-offset_left = 73.0
-offset_top = 1069.0
-offset_right = 289.0
-offset_bottom = 1152.0
+offset_top = 249.0
+offset_right = 230.0
+offset_bottom = 332.0
 theme_override_fonts/font = ExtResource("2_bjfho")
 theme_override_font_sizes/font_size = 70
 text = "Creator"
 
-[node name="Using" type="Label" parent="SettingsPage"]
+[node name="Using" type="Label" parent="SettingsPage/Credits"]
 layout_mode = 0
-offset_left = 73.0
-offset_top = 1266.0
-offset_right = 303.0
-offset_bottom = 1349.0
+offset_top = 446.0
+offset_right = 230.0
+offset_bottom = 529.0
 theme_override_fonts/font = ExtResource("2_bjfho")
 theme_override_font_sizes/font_size = 70
 text = "Using"
@@ -958,6 +1043,7 @@ theme = ExtResource("4_4f5kr")
 text = "Exit"
 
 [node name="BlankPreventer" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
