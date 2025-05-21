@@ -1,7 +1,16 @@
 [gd_scene load_steps=2 format=3 uid="uid://c8nw2nxv7d2tk"]
 
-[ext_resource type="PackedScene" uid="uid://bbgxqqjlxgn76" path="res://Scenes/hud.tscn" id="1_jjgbg"]
+[ext_resource type="PackedScene" uid="uid://5xqghc337sww" path="res://Scenes/screen_loader.tscn" id="1_jjgbg"]
 
 [node name="Main" type="CanvasLayer"]
 
-[node name="HUD" parent="." instance=ExtResource("1_jjgbg")]
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0448608, 0.0814972, 0.191406, 1)
+metadata/_edit_lock_ = true
+
+[node name="ScreenLoader" parent="." instance=ExtResource("1_jjgbg")]

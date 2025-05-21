@@ -61,11 +61,8 @@ public partial class SettingsPage : Control
         {
             Control control = GetParent().GetNodeOrNull<Control>(Location[0]);
 
-            if (control == null)
-            {
-                GD.Print(Location[0]);
+            if (control == null)    
                 continue;
-            }
 
             control.Theme = Themes[Index];
 
