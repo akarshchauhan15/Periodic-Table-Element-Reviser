@@ -6,21 +6,15 @@ public partial class Hud : Control
     Array<Control> Pages = new Array<Control>();
     Tween tween;
     Control Blank;
-    Label Fps;
 
     public override void _Ready()
     {
-        Fps = GetNode<Label>("FpsLabel");
         string[] PageNames = { "Home", "Selection", "Collection", "Confirmation", "Action", "Result" };
 
         foreach (string PageName in PageNames)
             Pages.Add(GetNode<Control>($"{PageName}Page"));
 
         Blank = GetNode<Control>("BlankPreventer");
-    }
-    public override void _PhysicsProcess(double delta)
-    {
-        Fps.Text = Engine.GetFramesPerSecond().ToString();
     }
     public void ContinuePage(Control CurrentPage)
     {

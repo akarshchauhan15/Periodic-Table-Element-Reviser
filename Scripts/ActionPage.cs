@@ -54,7 +54,7 @@ public partial class ActionPage : Control
         TimeElapsed += delta;
         TimeLabel.Text = $"{(TimeElapsed / 60).ToString().PadDecimals(0).PadZeros(2)} : {(TimeElapsed % 60).ToString().PadDecimals(0).PadZeros(2)}";
 
-        if (ExitTime != 0 && (TimeElapsed - ExitTime > 0.5))    
+        if (ExitTime != 0 && (TimeElapsed - ExitTime > 0.3))    
             EndGame();
     }
     public void Initialize()
