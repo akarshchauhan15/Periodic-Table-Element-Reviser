@@ -4,20 +4,24 @@ public partial class ResultPage : Control
 {
     Label ScoreLabel;
     Label TimeTaken;
-    PackedScene ScoreListElementScene;
+
     VBoxContainer AllScoreListElementContainer;
     VBoxContainer WrongScoreListElementContainer;
-    Control WrongControl;
+
+    PackedScene ScoreListElementScene;
+    PackedScene ListIndicatorScene;
 
     bool AllCorrect;
     public override void _Ready()
     {
         ScoreLabel = GetNode<Label>("Score");
         TimeTaken = GetNode<Label>("TimeTaken");
-        ScoreListElementScene = ResourceLoader.Load<PackedScene>("res://Scenes/score_list_element.tscn");
+        
         AllScoreListElementContainer = GetNode<VBoxContainer>("AllElements/VBoxContainer");
-        WrongScoreListElementContainer = GetNode<VBoxContainer>("WrongElements/WrongElements/VBoxContainer");
-        WrongControl = GetNode<Control>("WrongElements");
+        WrongScoreListElementContainer = GetNode<VBoxContainer>("WrongElements/VBoxContainer");
+
+        ScoreListElementScene = ResourceLoader.Load<PackedScene>("res://Scenes/score_list_element.tscn");
+        ListIndicatorScene = ResourceLoader.Load<PackedScene>("res://Scenes/list_indicator.tscn");
 
         GetNode<Button>("ToggleButton").Pressed += OnListToggled;
         GetNode<Button>("ContinueButton").Pressed += OnContinueButtonPressed;
@@ -64,18 +68,24 @@ public partial class ResultPage : Control
             }
             AllScoreListElementContainer.AddChild(ScoreElement);
         }
-        GetNode<Panel>("WrongElements/GreatPanel").Visible = (WrongCounter == 0);
-        WrongControl.Hide();
+
+        WrongScoreListElementContainer.AddChild(ResourceLoader.Load<PackedScene>("res://Scenes/great_panel.tscn").Instantiate());
+
+        AllScoreListElementContainer.AddChild(ListIndicatorScene.Instantiate<Label>());
+        ((Label)AllScoreListElementContainer.GetChild(-1)).Text = "All Elements";
+
+        WrongScoreListElementContainer.AddChild(ListIndicatorScene.Instantiate<Label>());
+        ((Label)WrongScoreListElementContainer.GetChild(-1)).Text = "Incorrect Filtered";
+
+        WrongScoreListElementContainer.Hide();
+        AllScoreListElementContainer.Show();
     }
     private void OnListToggled()
     {
         AllScoreListElementContainer.Visible = !AllScoreListElementContainer.Visible;
-        WrongControl.Visible = !WrongControl.Visible;
+        WrongScoreListElementContainer.Visible = !WrongScoreListElementContainer.Visible;
     }
-    private void OnContinueButtonPressed()
-    {
-        GetParent<Hud>().AnimatePages(this, GetNode<SelectionPage>("../SelectionPage"));
-    }
+    private void OnContinueButtonPressed() => GetParent<Hud>().AnimatePages(this, GetNode<SelectionPage>("../SelectionPage"));
     private void OnRetryButtonPressed()
     {
         GetNode<ActionPage>("../ActionPage").Initialize();

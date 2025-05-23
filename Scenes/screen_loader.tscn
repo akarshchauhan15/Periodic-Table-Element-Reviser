@@ -39,3 +39,8 @@ grow_horizontal = 2
 texture = ExtResource("2_atfko")
 expand_mode = 1
 stretch_mode = 2
+
+[node name="HoldTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+autostart = true

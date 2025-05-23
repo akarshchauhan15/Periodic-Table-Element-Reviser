@@ -75,7 +75,7 @@ public class ElementCollections
 
     public static Array<ElementCollection> Groups = new Array<ElementCollection>
     {
-        new ElementCollection("Group 1 (Alkali Earth)", [1, 3, 11, 19, 37, 55, 87]),
+        new ElementCollection("Group 1 (Alkali Metals)", [1, 3, 11, 19, 37, 55, 87]),
         new ElementCollection("Group 2 (Alkali Earth Metals)", [4, 12, 20, 38, 56, 88]),
         new ElementCollection("Group 13", [5, 13, 31, 49, 81, 113]),
         new ElementCollection("Group 14", [6, 14, 32, 50, 82, 114]),
