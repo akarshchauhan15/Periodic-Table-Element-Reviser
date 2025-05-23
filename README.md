@@ -58,18 +58,18 @@ After the quiz has been completed, the results are displayed on the next page. I
 
 ### Navigating UI
 
-The Home page has nothing except a start and settings button.
-The primary Selection page is used for selecting question and answer return format.
-The secondary Selection page is used to define the range of elements.
-The Confirmation page gives a quick summary of options selected in the previous two pages.
-The Action page is where the user enters the answers. New question is asked as soon as answer of current is submitted.
-The Result page displays result in a vertically arranged scrollable list to revalute their answers and correct their mistakes.
+- The Home page has nothing except a start and settings button.
+- The primary Selection page is used for selecting question and answer return format.
+- The secondary Selection page is used to define the range of elements.
+- The Confirmation page gives a quick summary of options selected in the previous two pages.
+- The Action page is where the user enters the answers. New question is asked as soon as answer of current is submitted.
+- The Result page displays result in a vertically arranged scrollable list to revalute their answers and correct their mistakes.
 
 ## Game Experience
 
 ### UI
 
-The game streches to completely fill the whole display.
+The game streches to completely fill the whole display to provide user an immersive experience, while featuring a easy to use navigation system.
 
 ### Controls
 
