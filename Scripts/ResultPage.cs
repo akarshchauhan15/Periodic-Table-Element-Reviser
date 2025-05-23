@@ -1,4 +1,5 @@
 using Godot;
+using System.Text.RegularExpressions;
 
 public partial class ResultPage : Control
 {
@@ -10,6 +11,7 @@ public partial class ResultPage : Control
 
     PackedScene ScoreListElementScene;
     PackedScene ListIndicatorScene;
+    PackedScene GreatPanelScene;
 
     bool AllCorrect;
     public override void _Ready()
@@ -22,6 +24,7 @@ public partial class ResultPage : Control
 
         ScoreListElementScene = ResourceLoader.Load<PackedScene>("res://Scenes/score_list_element.tscn");
         ListIndicatorScene = ResourceLoader.Load<PackedScene>("res://Scenes/list_indicator.tscn");
+        GreatPanelScene = ResourceLoader.Load<PackedScene>("res://Scenes/great_panel.tscn");
 
         GetNode<Button>("ToggleButton").Pressed += OnListToggled;
         GetNode<Button>("ContinueButton").Pressed += OnContinueButtonPressed;
@@ -30,10 +33,10 @@ public partial class ResultPage : Control
 
     public void SetResults()
     {
-        foreach (Panel Child in AllScoreListElementContainer.GetChildren())
+        foreach (Control Child in AllScoreListElementContainer.GetChildren())
             Child.QueueFree();
 
-        foreach (Panel Child in WrongScoreListElementContainer.GetChildren())
+        foreach (Control Child in WrongScoreListElementContainer.GetChildren())
             Child.QueueFree();
 
         ActionPage Action = GetNode<ActionPage>("../ActionPage");
@@ -60,7 +63,6 @@ public partial class ResultPage : Control
                 ScoreElement.GetNode<Label>("Wrong").Text = Action.WrongReturns[WrongCounter];
                 ScoreElement.GetNode<Label>("Wrong/Correct").Text = Action.ElementList[i].Get(Selection.SelectedReturnOption).ToString();
                 ScoreElement.GetNode<Label>("Wrong").Show();
-                ScoreElement.Set("", Colors.Red);
 
                 WrongScoreListElementContainer.AddChild(ScoreElement.Duplicate());
 
@@ -69,7 +71,8 @@ public partial class ResultPage : Control
             AllScoreListElementContainer.AddChild(ScoreElement);
         }
 
-        WrongScoreListElementContainer.AddChild(ResourceLoader.Load<PackedScene>("res://Scenes/great_panel.tscn").Instantiate());
+        if (WrongCounter == 0)
+        WrongScoreListElementContainer.AddChild(GreatPanelScene.Instantiate<Panel>());
 
         AllScoreListElementContainer.AddChild(ListIndicatorScene.Instantiate<Label>());
         ((Label)AllScoreListElementContainer.GetChild(-1)).Text = "All Elements";

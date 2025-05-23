@@ -3,6 +3,6 @@
 [ext_resource type="FontFile" uid="uid://7qg7fidlmsb8" path="res://Assets/Fonts/Lexend-Medium.ttf" id="1_fcy3a"]
 
 [node name="ListIndicator" type="Label"]
-theme_override_colors/font_color = Color(1, 1, 1, 0.156863)
+theme_override_colors/font_color = Color(1, 1, 1, 0.282353)
 theme_override_fonts/font = ExtResource("1_fcy3a")
 theme_override_font_sizes/font_size = 80

@@ -15,8 +15,11 @@ public partial class ScreenLoader : Control
     {
         ProgressRect = GetNode<TextureRect>("ProgressRect");
         GetNode<Timer>("HoldTimer").Timeout += HoldTimerTimeout;
+
         DefaultProgressRectX = ProgressRect.Size.X;
         ProgressRect.Size = new Vector2(0, ProgressRect.Size.Y);
+
+        GetNode<ColorRect>("../Background").Color = SettingsPage.BackgroundColours[(int) ConfigController.Config.GetValue("Settings", "Background", 0)];
     }
     public override void _Process(double delta)
     {
