@@ -13,4 +13,5 @@ public partial class HomePage : Control
         GetParent<Hud>().ContinuePage(this);
     }
     private void OpenSettings() => GetParent<Hud>().AnimatePages(this, GetNode<SettingsPage>("../SettingsPage"));
+    public void EnableSound() => AudioServer.SetBusMute(0, false);
 }

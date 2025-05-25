@@ -46,6 +46,8 @@ public partial class SelectionPage : Control
 
         ReturnOption.Select(((int)Index + 1) % 4);
         SelectReturnOption((Index + 1) % 4);
+
+        Hud.UISelectAudio.Play();
     }
     private void SelectReturnOption(long Index)
     {
@@ -54,6 +56,7 @@ public partial class SelectionPage : Control
     }
     private StringName SetValueToVariable(long Index)
     {
+        Hud.UISelectAudio.Play();
         switch (Index)
         {
             case 0:

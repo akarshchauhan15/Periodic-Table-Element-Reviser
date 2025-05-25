@@ -7,6 +7,7 @@ public partial class Hud : Control
     Tween tween;
     Control Blank;
 
+    public static AudioStreamPlayer UISelectAudio;
     public override void _Ready()
     {
         string[] PageNames = { "Home", "Selection", "Collection", "Confirmation", "Action", "Result" };
@@ -15,6 +16,7 @@ public partial class Hud : Control
             Pages.Add(GetNode<Control>($"{PageName}Page"));
 
         Blank = GetNode<Control>("BlankPreventer");
+        UISelectAudio = GetNode<AudioStreamPlayer>("Audio/UI");
     }
     public void ContinuePage(Control CurrentPage)
     {
@@ -36,13 +38,17 @@ public partial class Hud : Control
     }
     public void AnimatePages(Control FromPage, Control ToPage)
     {
+        UISelectAudio.Play();
+
         tween = CreateTween();
 
         tween.SetParallel(true);
-        tween.TweenProperty(FromPage, "modulate:a", 0, SettingsPage.AnimationFadeDuration).From(1);
         tween.TweenCallback(Callable.From(() => Blank.MouseFilter = MouseFilterEnum.Stop));
+        tween.TweenProperty(FromPage, "modulate:a", 0, SettingsPage.AnimationFadeDuration).From(1);
+
+        tween.TweenInterval(0.1);
         tween.TweenCallback(Callable.From(() => ToPage.Show()));
-        tween.TweenProperty(ToPage, "modulate:a", 1, SettingsPage.AnimationFadeDuration).From(0);
+        tween.TweenProperty(ToPage, "modulate:a", 1,SettingsPage.AnimationFadeDuration).From(0);
 
         tween.SetParallel(false);
         tween.TweenCallback(Callable.From(() => Blank.MouseFilter = MouseFilterEnum.Ignore));

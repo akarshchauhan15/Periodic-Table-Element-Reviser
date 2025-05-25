@@ -59,6 +59,7 @@ public partial class SettingsPage : Control
     }
     private void SetSettings()
     {
+        AudioServer.SetBusMute(0, true);
         ThemeOption.Select((int)ConfigController.Config.GetValue("Settings", "Theme", 0));
         SetTheme((long)ConfigController.Config.GetValue("Settings", "Theme", 0));
 
@@ -66,6 +67,7 @@ public partial class SettingsPage : Control
 
         SoundButton.ButtonPressed = (bool)ConfigController.Config.GetValue("Settings", "Sound", true);
         SoundButtonToggled((bool)ConfigController.Config.GetValue("Settings", "Sound", true));
+        AudioServer.SetBusMute(1, !(bool)ConfigController.Config.GetValue("Settings", "Sound", true));
 
         GetNode<Label>("Version").Text = ProjectSettings.GetSetting("application/config/version").ToString();
     }
@@ -84,11 +86,13 @@ public partial class SettingsPage : Control
                 control.ThemeTypeVariation = Location[1];
         }
         ConfigController.SaveSettings("Settings", "Theme", Index);
+        GetNode<AudioStreamPlayer>("../Audio/UI").Play();
     }
     private void SetBackground(long Index)
     {
         GetTree().Root.GetNode<ColorRect>("Main/Background").Color = BackgroundColours[Index];
         ConfigController.SaveSettings("Settings", "Background", Index);
+        GetNode<AudioStreamPlayer>("../Audio/UI").Play();
     }
     private void SoundButtonToggled(bool SoundEnabled)
     {
@@ -99,6 +103,9 @@ public partial class SettingsPage : Control
 
         IsSoundEnabled = SoundEnabled;
         ConfigController.SaveSettings("Settings", "Sound", SoundEnabled);
+
+        AudioServer.SetBusMute(1, !SoundEnabled);
+        GetNode<AudioStreamPlayer>("../Audio/UI").Play();
     }
-    private void OnExitPressed() => GetParent<Hud>().AnimatePages(this, GetNode<HomePage>("../HomePage"));
+    private void OnExitPressed()  => GetParent<Hud>().AnimatePages(this, GetNode<HomePage>("../HomePage"));
 }

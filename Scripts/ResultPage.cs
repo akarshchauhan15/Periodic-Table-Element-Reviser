@@ -80,13 +80,15 @@ public partial class ResultPage : Control
         WrongScoreListElementContainer.AddChild(ListIndicatorScene.Instantiate<Label>());
         ((Label)WrongScoreListElementContainer.GetChild(-1)).Text = "Incorrect Filtered";
 
-        WrongScoreListElementContainer.Hide();
-        AllScoreListElementContainer.Show();
+        WrongScoreListElementContainer.GetParent<Control>().Hide();
+        WrongScoreListElementContainer.GetParent<ScrollContainer>().ScrollVertical = 0;
+        AllScoreListElementContainer.GetParent<Control>().Show();
+        AllScoreListElementContainer.GetParent<ScrollContainer>().ScrollVertical = 0;
     }
     private void OnListToggled()
     {
-        AllScoreListElementContainer.Visible = !AllScoreListElementContainer.Visible;
-        WrongScoreListElementContainer.Visible = !WrongScoreListElementContainer.Visible;
+        AllScoreListElementContainer.GetParent<Control>().Visible = !AllScoreListElementContainer.GetParent<Control>().Visible;
+        WrongScoreListElementContainer.GetParent<Control>().Visible = !WrongScoreListElementContainer.GetParent<Control>().Visible;
     }
     private void OnContinueButtonPressed() => GetParent<Hud>().AnimatePages(this, GetNode<SelectionPage>("../SelectionPage"));
     private void OnRetryButtonPressed()
