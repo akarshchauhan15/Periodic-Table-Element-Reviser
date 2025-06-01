@@ -13,7 +13,6 @@ dry = 0.44
 wet = 0.21
 
 [resource]
-bus/0/send = &"New Bu"
 bus/0/effect/0/effect = SubResource("AudioEffectReverb_j3pel")
 bus/0/effect/0/enabled = false
 bus/1/name = &"UI"
