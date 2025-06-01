@@ -71,7 +71,7 @@ public partial class ResultPage : Control
             AllScoreListElementContainer.AddChild(ScoreElement);
         }
 
-        if (WrongCounter == 0)
+        if (WrongCounter == 0 && Action.Counter >= Action.Length)
         WrongScoreListElementContainer.AddChild(GreatPanelScene.Instantiate<Panel>());
 
         AllScoreListElementContainer.AddChild(ListIndicatorScene.Instantiate<Label>());

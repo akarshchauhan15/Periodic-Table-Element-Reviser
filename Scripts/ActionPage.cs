@@ -105,6 +105,9 @@ public partial class ActionPage : Control
         if (Input == "")
             return;
 
+        if (Selection.SelectedReturnOption == Element.PropertyName.Name || Selection.SelectedReturnOption == Element.PropertyName.Symbol)
+            Input = Input.ToPascalCase();
+
         if (Input == ElementList[Counter].Get(Selection.SelectedReturnOption).ToString())
         {
             Score++;
