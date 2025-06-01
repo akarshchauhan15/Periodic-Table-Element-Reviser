@@ -105,10 +105,14 @@ public partial class ActionPage : Control
         if (Input == "")
             return;
 
-        if (Selection.SelectedReturnOption == Element.PropertyName.Name || Selection.SelectedReturnOption == Element.PropertyName.Symbol)
-            Input = Input.ToPascalCase();
+        bool Correct = false;
 
-        if (Input == ElementList[Counter].Get(Selection.SelectedReturnOption).ToString())
+        if (Selection.SelectedReturnOption == Element.PropertyName.AtomicNumber || Selection.SelectedReturnOption == Element.PropertyName.AtomicMass)
+            Correct = Input.ToFloat() == (float)ElementList[Counter].Get(Selection.SelectedReturnOption);
+        else
+            Correct = Input.ToLower() == ElementList[Counter].Get(Selection.SelectedReturnOption).ToString().ToLower();
+
+        if (Correct)
         {
             Score++;
             ElementCorrect.Add(true);
