@@ -1,0 +1,63 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0eeko4qnbj3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pp04f"]
+bg_color = Color(0.135056, 0.151363, 0.207031, 1)
+
+[node name="TableElement" type="Panel"]
+custom_minimum_size = Vector2(100, 100)
+offset_right = 100.0
+offset_bottom = 100.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_pp04f")
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = 17.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 14
+text = "Hydrogen"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Symbol" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -30.0
+offset_right = 50.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "H"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AtomicNumber" type="Label" parent="."]
+layout_mode = 1
+offset_left = 5.0
+offset_right = 39.0
+offset_bottom = 28.0
+theme_override_font_sizes/font_size = 20
+text = "1"
+
+[node name="AtomicMass" type="Label" parent="."]
+layout_mode = 1
+offset_left = 61.0
+offset_right = 95.0
+offset_bottom = 28.0
+theme_override_font_sizes/font_size = 20
+text = "1"
+horizontal_alignment = 2

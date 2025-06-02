@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8qplk8fkwtb"]
+
+[ext_resource type="Script" uid="uid://c5ofi4hh13t25" path="res://Scripts/PeriodicTablePage.cs" id="1_6r23k"]
+[ext_resource type="PackedScene" uid="uid://d0eeko4qnbj3" path="res://Scenes/table_element.tscn" id="1_lex64"]
+
+[node name="PeriodicTablePage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6r23k")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -541.5
+offset_top = -1272.0
+offset_right = 541.5
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Control" type="Control" parent="ScrollContainer"]
+layout_mode = 2
+
+[node name="TableElement" parent="ScrollContainer/Control" instance=ExtResource("1_lex64")]
+layout_mode = 0
