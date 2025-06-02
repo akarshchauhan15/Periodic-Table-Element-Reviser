@@ -16,6 +16,7 @@ public partial class Hud : Control
             Pages.Add(GetNode<Control>($"{PageName}Page"));
 
         Blank = GetNode<Control>("BlankPreventer");
+        Blank.Show();
         UISelectAudio = GetNode<AudioStreamPlayer>("Audio/UI");
     }
     public void ContinuePage(Control CurrentPage)
@@ -46,7 +47,9 @@ public partial class Hud : Control
         tween.TweenCallback(Callable.From(() => Blank.MouseFilter = MouseFilterEnum.Stop));
         tween.TweenProperty(FromPage, "modulate:a", 0, SettingsPage.AnimationFadeDuration).From(1);
 
+        tween.SetParallel(false);
         tween.TweenInterval(0.1);
+        tween.SetParallel(true);
         tween.TweenCallback(Callable.From(() => ToPage.Show()));
         tween.TweenProperty(ToPage, "modulate:a", 1,SettingsPage.AnimationFadeDuration).From(0);
 

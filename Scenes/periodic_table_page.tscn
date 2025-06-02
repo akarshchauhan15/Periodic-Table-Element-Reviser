@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8qplk8fkwtb"]
+[gd_scene load_steps=4 format=3 uid="uid://c8qplk8fkwtb"]
 
 [ext_resource type="Script" uid="uid://c5ofi4hh13t25" path="res://Scripts/PeriodicTablePage.cs" id="1_6r23k"]
-[ext_resource type="PackedScene" uid="uid://d0eeko4qnbj3" path="res://Scenes/table_element.tscn" id="1_lex64"]
+[ext_resource type="Theme" uid="uid://bunmufssyl5ho" path="res://Themes/Modern.theme" id="2_6r23k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6r23k"]
+bg_color = Color(0.18956, 0.269105, 0.480469, 1)
 
 [node name="PeriodicTablePage" type="Control"]
 layout_mode = 3
@@ -12,21 +15,109 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6r23k")
 
+[node name="Selected" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1080.0
+offset_bottom = 572.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_6r23k")
+
+[node name="Name" type="Label" parent="Selected"]
+layout_mode = 1
+offset_left = 38.0
+offset_top = 36.0
+offset_right = 698.0
+offset_bottom = 201.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 120
+text = "Hydrogen"
+
+[node name="Symbol" type="Label" parent="Selected"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -298.0
+offset_top = -31.0
+offset_right = -29.0
+offset_bottom = 311.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 200
+text = "H"
+horizontal_alignment = 2
+
+[node name="AtomicNumber" type="Label" parent="Selected"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -504.0
+offset_top = 323.0
+offset_right = -78.0
+offset_bottom = 419.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 70
+text = "1"
+horizontal_alignment = 2
+
+[node name="AtomicMass" type="Label" parent="Selected"]
+layout_mode = 0
+offset_left = 529.0
+offset_top = 435.0
+offset_right = 1020.0
+offset_bottom = 531.0
+theme_override_font_sizes/font_size = 70
+text = "1.0"
+horizontal_alignment = 2
+
+[node name="AtomicNumberLabel" type="Label" parent="Selected"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 323.0
+offset_right = 464.0
+offset_bottom = 460.0
+theme_override_font_sizes/font_size = 70
+text = "Atomic No."
+
+[node name="AtomicMassLabel" type="Label" parent="Selected"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 435.0
+offset_right = 529.0
+offset_bottom = 572.0
+theme_override_font_sizes/font_size = 70
+text = "Atomic Mass"
+
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 609.0
+offset_right = 2.0
+offset_bottom = -203.0
+grow_horizontal = 2
+grow_vertical = 0
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+
+[node name="Control" type="Control" parent="ScrollContainer"]
+custom_minimum_size = Vector2(2950, 1660)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="BackButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -541.5
-offset_top = -1272.0
-offset_right = 541.5
+offset_left = -482.0
+offset_top = -165.0
+offset_right = -43.0
+offset_bottom = -40.0
 grow_horizontal = 2
 grow_vertical = 0
-
-[node name="Control" type="Control" parent="ScrollContainer"]
-layout_mode = 2
-
-[node name="TableElement" parent="ScrollContainer/Control" instance=ExtResource("1_lex64")]
-layout_mode = 0
+theme = ExtResource("2_6r23k")
+theme_type_variation = &"ShadowedButton"
+text = "Return"

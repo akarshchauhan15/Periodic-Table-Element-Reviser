@@ -1,12 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0eeko4qnbj3"]
+[gd_scene load_steps=9 format=3 uid="uid://d0eeko4qnbj3"]
+
+[ext_resource type="FontFile" uid="uid://bwaqtqtpd6ns8" path="res://Assets/Fonts/Lexend-Light.ttf" id="1_fmwlj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pp04f"]
 bg_color = Color(0.135056, 0.151363, 0.207031, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fmwlj"]
+bg_color = Color(1, 1, 1, 0.2)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2va5o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kfsau"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_016np"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_akhgs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mks7m"]
+
 [node name="TableElement" type="Panel"]
 custom_minimum_size = Vector2(100, 100)
-offset_right = 100.0
-offset_bottom = 100.0
+offset_right = 150.0
+offset_bottom = 150.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_pp04f")
 
 [node name="Name" type="Label" parent="."]
@@ -17,30 +32,32 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -50.0
-offset_top = 17.0
+offset_top = 30.0
 offset_right = 50.0
-offset_bottom = 50.0
+offset_bottom = 63.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 14
+theme_override_fonts/font = ExtResource("1_fmwlj")
+theme_override_font_sizes/font_size = 21
 text = "Hydrogen"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Symbol" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.483
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 0.483
 offset_left = -50.0
-offset_top = -30.0
+offset_top = -27.45
 offset_right = 50.0
-offset_bottom = 25.0
+offset_bottom = 27.55
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 40
+theme_override_fonts/font = ExtResource("1_fmwlj")
+theme_override_font_sizes/font_size = 60
 text = "H"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -50,14 +67,34 @@ layout_mode = 1
 offset_left = 5.0
 offset_right = 39.0
 offset_bottom = 28.0
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = ExtResource("1_fmwlj")
+theme_override_font_sizes/font_size = 30
 text = "1"
 
 [node name="AtomicMass" type="Label" parent="."]
 layout_mode = 1
-offset_left = 61.0
-offset_right = 95.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -37.0
+offset_right = -3.0
 offset_bottom = 28.0
-theme_override_font_sizes/font_size = 20
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("1_fmwlj")
+theme_override_font_sizes/font_size = 30
 text = "1"
 horizontal_alignment = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_fmwlj")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_2va5o")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_kfsau")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_016np")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_akhgs")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_mks7m")

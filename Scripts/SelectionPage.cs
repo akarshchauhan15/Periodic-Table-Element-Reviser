@@ -57,19 +57,7 @@ public partial class SelectionPage : Control
     private StringName SetValueToVariable(long Index)
     {
         Hud.UISelectAudio.Play();
-        switch (Index)
-        {
-            case 0:
-                return Element.PropertyName.Name;
-            case 1:
-                return Element.PropertyName.Symbol;
-            case 2:
-                return Element.PropertyName.AtomicNumber;
-            case 3:
-                return Element.PropertyName.AtomicMass;
-            default:
-                return Element.PropertyName.Name;
-        }
+        return Element.Properties[(int) Index];
     }
     private void ProceedToCollection()
     {
