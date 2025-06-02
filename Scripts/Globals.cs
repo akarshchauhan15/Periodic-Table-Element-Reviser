@@ -21,6 +21,14 @@ public partial class Element : GodotObject
         {2, "Atomic Number"},
         {3, "Atomic Mass"},
         };
+
+    public static StringName[] Properties = 
+    [
+        PropertyName.Name,
+        PropertyName.Symbol,
+        PropertyName.AtomicNumber,
+        PropertyName.AtomicMass
+    ];
 }
 
 public partial class ElementCollection : GodotObject
