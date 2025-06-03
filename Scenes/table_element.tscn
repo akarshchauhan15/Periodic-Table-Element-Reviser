@@ -100,3 +100,4 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_kfsau")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_016np")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_akhgs")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_mks7m")
+action_mode = 0
