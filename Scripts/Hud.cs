@@ -1,5 +1,6 @@
 using Godot;
 using Godot.Collections;
+using System;
 
 public partial class Hud : Control
 {
@@ -41,7 +42,7 @@ public partial class Hud : Control
     {
         UISelectAudio.Play();
 
-        tween = CreateTween();
+        /*tween = CreateTween();
 
         tween.SetParallel(true);
         tween.TweenCallback(Callable.From(() => Blank.MouseFilter = MouseFilterEnum.Stop));
@@ -52,6 +53,18 @@ public partial class Hud : Control
         tween.SetParallel(true);
         tween.TweenCallback(Callable.From(() => ToPage.Show()));
         tween.TweenProperty(ToPage, "modulate:a", 1,SettingsPage.AnimationFadeDuration).From(0);
+
+        tween.SetParallel(false);
+        tween.TweenCallback(Callable.From(() => Blank.MouseFilter = MouseFilterEnum.Ignore));
+        tween.TweenCallback(Callable.From(() => FromPage.Hide()));
+        */
+        tween = CreateTween();
+
+        tween.SetParallel(true);
+        tween.TweenProperty(FromPage, "modulate:a", 0, SettingsPage.AnimationFadeDuration).From(1);
+        tween.TweenCallback(Callable.From(() => Blank.MouseFilter = MouseFilterEnum.Stop));
+        tween.TweenCallback(Callable.From(() => ToPage.Show()));
+        tween.TweenProperty(ToPage, "modulate:a", 1, SettingsPage.AnimationFadeDuration).From(0);
 
         tween.SetParallel(false);
         tween.TweenCallback(Callable.From(() => Blank.MouseFilter = MouseFilterEnum.Ignore));
