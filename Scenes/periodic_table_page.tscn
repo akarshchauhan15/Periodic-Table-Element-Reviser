@@ -1,10 +1,32 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8qplk8fkwtb"]
+[gd_scene load_steps=5 format=3 uid="uid://c8qplk8fkwtb"]
 
 [ext_resource type="Script" uid="uid://c5ofi4hh13t25" path="res://Scripts/PeriodicTablePage.cs" id="1_6r23k"]
 [ext_resource type="Theme" uid="uid://bunmufssyl5ho" path="res://Themes/Modern.theme" id="2_6r23k"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6r23k"]
-bg_color = Color(0.0557556, 0.0904508, 0.226563, 1)
+bg_color = Color(0.1548, 0.19584, 0.36, 1)
+border_width_left = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0.117, 0.15665, 0.3, 1)
+corner_radius_bottom_right = 70
+corner_radius_bottom_left = 70
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f13fh"]
+bg_color = Color(0.2392, 0.29536, 0.52, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.507813, 0.437471, 0.406647, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+corner_detail = 15
+expand_margin_left = 36.0
+expand_margin_right = 36.0
+anti_aliasing_size = 0.5
 
 [node name="PeriodicTablePage" type="Control"]
 layout_mode = 3
@@ -23,13 +45,24 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_6r23k")
 
 [node name="Name" type="Label" parent="Selected"]
 layout_mode = 1
-offset_left = 30.0
+offset_left = 73.0
 offset_top = 98.0
-offset_right = 690.0
-offset_bottom = 263.0
+offset_right = 74.0
+offset_bottom = 254.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 100
-text = "Hydrogen"
+
+[node name="Panel" type="Panel" parent="Selected/Name"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -5.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_f13fh")
 
 [node name="Symbol" type="Label" parent="Selected"]
 layout_mode = 1
@@ -41,8 +74,8 @@ offset_top = 48.0
 offset_right = -45.0
 offset_bottom = 267.0
 grow_horizontal = 0
+theme_override_constants/outline_size = 15
 theme_override_font_sizes/font_size = 160
-text = "H"
 horizontal_alignment = 2
 
 [node name="AtomicNumber" type="Label" parent="Selected"]
@@ -55,8 +88,9 @@ offset_top = 323.0
 offset_right = -78.0
 offset_bottom = 419.0
 grow_horizontal = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 70
-text = "1"
 horizontal_alignment = 2
 
 [node name="AtomicMass" type="Label" parent="Selected"]
@@ -65,8 +99,9 @@ offset_left = 529.0
 offset_top = 435.0
 offset_right = 1020.0
 offset_bottom = 531.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 70
-text = "1.0"
 horizontal_alignment = 2
 
 [node name="AtomicNumberLabel" type="Label" parent="Selected"]
@@ -75,6 +110,8 @@ offset_left = 38.0
 offset_top = 323.0
 offset_right = 464.0
 offset_bottom = 460.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 70
 text = "Atomic No."
 
@@ -84,6 +121,8 @@ offset_left = 38.0
 offset_top = 435.0
 offset_right = 529.0
 offset_bottom = 572.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 70
 text = "Atomic Mass"
 

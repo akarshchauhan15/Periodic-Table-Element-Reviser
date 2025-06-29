@@ -13,6 +13,7 @@ public partial class SettingsPage : Control
 
     string[][] ControlLocations = [
         ["HomePage/StartButton"],
+        ["HomePage/PeriodicTableButton"],
         ["SelectionPage/ContinueButton", "HighlightedButton"],
         ["SelectionPage/BackButton", "ShadowedButton"],
         ["SelectionPage/GivenOption"],
@@ -34,6 +35,7 @@ public partial class SettingsPage : Control
         ["SettingsPage/ExitButton", "ShadowedButton"],
         ["SettingsPage/Settings/ThemeOption"],
         ["SettingsPage/Settings/BackgroundOption"],
+        ["PeriodicTablePage/BackButton", "ShadowedButton"]
     ];
 
     public static Color[] BackgroundColours = [

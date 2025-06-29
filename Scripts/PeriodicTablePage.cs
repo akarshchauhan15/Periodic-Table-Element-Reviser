@@ -47,8 +47,11 @@ public partial class PeriodicTablePage : Control
                 Index++;
             }
 
-            StyleBoxFlat Style = new StyleBoxFlat();
-            Style.BgColor = CategoryColors[(int)element.Category];
+            StyleBoxFlat Style = (StyleBoxFlat) GD.Load<StyleBoxFlat>("res://Themes/table_element.stylebox").Duplicate(); 
+
+            Color CategoryColor = CategoryColors[(int)element.Category];
+            Style.BgColor = CategoryColor;
+            Style.BorderColor = CategoryColor.Darkened(0.25f);
 
             TableElement.AddThemeStyleboxOverride("panel", Style);
 
@@ -56,7 +59,8 @@ public partial class PeriodicTablePage : Control
             {
                 if (SelectedTableElement != TableElement)
                     SelectElement(TableElement);
-            };   
+            };
+            TableElement.SetMeta("category_color", CategoryColors[(int)element.Category]);
 
             var GridPosition = Elements.ElementGridPositions[Counter];
             TableElement.Position = new Vector2(40 + (GridPosition.column * 160), 40 + (GridPosition.row * 160));
@@ -64,6 +68,9 @@ public partial class PeriodicTablePage : Control
 
             Counter++;
         }
+
+
+        SelectElement(TableElementContainer.GetChild<Panel>(0));
     }
     private void SelectElement(Panel TableElement)
     {
@@ -76,6 +83,14 @@ public partial class PeriodicTablePage : Control
             Selected.GetChild<Label>(Index).Text = TableElement.GetChild<Label>(Index).Text;
             Index++;
         }
+
+        StyleBoxFlat Style = GD.Load<StyleBoxFlat>("res://Themes/panel_decorator.stylebox");
+
+        Color StyleColor = (Color)TableElement.GetMeta("category_color", Colors.Transparent);
+        Style.BgColor = StyleColor.Darkened(0.4f);
+        Style.BorderColor = StyleColor.Lightened(0.1f);
+
+        GetNode<Panel>("Selected/Name/Panel").AddThemeStyleboxOverride("panel", Style);
     }
     private void ReturnToHome() => GetParent<Hud>().AnimatePages(this, GetNode<HomePage>("../HomePage"));
 }
