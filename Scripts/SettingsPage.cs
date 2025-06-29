@@ -35,7 +35,11 @@ public partial class SettingsPage : Control
         ["SettingsPage/ExitButton", "ShadowedButton"],
         ["SettingsPage/Settings/ThemeOption"],
         ["SettingsPage/Settings/BackgroundOption"],
-        ["PeriodicTablePage/BackButton", "ShadowedButton"]
+        ["PeriodicTablePage/BackButton", "ShadowedButton"],
+        ["PeriodicTablePage/ScaleController", "HolderPanel"],
+        ["PeriodicTablePage/ScaleController/IncreaseScale", "ShadowedButton"],
+        ["PeriodicTablePage/ScaleController/DecreaseScale", "ShadowedButton"],
+        ["PeriodicTablePage/ScaleController/ResetScale", "ShadowedButton"],
     ];
 
     public static Color[] BackgroundColours = [

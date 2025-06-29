@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8qplk8fkwtb"]
+[gd_scene load_steps=6 format=3 uid="uid://c8qplk8fkwtb"]
 
 [ext_resource type="Script" uid="uid://c5ofi4hh13t25" path="res://Scripts/PeriodicTablePage.cs" id="1_6r23k"]
 [ext_resource type="Theme" uid="uid://bunmufssyl5ho" path="res://Themes/Modern.theme" id="2_6r23k"]
@@ -27,6 +27,8 @@ corner_detail = 15
 expand_margin_left = 36.0
 expand_margin_right = 36.0
 anti_aliasing_size = 0.5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6r23k"]
 
 [node name="PeriodicTablePage" type="Control"]
 layout_mode = 3
@@ -134,8 +136,6 @@ anchor_bottom = 1.0
 offset_top = 609.0
 offset_right = 2.0
 offset_bottom = -203.0
-grow_horizontal = 2
-grow_vertical = 0
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 3
 
@@ -151,12 +151,85 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -482.0
-offset_top = -165.0
-offset_right = -43.0
-offset_bottom = -40.0
+offset_left = 21.0
+offset_top = -169.0
+offset_right = 460.0
+offset_bottom = -41.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("2_6r23k")
 theme_type_variation = &"ShadowedButton"
 text = "Return"
+
+[node name="ScaleController" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -460.0
+offset_top = -180.0
+offset_right = -61.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_6r23k")
+theme_type_variation = &"HolderPanel"
+metadata/_edit_group_ = true
+
+[node name="IncreaseScale" type="Button" parent="ScaleController"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -133.0
+offset_top = -58.4532
+offset_right = -18.0
+offset_bottom = 56.5468
+grow_horizontal = 0
+grow_vertical = 2
+focus_mode = 0
+theme = ExtResource("2_6r23k")
+theme_type_variation = &"ShadowedButton"
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6r23k")
+text = "+"
+
+[node name="DecreaseScale" type="Button" parent="ScaleController"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -59.0
+offset_top = -58.4532
+offset_right = 56.0
+offset_bottom = 56.5468
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.00201671
+focus_mode = 0
+theme = ExtResource("2_6r23k")
+theme_type_variation = &"ShadowedButton"
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6r23k")
+text = "-"
+
+[node name="ResetScale" type="Button" parent="ScaleController"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 18.0
+offset_top = -57.4532
+offset_right = 133.0
+offset_bottom = 57.5468
+grow_vertical = 2
+rotation = -0.00455669
+focus_mode = 0
+theme = ExtResource("2_6r23k")
+theme_type_variation = &"ShadowedButton"
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6r23k")
+text = "R"

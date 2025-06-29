@@ -21,6 +21,10 @@ public partial class PeriodicTablePage : Control
         new Color(0.241f, 0.082f, 0.414f),
         new Color(0.25f, 0.158f, 0.539f)
         ];
+
+    float[] ScaleValues = [0.611f, 0.72f, 0.873f, 1.0f, 1.17f, 1.37f, 1.55f, 1.72f];
+
+    int TableScale = 3;
     public override void _Ready()
     {
         TableElementContainer = GetNode<Control>("ScrollContainer/Control");
@@ -29,10 +33,16 @@ public partial class PeriodicTablePage : Control
 
         GetNode<Button>("BackButton").Pressed += ReturnToHome;
 
+        GetNode<Button>("ScaleController/IncreaseScale").Pressed += () => { TableScale = Mathf.Clamp(TableScale + 1, 0, ScaleValues.Length - 1); SetScale(); };
+        GetNode<Button>("ScaleController/DecreaseScale").Pressed += () => { TableScale = Mathf.Clamp(TableScale - 1, 0, ScaleValues.Length - 1); SetScale(); };
+        GetNode<Button>("ScaleController/ResetScale").Pressed += () => { TableScale = 3; SetScale(); };
+
         SetTable();
     }
     private void SetTable()
     {
+        TableElementContainer.CustomMinimumSize = new Vector2(2950, 1660) * ScaleValues[TableScale];
+
         int Counter = 0;
         foreach (Element element in Elements.ElementList)
         {
@@ -62,13 +72,11 @@ public partial class PeriodicTablePage : Control
             };
             TableElement.SetMeta("category_color", CategoryColors[(int)element.Category]);
 
-            var GridPosition = Elements.ElementGridPositions[Counter];
-            TableElement.Position = new Vector2(40 + (GridPosition.column * 160), 40 + (GridPosition.row * 160));
+            SetPanelScale(TableElement, Counter);
             TableElementContainer.AddChild(TableElement);
 
             Counter++;
         }
-
 
         SelectElement(TableElementContainer.GetChild<Panel>(0));
     }
@@ -91,6 +99,23 @@ public partial class PeriodicTablePage : Control
         Style.BorderColor = StyleColor.Lightened(0.1f);
 
         GetNode<Panel>("Selected/Name/Panel").AddThemeStyleboxOverride("panel", Style);
+    }
+    private void SetPanelScale(Panel TableElement, int Counter)
+    {
+        TableElement.Scale = Vector2.One * ScaleValues[TableScale];
+        var GridPosition = Elements.ElementGridPositions[Counter];
+        TableElement.Position = new Vector2(40 + (GridPosition.column * 160), 40 + (GridPosition.row * 160)) * ScaleValues[TableScale];
+    }
+    private void SetScale() 
+    { 
+        TableElementContainer.CustomMinimumSize = new Vector2(2950, 1660) * ScaleValues[TableScale];
+
+        int Counter = 0;
+
+        foreach (Panel TableElement in TableElementContainer.GetChildren()) {
+            SetPanelScale(TableElement, Counter);
+            Counter++;
+        }
     }
     private void ReturnToHome() => GetParent<Hud>().AnimatePages(this, GetNode<HomePage>("../HomePage"));
 }
