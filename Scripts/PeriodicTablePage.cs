@@ -48,7 +48,7 @@ public partial class PeriodicTablePage : Control
         {
             Panel TableElement = TableElementScene.Instantiate<Panel>();
 
-            int ChildCount = 4;
+            int ChildCount = 3;
             int Index = 0;
 
             while (Index < ChildCount)
@@ -56,6 +56,9 @@ public partial class PeriodicTablePage : Control
                 TableElement.GetChild<Label>(Index).Text = element.Get(Element.Properties[Index]).ToString();
                 Index++;
             }
+
+            TableElement.GetNode<Label>("AtomicMass").Text = element.AtomicMass.ToString().PadDecimals(1);
+            
 
             StyleBoxFlat Style = (StyleBoxFlat) GD.Load<StyleBoxFlat>("res://Themes/table_element.stylebox").Duplicate(); 
 
@@ -84,13 +87,16 @@ public partial class PeriodicTablePage : Control
     {
         SelectedTableElement = TableElement;
 
-        int ChildCount = 4;
+        int ChildCount = 3;
         int Index = 0;
         while (Index < ChildCount)
         {
             Selected.GetChild<Label>(Index).Text = TableElement.GetChild<Label>(Index).Text;
             Index++;
         }
+
+
+        Selected.GetNode<Label>("AtomicMass").Text = Elements.ElementList[TableElement.GetChild<Label>(2).Text.ToInt() - 1].AtomicMass.ToString();
 
         StyleBoxFlat Style = GD.Load<StyleBoxFlat>("res://Themes/panel_decorator.stylebox");
 
