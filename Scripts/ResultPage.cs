@@ -55,13 +55,13 @@ public partial class ResultPage : Control
 
             if (Action.ElementCorrect[i])
             {
-                ScoreElement.GetNode<Label>("Return").Text = Action.ElementList[i].Get(Selection.SelectedReturnOption).ToString();
+                ScoreElement.GetNode<Label>("Return").Text = Action.ElementList[i].Get(Selection.SelectedReturnOption).ToString().PadDecimals(3);
                 ScoreElement.GetNode<Label>("Return").Show();
             }
             else
             {
                 ScoreElement.GetNode<Label>("Wrong").Text = Action.WrongReturns[WrongCounter];
-                ScoreElement.GetNode<Label>("Wrong/Correct").Text = Action.ElementList[i].Get(Selection.SelectedReturnOption).ToString();
+                ScoreElement.GetNode<Label>("Wrong/Correct").Text = Action.ElementList[i].Get(Selection.SelectedReturnOption).ToString().PadDecimals(3);
                 ScoreElement.GetNode<Label>("Wrong").Show();
 
                 WrongScoreListElementContainer.AddChild(ScoreElement.Duplicate());

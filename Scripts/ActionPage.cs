@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 public partial class ActionPage : Control
 {
@@ -12,6 +13,7 @@ public partial class ActionPage : Control
     Timer KeyboardTimer;
     Button ExitButton;
     Panel Tip;
+    Tween tween;
 
     public Array<Element> ElementList;
     public Array<bool> ElementCorrect = new Array<bool>();
@@ -26,7 +28,6 @@ public partial class ActionPage : Control
     public int Length = 0;
     bool ExitButtonPressed = false;
     double ExitTime = 0;
-    Tween tween;
 
     public override void _Ready()
     {
@@ -42,7 +43,7 @@ public partial class ActionPage : Control
         InputValue.TextSubmitted += GetInput;
         KeyboardTimer.Timeout += OnKeyboardTimerEnds;
         ExitButton.ButtonDown += ExitButtonDown;
-        ExitButton.ButtonUp += ExitButtonUp;
+        ExitButton.ButtonUp += () => ExitTime = 0;
 
         Selection = GetNode<SelectionPage>("../SelectionPage");
     }
@@ -72,8 +73,6 @@ public partial class ActionPage : Control
             KeyboardType = LineEdit.VirtualKeyboardTypeEnum.Default;
 
         InputValue.VirtualKeyboardType = KeyboardType;
-        if (tween != null)
-            tween.Kill();
 
         Tip.Modulate = new Color(1, 1, 1, 0);
 
@@ -107,8 +106,10 @@ public partial class ActionPage : Control
 
         bool Correct = false;
 
-        if (Selection.SelectedReturnOption == Element.PropertyName.AtomicNumber || Selection.SelectedReturnOption == Element.PropertyName.AtomicMass)
+        if (Selection.SelectedReturnOption == Element.PropertyName.AtomicNumber)
             Correct = Input.ToFloat() == (float)ElementList[Counter].Get(Selection.SelectedReturnOption);
+        else if (Selection.SelectedReturnOption == Element.PropertyName.AtomicMass)
+            Correct = (Input.ToFloat() - (float)ElementList[Counter].Get(Selection.SelectedReturnOption)) < 0.4f;
         else
             Correct = Input.ToLower() == ElementList[Counter].Get(Selection.SelectedReturnOption).ToString().ToLower();
 
@@ -142,14 +143,14 @@ public partial class ActionPage : Control
     private void ExitButtonDown()
     {
         ExitTime = TimeElapsed;
+
         if (tween != null)
             tween.Kill();
 
         tween = CreateTween();
 
         tween.TweenProperty(Tip, "modulate:a", 1, 0.5 * (1 - Tip.Modulate.A));
-        tween.TweenInterval(1.5);
-        tween.TweenProperty(Tip, "modulate:a", 0, 0.5 * (1 - Tip.Modulate.A));
+        tween.TweenInterval(1.5f);
+        tween.TweenProperty(Tip, "modulate:a", 0, 0.5);
     }
-    private void ExitButtonUp() => ExitTime = 0;
 }
