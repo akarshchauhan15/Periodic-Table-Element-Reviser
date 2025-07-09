@@ -17,7 +17,7 @@ public partial class HomePage : Control
             UpdateLabel.QueueFree();
 
         Tween tween = CreateTween();
-        tween.TweenProperty(UpdateLabel, "position", new Vector2(0, -56), 0.3f).AsRelative().SetTrans(Tween.TransitionType.Quad).SetEase(Tween.EaseType.Out);
+        tween.TweenProperty(UpdateLabel, "position", new Vector2(-100, 0), 0.3f).AsRelative().SetTrans(Tween.TransitionType.Quad).SetEase(Tween.EaseType.Out);
     }
     private void ProceedToSelection()
     {
