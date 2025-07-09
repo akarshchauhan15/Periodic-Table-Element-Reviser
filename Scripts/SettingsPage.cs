@@ -1,19 +1,24 @@
 using Godot;
-using System.ComponentModel;
+using Godot.Collections;
 
 public partial class SettingsPage : Control
 {
     public static bool IsSoundEnabled = true;
     public static float AnimationFadeDuration = 0.2f;
 
+    HttpRequest VersionRequest;
+
     OptionButton ThemeOption;
     OptionButton BackgroundOption;
     Button SoundButton;
+    Timer UpdateCheckTimer;
+
     Theme[] Themes;
 
     string[][] ControlLocations = [
         ["HomePage/StartButton"],
         ["HomePage/PeriodicTableButton"],
+        ["HomePage/UpdateLabel/Panel"],
         ["SelectionPage/ContinueButton", "HighlightedButton"],
         ["SelectionPage/BackButton", "ShadowedButton"],
         ["SelectionPage/GivenOption"],
@@ -55,10 +60,17 @@ public partial class SettingsPage : Control
         ThemeOption = GetNode<OptionButton>("Settings/ThemeOption");
         BackgroundOption = GetNode<OptionButton>("Settings/BackgroundOption");
         SoundButton = GetNode<Button>("Settings/SoundButton");
+        UpdateCheckTimer = GetNode<Timer>("UpdateCheckTimer");
+
+        VersionRequest = new HttpRequest();
+        AddChild(VersionRequest);
+        VersionRequest.RequestCompleted += UpdateRequestCompleted;
 
         ThemeOption.ItemSelected += SetTheme;
         BackgroundOption.ItemSelected += SetBackground;
         SoundButton.Toggled += SoundButtonToggled;
+        UpdateCheckTimer.Timeout += CheckForUpdate;  
+        //UpdateCheckTimer.Timeout += () => GetNode<HomePage>("../HomePage").PopupUpdatePrompt(true); //For testing purposes.
         GetNode<Button>("ExitButton").Pressed += OnExitPressed;
 
         SetSettings();
@@ -83,7 +95,7 @@ public partial class SettingsPage : Control
         {
             Control control = GetParent().GetNodeOrNull<Control>(Location[0]);
 
-            if (control == null)    
+            if (control == null)
                 continue;
 
             control.Theme = Themes[Index];
@@ -102,8 +114,10 @@ public partial class SettingsPage : Control
     }
     private void SoundButtonToggled(bool SoundEnabled)
     {
-        if (SoundEnabled) { 
-            SoundButton.Text = "Enabled";}
+        if (SoundEnabled)
+        {
+            SoundButton.Text = "Enabled";
+        }
         else
             SoundButton.Text = "Disabled";
 
@@ -113,5 +127,28 @@ public partial class SettingsPage : Control
         AudioServer.SetBusMute(1, !SoundEnabled);
         GetNode<AudioStreamPlayer>("../Audio/UI").Play();
     }
-    private void OnExitPressed()  => GetParent<Hud>().AnimatePages(this, GetNode<HomePage>("../HomePage"));
+    private void CheckForUpdate()
+    {
+        string url = "https://api.github.com/repos/akarshchauhan15/Periodic-Table-Element-Reviser/releases/latest";
+
+        string[] Headers = ["User-Agent: MyGodotApp"];
+
+        Error Err = VersionRequest.Request(url, Headers);
+        if (Err != Error.Ok) GD.PrintErr("Failed to send request: " + Err);
+    }
+    private void UpdateRequestCompleted(long result, long response, string[] headers, byte[] body)
+    {
+        if (response != 200) { GD.PrintErr("GitHUb API error: ", response); return; }
+
+        Json json = new Json();
+        Error ParseError = json.Parse(body.GetStringFromUtf8());
+
+        if (ParseError != Error.Ok) { GD.PrintErr("Failed to parse JSON: ", ParseError); return; }
+
+        Dictionary FetchedData = (Dictionary)json.Data;
+        string LatestVersion = FetchedData["tag_name"].ToString();
+
+        GetNode<HomePage>("../HomePage").PopupUpdatePrompt(LatestVersion != ProjectSettings.GetSetting("application/config/version").ToString());
+    }
+    private void OnExitPressed() => GetParent<Hud>().AnimatePages(this, GetNode<HomePage>("../HomePage"));
 }

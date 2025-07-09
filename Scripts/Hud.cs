@@ -1,6 +1,5 @@
 using Godot;
 using Godot.Collections;
-using System;
 
 public partial class Hud : Control
 {
@@ -16,8 +15,19 @@ public partial class Hud : Control
         foreach (string PageName in PageNames)
             Pages.Add(GetNode<Control>($"{PageName}Page"));
 
+        foreach (Control Page in Pages)
+        {
+            Page.ZIndex = -1; 
+            Page.Show();
+            Page.Hide();
+            Page.ZIndex = 0;
+        }
+
         Blank = GetNode<Control>("BlankPreventer");
         Blank.Show();
+
+        Pages[0].Show();
+
         UISelectAudio = GetNode<AudioStreamPlayer>("Audio/UI");
     }
     public void ContinuePage(Control CurrentPage)

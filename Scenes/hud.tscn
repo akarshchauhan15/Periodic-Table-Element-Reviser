@@ -1453,6 +1453,48 @@ libraries = {
 }
 autoplay = "Launch"
 
+[node name="UpdateLabel" type="Label" parent="HomePage"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -179.0
+offset_top = 2.0
+offset_right = 182.0
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("13_ssfue")
+theme_override_font_sizes/font_size = 32
+text = "Update Avaliable!"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_group_ = true
+
+[node name="Panel" type="Panel" parent="HomePage/UpdateLabel"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_4f5kr")
+
+[node name="Button" type="LinkButton" parent="HomePage/UpdateLabel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+underline = 2
+uri = "https://github.com/akarshchauhan15/Periodic-Table-Element-Reviser/releases/latest"
+
 [node name="SelectionPage" type="Control" parent="."]
 visible = false
 layout_mode = 1
@@ -2234,7 +2276,7 @@ grow_vertical = 0
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = SubResource("FontFile_xbkfx")
 theme_override_font_sizes/font_size = 40
-text = "version-alpha???"
+text = "version???"
 
 [node name="ExitButton" type="Button" parent="SettingsPage"]
 layout_mode = 1
@@ -2251,6 +2293,11 @@ grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("4_4f5kr")
 text = "Back"
+
+[node name="UpdateCheckTimer" type="Timer" parent="SettingsPage"]
+wait_time = 2.0
+one_shot = true
+autostart = true
 
 [node name="PeriodicTablePage" parent="." instance=ExtResource("18_pbtju")]
 visible = false

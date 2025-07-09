@@ -89,11 +89,7 @@ public partial class ActionPage : Control
     }
     private void GiveValue()
     {
-        if (Counter >= Length)
-        {
-            EndGame();
-            return;
-        }
+        if (Counter >= Length) { EndGame(); return; }
 
         GivenValueLabel.Text = ElementList[Counter].Get(Selection.SelectedGivenOption).ToString();
         Progress.Text = $"{Counter + 1} / {Length}";
@@ -109,7 +105,7 @@ public partial class ActionPage : Control
         if (Selection.SelectedReturnOption == Element.PropertyName.AtomicNumber)
             Correct = Input.ToFloat() == (float)ElementList[Counter].Get(Selection.SelectedReturnOption);
         else if (Selection.SelectedReturnOption == Element.PropertyName.AtomicMass)
-            Correct = (Input.ToFloat() - (float)ElementList[Counter].Get(Selection.SelectedReturnOption)) < 0.4f;
+            Correct = (Mathf.Abs(Input.ToFloat() - (float)ElementList[Counter].Get(Selection.SelectedReturnOption))) < 0.4f;
         else
             Correct = Input.ToLower() == ElementList[Counter].Get(Selection.SelectedReturnOption).ToString().ToLower();
 

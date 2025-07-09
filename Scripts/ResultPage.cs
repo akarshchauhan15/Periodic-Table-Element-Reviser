@@ -1,4 +1,5 @@
 using Godot;
+using System;
 using System.Text.RegularExpressions;
 
 public partial class ResultPage : Control
@@ -13,6 +14,7 @@ public partial class ResultPage : Control
     PackedScene ListIndicatorScene;
     PackedScene GreatPanelScene;
 
+    SelectionPage Selection;
     bool AllCorrect;
     public override void _Ready()
     {
@@ -25,6 +27,8 @@ public partial class ResultPage : Control
         ScoreListElementScene = ResourceLoader.Load<PackedScene>("res://Scenes/score_list_element.tscn");
         ListIndicatorScene = ResourceLoader.Load<PackedScene>("res://Scenes/list_indicator.tscn");
         GreatPanelScene = ResourceLoader.Load<PackedScene>("res://Scenes/great_panel.tscn");
+
+        Selection = GetNode<SelectionPage>("../SelectionPage");
 
         GetNode<Button>("ToggleButton").Pressed += OnListToggled;
         GetNode<Button>("ContinueButton").Pressed += OnContinueButtonPressed;
@@ -53,15 +57,20 @@ public partial class ResultPage : Control
 
             ScoreElement.GetNode<Label>("Given").Text = Action.ElementList[i].Get(Selection.SelectedGivenOption).ToString();
 
+            string Returned = Action.ElementList[i].Get(Selection.SelectedReturnOption).ToString();
+
+            if (Selection.SelectedReturnOption == Element.PropertyName.AtomicMass)
+                Returned = Returned.PadDecimals(3);
+
             if (Action.ElementCorrect[i])
             {
-                ScoreElement.GetNode<Label>("Return").Text = Action.ElementList[i].Get(Selection.SelectedReturnOption).ToString().PadDecimals(3);
+                ScoreElement.GetNode<Label>("Return").Text = Returned;
                 ScoreElement.GetNode<Label>("Return").Show();
             }
             else
             {
                 ScoreElement.GetNode<Label>("Wrong").Text = Action.WrongReturns[WrongCounter];
-                ScoreElement.GetNode<Label>("Wrong/Correct").Text = Action.ElementList[i].Get(Selection.SelectedReturnOption).ToString().PadDecimals(3);
+                ScoreElement.GetNode<Label>("Wrong/Correct").Text = Returned;
                 ScoreElement.GetNode<Label>("Wrong").Show();
 
                 WrongScoreListElementContainer.AddChild(ScoreElement.Duplicate());

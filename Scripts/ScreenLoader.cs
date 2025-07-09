@@ -18,7 +18,6 @@ public partial class ScreenLoader : Control
         GetNode<ColorRect>("../Background").Color = SettingsPage.BackgroundColours[(int) ConfigController.Config.GetValue("Settings", "Background", 0)];
 
         ResourceLoader.LoadThreadedRequest(Path, useSubThreads:true);
-
     }
     public override void _Process(double delta)
     {
