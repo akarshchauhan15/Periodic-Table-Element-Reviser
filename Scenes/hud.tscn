@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=4 uid="uid://bbgxqqjlxgn76"]
+[gd_scene load_steps=58 format=4 uid="uid://bbgxqqjlxgn76"]
 
 [ext_resource type="Script" uid="uid://c8f3mfoslsglk" path="res://Scripts/Hud.cs" id="1_fccik"]
 [ext_resource type="Script" uid="uid://c5hga8f36vgtl" path="res://Scripts/HomePage.cs" id="2_8jye8"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://pm3eiwcc7pt5" path="res://Scripts/ActionPage.cs" id="5_t1xeu"]
 [ext_resource type="Script" uid="uid://dxqgt2puthqtf" path="res://Scripts/CollectionPage.cs" id="6_5ep0j"]
 [ext_resource type="Texture2D" uid="uid://du1y8h2loa63e" path="res://Assets/Icons/icon_only.svg" id="6_8bf2m"]
+[ext_resource type="PackedScene" uid="uid://draj7ttkttsd8" path="res://Scenes/toggle_button.tscn" id="7_yidpd"]
 [ext_resource type="Script" uid="uid://btnsfmomyx6vs" path="res://Scripts/ResultPage.cs" id="9_7gr8i"]
 [ext_resource type="Script" uid="uid://cro5320o6vsw5" path="res://Scripts/SettingsPage.cs" id="11_4f5kr"]
 [ext_resource type="Texture2D" uid="uid://cem1hq2dp5tsf" path="res://Assets/Icons/info.svg" id="11_i2avg"]
@@ -1495,6 +1496,13 @@ grow_horizontal = 2
 grow_vertical = 2
 underline = 2
 uri = "https://github.com/akarshchauhan15/Periodic-Table-Element-Reviser/releases/latest"
+
+[node name="ToggleButton" parent="HomePage" instance=ExtResource("7_yidpd")]
+layout_mode = 0
+offset_left = 131.0
+offset_top = 999.0
+offset_right = 273.0
+offset_bottom = 1049.0
 
 [node name="SelectionPage" type="Control" parent="."]
 visible = false

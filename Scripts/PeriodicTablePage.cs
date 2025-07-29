@@ -95,7 +95,6 @@ public partial class PeriodicTablePage : Control
             Index++;
         }
 
-
         Selected.GetNode<Label>("AtomicMass").Text = Elements.ElementList[TableElement.GetChild<Label>(2).Text.ToInt() - 1].AtomicMass.ToString();
 
         StyleBoxFlat Style = GD.Load<StyleBoxFlat>("res://Themes/panel_decorator.stylebox");
