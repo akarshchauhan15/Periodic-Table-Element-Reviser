@@ -1,9 +1,11 @@
-[gd_scene load_steps=18 format=4 uid="uid://sek0xt2nipgc"]
+[gd_scene load_steps=20 format=4 uid="uid://sek0xt2nipgc"]
 
-[ext_resource type="Script" uid="uid://cro5320o6vsw5" path="res://Scripts/SettingsPage.cs" id="1_4nau8"]
+[ext_resource type="Script" uid="uid://b8vnwldftqfdu" path="res://Scripts/SettingsPage.cs" id="1_4nau8"]
 [ext_resource type="FontFile" uid="uid://7qg7fidlmsb8" path="res://Assets/Fonts/Lexend-Medium.ttf" id="2_3uamq"]
+[ext_resource type="Script" uid="uid://cro5320o6vsw5" path="res://Scripts/Settings.cs" id="2_giwlh"]
 [ext_resource type="Theme" uid="uid://bunmufssyl5ho" path="res://Themes/Modern.theme" id="3_giwlh"]
 [ext_resource type="PackedScene" uid="uid://de3muv8dqxejj" path="res://Scenes/toggle_button.tscn" id="4_3uamq"]
+[ext_resource type="Script" uid="uid://b4ynrekbq76uh" path="res://Scripts/Development.cs" id="6_jm8mn"]
 
 [sub_resource type="Image" id="Image_lkt4f"]
 data = {
@@ -1038,7 +1040,68 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4nau8")
 
-[node name="Settings" type="Label" parent="."]
+[node name="SwipeContainer" type="ScrollContainer" parent="."]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SwipeContainer"]
+layout_mode = 2
+
+[node name="Settings" type="Control" parent="SwipeContainer/HBoxContainer"]
+custom_minimum_size = Vector2(1080, 1672)
+layout_mode = 2
+mouse_filter = 1
+script = ExtResource("2_giwlh")
+
+[node name="Labels" type="VBoxContainer" parent="SwipeContainer/HBoxContainer/Settings"]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 320.0
+offset_right = 516.0
+offset_bottom = 1052.0
+
+[node name="Theme" type="Label" parent="SwipeContainer/HBoxContainer/Settings/Labels"]
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_3uamq")
+theme_override_font_sizes/font_size = 70
+text = "Theme"
+
+[node name="Background" type="Label" parent="SwipeContainer/HBoxContainer/Settings/Labels"]
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_3uamq")
+theme_override_font_sizes/font_size = 70
+text = "Background"
+
+[node name="Sound" type="Label" parent="SwipeContainer/HBoxContainer/Settings/Labels"]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_3uamq")
+theme_override_font_sizes/font_size = 70
+text = "Sound"
+
+[node name="Updates" type="Label" parent="SwipeContainer/HBoxContainer/Settings/Labels"]
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 2
+theme_override_constants/line_spacing = -15
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_3uamq")
+theme_override_font_sizes/font_size = 70
+text = "Check For Updates"
+autowrap_mode = 2
+
+[node name="Settings" type="Label" parent="SwipeContainer/HBoxContainer/Settings"]
 layout_mode = 0
 offset_left = 84.0
 offset_top = 71.0
@@ -1049,42 +1112,12 @@ theme_override_fonts/font = ExtResource("2_3uamq")
 theme_override_font_sizes/font_size = 120
 text = "Settings"
 
-[node name="Theme" type="Label" parent="Settings"]
+[node name="ThemeOption" type="OptionButton" parent="SwipeContainer/HBoxContainer/Settings"]
 layout_mode = 0
-offset_top = 256.0
-offset_right = 216.0
-offset_bottom = 339.0
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("2_3uamq")
-theme_override_font_sizes/font_size = 70
-text = "Theme"
-
-[node name="Background" type="Label" parent="Settings"]
-layout_mode = 0
-offset_top = 441.0
-offset_right = 419.0
-offset_bottom = 529.0
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("2_3uamq")
-theme_override_font_sizes/font_size = 70
-text = "Background"
-
-[node name="Sound" type="Label" parent="Settings"]
-layout_mode = 0
-offset_top = 626.0
-offset_right = 218.0
-offset_bottom = 714.0
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("2_3uamq")
-theme_override_font_sizes/font_size = 70
-text = "Sound"
-
-[node name="ThemeOption" type="OptionButton" parent="Settings"]
-layout_mode = 0
-offset_left = 487.0
-offset_top = 236.0
-offset_right = 915.0
-offset_bottom = 363.0
+offset_left = 571.0
+offset_top = 299.0
+offset_right = 999.0
+offset_bottom = 426.0
 theme = ExtResource("3_giwlh")
 alignment = 1
 selected = 0
@@ -1094,12 +1127,12 @@ popup/item_0/id = 0
 popup/item_1/text = "Metro"
 popup/item_1/id = 1
 
-[node name="BackgroundOption" type="OptionButton" parent="Settings"]
+[node name="BackgroundOption" type="OptionButton" parent="SwipeContainer/HBoxContainer/Settings"]
 layout_mode = 0
-offset_left = 487.0
-offset_top = 419.0
-offset_right = 915.0
-offset_bottom = 546.0
+offset_left = 571.0
+offset_top = 490.0
+offset_right = 999.0
+offset_bottom = 617.0
 theme = ExtResource("3_giwlh")
 alignment = 1
 selected = 0
@@ -1111,30 +1144,53 @@ popup/item_1/id = 1
 popup/item_2/text = "Black"
 popup/item_2/id = 2
 
-[node name="SoundButton" parent="Settings" instance=ExtResource("4_3uamq")]
+[node name="SoundButton" parent="SwipeContainer/HBoxContainer/Settings" instance=ExtResource("4_3uamq")]
 layout_mode = 0
-offset_left = 487.0
-offset_top = 610.0
-offset_right = 915.0
-offset_bottom = 737.0
-
-[node name="Credits" type="Label" parent="."]
-layout_mode = 0
-offset_left = 73.0
-offset_top = 970.0
+offset_left = 571.0
+offset_top = 676.0
 offset_right = 999.0
-offset_bottom = 1120.0
+offset_bottom = 803.0
+
+[node name="UpdateButton" parent="SwipeContainer/HBoxContainer/Settings" instance=ExtResource("4_3uamq")]
+layout_mode = 0
+offset_left = 571.0
+offset_top = 865.0
+offset_right = 999.0
+offset_bottom = 992.0
+
+[node name="UpdateCheckTimer" type="Timer" parent="SwipeContainer/HBoxContainer/Settings"]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="Development" type="Control" parent="SwipeContainer/HBoxContainer"]
+custom_minimum_size = Vector2(1080, 1672)
+layout_mode = 2
+mouse_filter = 1
+script = ExtResource("6_jm8mn")
+
+[node name="Development" type="Label" parent="SwipeContainer/HBoxContainer/Development"]
+layout_mode = 2
+offset_left = 84.0
+offset_top = 71.0
+offset_right = 1164.0
+offset_bottom = 221.0
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("2_3uamq")
-theme_override_font_sizes/font_size = 100
-text = "Development   </>"
+theme_override_font_sizes/font_size = 120
+text = "Development"
 autowrap_mode = 2
 
-[node name="Using" type="Label" parent="Credits"]
+[node name="VBoxContainer" type="VBoxContainer" parent="SwipeContainer/HBoxContainer/Development"]
 layout_mode = 0
-offset_top = 221.0
-offset_right = 937.0
-offset_bottom = 467.0
+offset_left = 40.0
+offset_top = 393.0
+offset_right = 1040.0
+offset_bottom = 872.0
+
+[node name="Using" type="Label" parent="SwipeContainer/HBoxContainer/Development/VBoxContainer"]
+custom_minimum_size = Vector2(1000, 400)
+layout_mode = 2
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("2_3uamq")
 theme_override_font_sizes/font_size = 46
@@ -1143,12 +1199,8 @@ text = "Source code is availiable on github under MIT license.
 You can contribute by reporting bugs or suggesting features."
 autowrap_mode = 2
 
-[node name="LinkButton" type="LinkButton" parent="Credits"]
-layout_mode = 0
-offset_left = 11.0
-offset_top = 582.0
-offset_right = 546.0
-offset_bottom = 672.0
+[node name="LinkButton" type="LinkButton" parent="SwipeContainer/HBoxContainer/Development/VBoxContainer"]
+layout_mode = 2
 theme_override_constants/outline_size = 8
 theme_override_constants/underline_spacing = 5
 theme_override_fonts/font = ExtResource("2_3uamq")
@@ -1156,15 +1208,12 @@ theme_override_font_sizes/font_size = 60
 text = "View Source Code"
 uri = "https://github.com/akarshchauhan15/Periodic-Table-Element-Reviser"
 
-[node name="Version" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 84.0
-offset_top = -78.0
-offset_right = 404.0
-offset_bottom = -30.0
+[node name="Version" type="Label" parent="SwipeContainer/HBoxContainer/Development"]
+layout_mode = 2
+offset_left = 40.0
+offset_top = 991.0
+offset_right = 1040.0
+offset_bottom = 1041.0
 grow_vertical = 0
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = SubResource("FontFile_xbkfx")
@@ -1186,8 +1235,3 @@ grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("3_giwlh")
 text = "Back"
-
-[node name="UpdateCheckTimer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
-autostart = true

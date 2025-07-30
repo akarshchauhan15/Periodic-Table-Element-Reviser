@@ -23,7 +23,7 @@ public partial class ConfirmationPage : Control
     {
         Given.Text = Element.OptionValues[Selection.GivenIndex];
         Return.Text = Element.OptionValues[Selection.ReturnIndex];
-        Elements.Text = $"From {CollectionPage.SelectedCollection.DisplayName.ToLower()} Elements";
+        Elements.Text = $"From {CollectionPage.SelectedCollection.DisplayName.ToLower()} elements";
     }
     public void ProceedToAction()
     {

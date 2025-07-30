@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bbgxqqjlxgn76"]
+[gd_scene load_steps=45 format=3 uid="uid://bbgxqqjlxgn76"]
 
 [ext_resource type="Script" uid="uid://c8f3mfoslsglk" path="res://Scripts/Hud.cs" id="1_fccik"]
 [ext_resource type="Script" uid="uid://c5hga8f36vgtl" path="res://Scripts/HomePage.cs" id="2_8jye8"]
@@ -16,7 +16,8 @@
 [ext_resource type="FontFile" uid="uid://bwaqtqtpd6ns8" path="res://Assets/Fonts/Lexend-Light.ttf" id="13_ba8gd"]
 [ext_resource type="FontFile" uid="uid://7qg7fidlmsb8" path="res://Assets/Fonts/Lexend-Medium.ttf" id="13_ssfue"]
 [ext_resource type="Texture2D" uid="uid://c810wodtuiy7r" path="res://Assets/Icons/change_icon.svg" id="14_8bf2m"]
-[ext_resource type="PackedScene" uid="uid://b3ebf224v654m" path="res://Scenes/settings_page.tscn" id="17_pbtju"]
+[ext_resource type="PackedScene" uid="uid://sek0xt2nipgc" path="res://Scenes/settings_page.tscn" id="17_pbtju"]
+[ext_resource type="PackedScene" uid="uid://b8xk7mnua7lyk" path="res://Scenes/great_panel.tscn" id="17_yidpd"]
 [ext_resource type="AudioStream" uid="uid://dg78h3dtuxpyi" path="res://Assets/Audio/ui.ogg" id="18_36s6t"]
 [ext_resource type="PackedScene" uid="uid://c8qplk8fkwtb" path="res://Scenes/periodic_table_page.tscn" id="18_pbtju"]
 
@@ -1067,6 +1068,10 @@ custom_minimum_size = Vector2(1000, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="GreatPanel" parent="ResultPage/WrongElements" instance=ExtResource("17_yidpd")]
+visible = false
+layout_mode = 2
 
 [node name="ToggleButton" type="Button" parent="ResultPage"]
 layout_mode = 0

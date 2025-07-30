@@ -3,7 +3,7 @@ using Godot.Collections;
 
 public partial class Hud : Control
 {
-    Array<Control> Pages = new Array<Control>();
+    public static Array<Control> Pages = new Array<Control>();
     Tween tween;
     Control Blank;
 
@@ -56,10 +56,10 @@ public partial class Hud : Control
 
         tween.SetParallel(true);
         tween.TweenCallback(Callable.From(() => Blank.MouseFilter = MouseFilterEnum.Stop));
-        tween.TweenProperty(FromPage, "modulate:a", 0, SettingsPage.AnimationFadeDuration).From(1);
+        tween.TweenProperty(FromPage, "modulate:a", 0, Settings.AnimationFadeDuration).From(1);
 
-        tween.TweenCallback(Callable.From(() => ToPage.Show())).SetDelay(SettingsPage.AnimationFadeDuration / 2);
-        tween.TweenProperty(ToPage, "modulate:a", 1,SettingsPage.AnimationFadeDuration).From(0).SetDelay(SettingsPage.AnimationFadeDuration/2);
+        tween.TweenCallback(Callable.From(() => ToPage.Show())).SetDelay(Settings.AnimationFadeDuration / 2);
+        tween.TweenProperty(ToPage, "modulate:a", 1,Settings.AnimationFadeDuration).From(0).SetDelay(Settings.AnimationFadeDuration/2);
 
         tween.SetParallel(false);
         tween.TweenCallback(Callable.From(() => Blank.MouseFilter = MouseFilterEnum.Ignore));

@@ -15,7 +15,7 @@ public partial class ScreenLoader : Control
         DefaultProgressRectX = ProgressRect.Size.X;
         ProgressRect.Size = new Vector2(0, ProgressRect.Size.Y);
 
-        GetNode<ColorRect>("../Background").Color = SettingsPage.BackgroundColours[(int) ConfigController.Config.GetValue("Settings", "Background", 0)];
+        GetNode<ColorRect>("../Background").Color = Settings.BackgroundColours[(int) ConfigController.Config.GetValue("Settings", "Background", 0)];
 
         ResourceLoader.LoadThreadedRequest(Path, useSubThreads:true);
     }
