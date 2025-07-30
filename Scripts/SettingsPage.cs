@@ -10,7 +10,7 @@ public partial class SettingsPage : Control
 
     OptionButton ThemeOption;
     OptionButton BackgroundOption;
-    Button SoundButton;
+    ToggleButton SoundButton;
     Timer UpdateCheckTimer;
 
     Theme[] Themes;
@@ -59,7 +59,7 @@ public partial class SettingsPage : Control
 
         ThemeOption = GetNode<OptionButton>("Settings/ThemeOption");
         BackgroundOption = GetNode<OptionButton>("Settings/BackgroundOption");
-        SoundButton = GetNode<Button>("Settings/SoundButton");
+        SoundButton = GetNode<ToggleButton>("Settings/SoundButton");
         UpdateCheckTimer = GetNode<Timer>("UpdateCheckTimer");
 
         VersionRequest = new HttpRequest();
@@ -69,7 +69,7 @@ public partial class SettingsPage : Control
         ThemeOption.ItemSelected += SetTheme;
         BackgroundOption.ItemSelected += SetBackground;
         SoundButton.Toggled += SoundButtonToggled;
-        UpdateCheckTimer.Timeout += CheckForUpdate;  
+        //UpdateCheckTimer.Timeout += CheckForUpdate;  
         //UpdateCheckTimer.Timeout += () => GetNode<HomePage>("../HomePage").PopupUpdatePrompt(true); //For testing purposes.
         GetNode<Button>("ExitButton").Pressed += OnExitPressed;
 
@@ -77,15 +77,16 @@ public partial class SettingsPage : Control
     }
     private void SetSettings()
     {
-        AudioServer.SetBusMute(0, true);
-        ThemeOption.Select((int)ConfigController.Config.GetValue("Settings", "Theme", 0));
-        SetTheme((long)ConfigController.Config.GetValue("Settings", "Theme", 0));
+        AudioServer.SetBusMute(0, true);   
 
         BackgroundOption.Select((int)ConfigController.Config.GetValue("Settings", "Background", 0));
 
-        SoundButton.ButtonPressed = (bool)ConfigController.Config.GetValue("Settings", "Sound", true);
+        SoundButton.InitialValueSet((bool)ConfigController.Config.GetValue("Settings", "Sound", true));
         SoundButtonToggled((bool)ConfigController.Config.GetValue("Settings", "Sound", true));
         AudioServer.SetBusMute(1, !(bool)ConfigController.Config.GetValue("Settings", "Sound", true));
+
+        ThemeOption.Select((int)ConfigController.Config.GetValue("Settings", "Theme", 0));
+        SetTheme((long)ConfigController.Config.GetValue("Settings", "Theme", 0));
 
         GetNode<Label>("Version").Text = ProjectSettings.GetSetting("application/config/version").ToString();
     }
@@ -114,13 +115,6 @@ public partial class SettingsPage : Control
     }
     private void SoundButtonToggled(bool SoundEnabled)
     {
-        if (SoundEnabled)
-        {
-            SoundButton.Text = "Enabled";
-        }
-        else
-            SoundButton.Text = "Disabled";
-
         IsSoundEnabled = SoundEnabled;
         ConfigController.SaveSettings("Settings", "Sound", SoundEnabled);
 
