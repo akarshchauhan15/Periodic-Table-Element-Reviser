@@ -3,17 +3,17 @@ using Godot.Collections;
 
 public partial class Settings : Control
 {
-    //public static bool IsSoundEnabled = true;
-    public static float AnimationFadeDuration = 0.2f;
+    public static float AnimationFadeDuration = 0.3f;
 
+    Development DevelopmentPart;
     AudioStreamPlayer UISound;
-
     HttpRequest VersionRequest;
 
     OptionButton ThemeOption;
     OptionButton BackgroundOption;
     ToggleButton SoundButton;
     ToggleButton UpdateButton;
+    ToggleButton PromptButton;
     Timer UpdateCheckTimer;
 
     Theme[] Themes;
@@ -42,6 +42,7 @@ public partial class Settings : Control
         ["SettingsPage/ExitButton", "ShadowedButton"],
         ["SettingsPage/SwipeContainer/HBoxContainer/Settings/SoundButton", "ShadowedButton"],
         ["SettingsPage/SwipeContainer/HBoxContainer/Settings/UpdateButton", "ShadowedButton"],
+        ["SettingsPage/SwipeContainer/HBoxContainer/Settings/PromptButton", "ShadowedButton"],
         ["SettingsPage/SwipeContainer/HBoxContainer/Settings/ThemeOption"],
         ["SettingsPage/SwipeContainer/HBoxContainer/Settings/BackgroundOption"],
         ["PeriodicTablePage/BackButton", "ShadowedButton"],
@@ -65,9 +66,11 @@ public partial class Settings : Control
         BackgroundOption = GetNode<OptionButton>("BackgroundOption");
         SoundButton = GetNode<ToggleButton>("SoundButton");
         UpdateButton = GetNode<ToggleButton>("UpdateButton");
+        PromptButton = GetNode<ToggleButton>("PromptButton");
         UpdateCheckTimer = GetNode<Timer>("UpdateCheckTimer");
 
         UISound = GetTree().Root.GetNode<AudioStreamPlayer>("Main/HUD/Audio/UI");
+        DevelopmentPart = GetNode<Development>("../Development");
 
         VersionRequest = new HttpRequest();
         AddChild(VersionRequest);
@@ -77,6 +80,7 @@ public partial class Settings : Control
         BackgroundOption.ItemSelected += SetBackground;
         SoundButton.Toggled += SoundButtonToggled;
         UpdateButton.Toggled += UpdateButtonToggled;
+        PromptButton.Toggled += PromptButtonToggled;
         UpdateCheckTimer.Timeout += CheckForUpdate;
         //UpdateCheckTimer.Timeout += () => ((HomePage)Hud.Pages[0]).PopupUpdatePrompt(true); //For testing purposes.
 
@@ -96,6 +100,10 @@ public partial class Settings : Control
         bool CheckForUpdatesEnabled = (bool)ConfigController.Config.GetValue("Settings", "CheckForUpdates", true);
         UpdateButton.InitialValueSet(CheckForUpdatesEnabled);
         if (!CheckForUpdatesEnabled) UpdateCheckTimer.QueueFree();
+
+        bool PromptEnabled = (bool)ConfigController.Config.GetValue("Settings", "UpdatePrompt", true);
+        PromptButton.InitialValueSet(PromptEnabled);
+        GetTree().Root.GetNode<Label>("Main/HUD/HomePage/UpdateLabel").Visible = PromptEnabled;
 
         ThemeOption.Select((int)ConfigController.Config.GetValue("Settings", "Theme", 0));
         SetTheme((long)ConfigController.Config.GetValue("Settings", "Theme", 0));
@@ -135,27 +143,37 @@ public partial class Settings : Control
         ConfigController.SaveSettings("Settings", "CheckForUpdates", CheckForUpdatesEnabled);
         UISound.Play();
     }
-    private void CheckForUpdate()
+    private void PromptButtonToggled(bool PromptEnabled)
+    {
+        ((HomePage)Hud.Pages[0]).UpdateLabel.Visible = PromptEnabled;
+        ConfigController.SaveSettings("Settings", "UpdatePrompt", PromptEnabled);
+        UISound.Play();
+    }
+    public void CheckForUpdate()
     {
         string url = "https://api.github.com/repos/akarshchauhan15/Periodic-Table-Element-Reviser/releases/latest";
 
         string[] Headers = ["User-Agent: MyGodotApp"];
 
         Error Err = VersionRequest.Request(url, Headers);
-        if (Err != Error.Ok) GD.PrintErr("Failed to send request: " + Err);
+        if (Err != Error.Ok) DevelopmentPart.UpdateCode(2);
     }
     private void UpdateRequestCompleted(long result, long response, string[] headers, byte[] body)
     {
-        if (response != 200) { GD.PrintErr("GitHUb API error: ", response); return; }
+        if (response != 200) { DevelopmentPart.UpdateCode(3); return; }
 
         Json json = new Json();
         Error ParseError = json.Parse(body.GetStringFromUtf8());
 
-        if (ParseError != Error.Ok) { GD.PrintErr("Failed to parse JSON: ", ParseError); return; }
+        if (ParseError != Error.Ok) { DevelopmentPart.UpdateCode(3); return; }
 
         Dictionary FetchedData = (Dictionary)json.Data;
         string LatestVersion = FetchedData["tag_name"].ToString();
 
-        GetNode<HomePage>("../../HomePage").PopupUpdatePrompt(LatestVersion != ProjectSettings.GetSetting("application/config/version").ToString());
+        bool UpdateAvailiable = (LatestVersion != ProjectSettings.GetSetting("application/config/version").ToString());
+        int Code = (UpdateAvailiable) ? 0 : 1;
+        ((HomePage)Hud.Pages[0]).PopupUpdatePrompt(UpdateAvailiable);
+
+        DevelopmentPart.UpdateCode(Code);
     }
 }

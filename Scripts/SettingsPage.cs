@@ -3,18 +3,29 @@ using Godot;
 public partial class SettingsPage : Control
 {
     ScrollContainer SwipeContainer;
+    ScrollContainer LabelContainer;
+
     Vector2 StartPosition;
     bool IsDragging = false;
+    double DragTime = 0;
     int PageCount = 0;
     int CurrentPage = 0;
+
     float PageWidth;
+    float LabelWidth;
     public override void _Ready()
     {
         GetNode<Button>("ExitButton").Pressed += OnExitPressed;
         SwipeContainer = GetNode<ScrollContainer>("SwipeContainer");
+        LabelContainer = GetNode<ScrollContainer>("LabelContainer");
 
         PageCount = SwipeContainer.GetChild(0).GetChildCount();
         PageWidth = SwipeContainer.Size.X;
+        LabelWidth = 800;
+    }
+    public override void _PhysicsProcess(double delta)
+    {
+        if (IsDragging) DragTime += delta;
     }
     public override void _GuiInput(InputEvent @event)
     {
@@ -28,21 +39,35 @@ public partial class SettingsPage : Control
             else if (IsDragging)
             {
                 IsDragging = false;
-                float Delta = Touch.Position.X - StartPosition.X;
-                GD.Print(Delta);
+                float Delta = (Touch.Position.X - StartPosition.X) * (float) (1 + 1/(DragTime*100));
                 Delta /= 500;
+
                 if (Delta < -1) CurrentPage++;
                 else if (Delta > 1) CurrentPage--;
 
                 CurrentPage = Mathf.Clamp(CurrentPage, 0, PageCount - 1);
                 SnapToPage(CurrentPage);
+
+                DragTime = 0;
             }
         }
+    }
+    public void ResetPosition()
+    {
+        SwipeContainer.ScrollHorizontal = 0;
+        LabelContainer.ScrollHorizontal = 0;
+    }
+    private void AnimateLabels()
+    {
+        Tween tween = CreateTween();
+        tween.TweenProperty(LabelContainer, "scroll_horizontal", SwipeContainer.ScrollHorizontal * 800, 0.5f).SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Quad).SetDelay(0.1f);
     }
     private void SnapToPage(int TargetPage)
     {
         Tween tween = CreateTween();
-        tween.TweenProperty(SwipeContainer, "scroll_horizontal", TargetPage * PageWidth, 0.2f).SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Sine);
+        tween.SetParallel(true);
+        tween.TweenProperty(SwipeContainer, "scroll_horizontal", TargetPage * PageWidth, Mathf.Min(0.5f, 0.5f * Mathf.Abs(SwipeContainer.ScrollHorizontal - TargetPage * PageWidth) / 540)).SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Sine);
+        tween.TweenProperty(LabelContainer, "scroll_horizontal", TargetPage * 800, 0.5f).SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Quad);
     }
     private void OnExitPressed() => GetParent<Hud>().AnimatePages(this, Hud.Pages[0]);
 }

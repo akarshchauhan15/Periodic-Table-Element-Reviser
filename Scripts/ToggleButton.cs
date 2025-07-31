@@ -3,7 +3,9 @@ using Godot;
 public partial class ToggleButton : Button
 {
     Tween tween;
+    [Export]
     StyleBoxFlat Background;
+    [Export]
     StyleBoxFlat Switch;
 
     Panel BackgroundPanel;
@@ -32,6 +34,7 @@ public partial class ToggleButton : Button
 
         Background.BgColor = GetThemeColor(Color + "Color", "ToggleButtonBackground");
         Switch.BgColor = GetThemeColor(Color + "Color", "ToggleButtonSwitch");
+        SwitchPanel.Position = new Vector2(GetThemeConstant("Default", "ToggleButtonSwitch"), SwitchPanel.Position.Y);
         if (Value) SwitchPanel.Position += new Vector2(GetThemeConstant("Displacement", "ToggleButtonSwitch"), 0);
     }
     public void SetTheme()
