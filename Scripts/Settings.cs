@@ -160,7 +160,13 @@ public partial class Settings : Control
     }
     private void UpdateRequestCompleted(long result, long response, string[] headers, byte[] body)
     {
-        if (response != 200) { DevelopmentPart.UpdateCode(3); return; }
+        if (response != 200) 
+        {
+            int code = 2;
+            if (response != 0) code++;
+            DevelopmentPart.UpdateCode(code);
+            return;
+        }
 
         Json json = new Json();
         Error ParseError = json.Parse(body.GetStringFromUtf8());

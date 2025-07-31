@@ -62,7 +62,7 @@ public partial class SettingsPage : Control
         Tween tween = CreateTween();
         tween.SetParallel(true);
         tween.TweenProperty(LabelContainer, "scroll_horizontal", 60 + TargetPage * LabelWidth, (100 + Mathf.Abs(LabelContainer.ScrollHorizontal - 60 - TargetPage * LabelWidth)) * 0.0008).SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Sine);
-        tween.TweenProperty(SwipeContainer, "scroll_horizontal", TargetPage * PageWidth, 0.5f).SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Quad);
+        tween.TweenProperty(SwipeContainer, "scroll_horizontal", TargetPage * PageWidth, 0.6f).SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Cubic);
     }
     private void OnExitPressed() => GetParent<Hud>().AnimatePages(this, Hud.Pages[0]);
 }
