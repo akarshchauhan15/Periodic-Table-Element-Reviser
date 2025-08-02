@@ -40,7 +40,7 @@ public partial class SettingsPage : Control
             {
                 IsDragging = false;
                 float Delta = (Touch.Position.X - StartPosition.X) * (float) (1 + 1/(DragTime*100));
-                Delta /= 500;
+                Delta /= 300;
 
                 if (Delta < -1) CurrentPage++;
                 else if (Delta > 1) CurrentPage--;
@@ -55,19 +55,14 @@ public partial class SettingsPage : Control
     public void ResetPosition()
     {
         SwipeContainer.ScrollHorizontal = 0;
-        LabelContainer.ScrollHorizontal = 0;
-    }
-    private void AnimateLabels()
-    {
-        Tween tween = CreateTween();
-        tween.TweenProperty(LabelContainer, "scroll_horizontal", SwipeContainer.ScrollHorizontal * 800, 0.5f).SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Quad).SetDelay(0.1f);
+        LabelContainer.ScrollHorizontal = 60;
     }
     private void SnapToPage(int TargetPage)
     {
         Tween tween = CreateTween();
         tween.SetParallel(true);
-        tween.TweenProperty(SwipeContainer, "scroll_horizontal", TargetPage * PageWidth, Mathf.Min(0.5f, 0.5f * Mathf.Abs(SwipeContainer.ScrollHorizontal - TargetPage * PageWidth) / 540)).SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Sine);
-        tween.TweenProperty(LabelContainer, "scroll_horizontal", TargetPage * 800, 0.5f).SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Quad);
+        tween.TweenProperty(LabelContainer, "scroll_horizontal", 60 + TargetPage * LabelWidth, (100 + Mathf.Abs(LabelContainer.ScrollHorizontal - 60 - TargetPage * LabelWidth)) * 0.0008).SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Sine);
+        tween.TweenProperty(SwipeContainer, "scroll_horizontal", TargetPage * PageWidth, 0.6f).SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Cubic);
     }
     private void OnExitPressed() => GetParent<Hud>().AnimatePages(this, Hud.Pages[0]);
 }
