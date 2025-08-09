@@ -151,7 +151,6 @@ offset_left = 571.0
 offset_top = 299.0
 offset_right = 999.0
 offset_bottom = 426.0
-mouse_filter = 1
 theme = ExtResource("3_giwlh")
 alignment = 1
 selected = 0
@@ -167,17 +166,22 @@ offset_left = 571.0
 offset_top = 490.0
 offset_right = 999.0
 offset_bottom = 617.0
-mouse_filter = 1
 theme = ExtResource("3_giwlh")
 alignment = 1
 selected = 0
-item_count = 3
+item_count = 6
 popup/item_0/text = "Default"
 popup/item_0/id = 0
-popup/item_1/text = "Grey"
+popup/item_1/text = "Sea Green"
 popup/item_1/id = 1
-popup/item_2/text = "Black"
+popup/item_2/text = "Galaxy"
 popup/item_2/id = 2
+popup/item_3/text = "Wood"
+popup/item_3/id = 3
+popup/item_4/text = "Grey"
+popup/item_4/id = 4
+popup/item_5/text = "Black"
+popup/item_5/id = 5
 
 [node name="SoundButton" parent="SwipeContainer/HBoxContainer/Settings" instance=ExtResource("4_3uamq")]
 layout_mode = 0
@@ -185,7 +189,6 @@ offset_left = 571.0
 offset_top = 676.0
 offset_right = 999.0
 offset_bottom = 803.0
-mouse_filter = 1
 
 [node name="UpdateButton" parent="SwipeContainer/HBoxContainer/Settings" instance=ExtResource("4_3uamq")]
 layout_mode = 0
@@ -193,7 +196,6 @@ offset_left = 571.0
 offset_top = 865.0
 offset_right = 999.0
 offset_bottom = 992.0
-mouse_filter = 1
 
 [node name="PromptButton" parent="SwipeContainer/HBoxContainer/Settings" instance=ExtResource("4_3uamq")]
 layout_mode = 0
@@ -201,7 +203,6 @@ offset_left = 571.0
 offset_top = 1056.0
 offset_right = 999.0
 offset_bottom = 1183.0
-mouse_filter = 1
 
 [node name="UpdateCheckTimer" type="Timer" parent="SwipeContainer/HBoxContainer/Settings"]
 wait_time = 2.0

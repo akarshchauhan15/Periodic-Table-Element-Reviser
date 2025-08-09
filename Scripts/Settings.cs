@@ -46,6 +46,7 @@ public partial class Settings : Control
         ["SettingsPage/SwipeContainer/HBoxContainer/Settings/ThemeOption"],
         ["SettingsPage/SwipeContainer/HBoxContainer/Settings/BackgroundOption"],
         ["PeriodicTablePage/BackButton", "ShadowedButton"],
+        ["PeriodicTablePage/Selected", "PeriodicLabelPanel"],
         ["PeriodicTablePage/ScaleController", "HolderPanel"],
         ["PeriodicTablePage/ScaleController/IncreaseScale", "ShadowedButton"],
         ["PeriodicTablePage/ScaleController/DecreaseScale", "ShadowedButton"],
@@ -53,8 +54,11 @@ public partial class Settings : Control
     ];
 
     public static Color[] BackgroundColours = [
-        new Color("0b1531"),
-        new Color("242429"),
+        new Color("0b1531"), // Default
+        new Color("0e2d39"), // Sea Green
+        new Color("23134b"), // Galaxy
+        new Color("28251b"), // Wood
+        new Color("242429"), // Grey
         Colors.Black
         ];
 
