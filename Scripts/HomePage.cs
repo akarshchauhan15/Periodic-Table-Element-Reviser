@@ -14,7 +14,10 @@ public partial class HomePage : Control
     public void PopupUpdatePrompt(bool UpdateAvailiable)
     {
         if (!UpdateAvailiable)
+        {
             UpdateLabel.Position = new Vector2(1089, 1834);
+            return;
+        }
 
         Tween tween = CreateTween();
         tween.TweenProperty(UpdateLabel, "position", new Vector2(989, 1834), 0.3f).SetTrans(Tween.TransitionType.Quad).SetEase(Tween.EaseType.Out);
