@@ -5,7 +5,7 @@ public partial class Settings : Control
 {
     public static float AnimationFadeDuration = 0.3f;
 
-    Development DevelopmentPart;
+    Updates UpdatesPart;
     AudioStreamPlayer UISound;
     HttpRequest VersionRequest;
 
@@ -70,7 +70,7 @@ public partial class Settings : Control
         UpdateCheckTimer = GetNode<Timer>("UpdateCheckTimer");
 
         UISound = GetTree().Root.GetNode<AudioStreamPlayer>("Main/HUD/Audio/UI");
-        DevelopmentPart = GetNode<Development>("../Development");
+        UpdatesPart = GetNode<Updates>("../Updates");
 
         VersionRequest = new HttpRequest();
         AddChild(VersionRequest);
@@ -156,7 +156,7 @@ public partial class Settings : Control
         string[] Headers = ["User-Agent: MyGodotApp"];
 
         Error Err = VersionRequest.Request(url, Headers);
-        if (Err != Error.Ok) DevelopmentPart.UpdateCode(2);
+        if (Err != Error.Ok) UpdatesPart.UpdateCode(2);
     }
     private void UpdateRequestCompleted(long result, long response, string[] headers, byte[] body)
     {
@@ -164,14 +164,14 @@ public partial class Settings : Control
         {
             int code = 2;
             if (response != 0) code++;
-            DevelopmentPart.UpdateCode(code);
+            UpdatesPart.UpdateCode(code);
             return;
         }
 
         Json json = new Json();
         Error ParseError = json.Parse(body.GetStringFromUtf8());
 
-        if (ParseError != Error.Ok) { DevelopmentPart.UpdateCode(3); return; }
+        if (ParseError != Error.Ok) { UpdatesPart.UpdateCode(3); return; }
 
         Dictionary FetchedData = (Dictionary)json.Data;
         string LatestVersion = FetchedData["tag_name"].ToString();
@@ -180,6 +180,6 @@ public partial class Settings : Control
         int Code = (UpdateAvailiable) ? 0 : 1;
         ((HomePage)Hud.Pages[0]).PopupUpdatePrompt(UpdateAvailiable);
 
-        DevelopmentPart.UpdateCode(Code);
+        UpdatesPart.UpdateCode(Code);
     }
 }
