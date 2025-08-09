@@ -164,7 +164,11 @@ public partial class Settings : Control
         {
             int code = 2;
             if (response != 0) code++;
+<<<<<<< HEAD
             UpdatesPart.UpdateCode(code);
+=======
+            DevelopmentPart.UpdateCode(code);
+>>>>>>> main
             return;
         }
 
