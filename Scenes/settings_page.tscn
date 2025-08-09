@@ -5,15 +5,7 @@
 [ext_resource type="FontFile" uid="uid://bwaqtqtpd6ns8" path="res://Assets/Fonts/Lexend-Light.ttf" id="3_5ocvv"]
 [ext_resource type="Theme" uid="uid://bunmufssyl5ho" path="res://Themes/Modern.theme" id="3_giwlh"]
 [ext_resource type="PackedScene" uid="uid://de3muv8dqxejj" path="res://Scenes/toggle_button.tscn" id="4_3uamq"]
-<<<<<<< Updated upstream
 [ext_resource type="Script" uid="uid://b4ynrekbq76uh" path="res://Scripts/Updates.cs" id="6_jm8mn"]
-=======
-<<<<<<< HEAD
->>>>>>> Stashed changes
-[ext_resource type="Script" uid="uid://b4ynrekbq76uh" path="res://Scripts/Development.cs" id="6_jm8mn"]
-=======
-[ext_resource type="Script" uid="uid://b4ynrekbq76uh" path="res://Scripts/Updates.cs" id="6_jm8mn"]
->>>>>>> dev
 
 [node name="SettingsPage" type="Control"]
 layout_mode = 3
@@ -35,31 +27,12 @@ anchor_bottom = 1.0
 offset_bottom = -122.0
 grow_horizontal = 2
 grow_vertical = 2
-<<<<<<< Updated upstream
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 3
 scroll_deadzone = 50
 
 [node name="Labels" type="Control" parent="LabelContainer"]
 custom_minimum_size = Vector2(2800, 0)
-=======
-<<<<<<< HEAD
->>>>>>> Stashed changes
-scroll_horizontal = 60
-horizontal_scroll_mode = 3
-vertical_scroll_mode = 3
-scroll_deadzone = 20
-
-[node name="Labels" type="Control" parent="LabelContainer"]
-custom_minimum_size = Vector2(2000, 0)
-=======
-horizontal_scroll_mode = 3
-vertical_scroll_mode = 3
-scroll_deadzone = 50
-
-[node name="Labels" type="Control" parent="LabelContainer"]
-custom_minimum_size = Vector2(2800, 0)
->>>>>>> dev
 layout_mode = 2
 mouse_filter = 1
 
@@ -74,15 +47,7 @@ theme_override_fonts/font = ExtResource("3_5ocvv")
 theme_override_font_sizes/font_size = 140
 text = "Settings"
 
-<<<<<<< Updated upstream
 [node name="Updates" type="Label" parent="LabelContainer/Labels"]
-=======
-<<<<<<< HEAD
->>>>>>> Stashed changes
-[node name="Development" type="Label" parent="LabelContainer/Labels"]
-=======
-[node name="Updates" type="Label" parent="LabelContainer/Labels"]
->>>>>>> dev
 layout_mode = 2
 offset_left = 931.0
 offset_top = 50.0
@@ -91,7 +56,6 @@ offset_bottom = 200.0
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("3_5ocvv")
 theme_override_font_sizes/font_size = 140
-<<<<<<< Updated upstream
 text = "Updates"
 autowrap_mode = 2
 
@@ -105,25 +69,6 @@ theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("3_5ocvv")
 theme_override_font_sizes/font_size = 140
 text = "About"
-=======
-<<<<<<< HEAD
->>>>>>> Stashed changes
-text = "Development"
-=======
-text = "Updates"
-autowrap_mode = 2
-
-[node name="About" type="Label" parent="LabelContainer/Labels"]
-layout_mode = 2
-offset_left = 1734.0
-offset_top = 50.0
-offset_right = 2530.0
-offset_bottom = 225.0
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("3_5ocvv")
-theme_override_font_sizes/font_size = 140
-text = "About"
->>>>>>> dev
 autowrap_mode = 2
 
 [node name="SwipeContainer" type="ScrollContainer" parent="."]
@@ -277,31 +222,13 @@ offset_right = 1040.0
 offset_bottom = 786.0
 mouse_filter = 2
 
-<<<<<<< Updated upstream
 [node name="Info" type="Label" parent="SwipeContainer/HBoxContainer/Updates/VBoxContainer"]
 custom_minimum_size = Vector2(1020, 840)
-=======
-<<<<<<< HEAD
->>>>>>> Stashed changes
-[node name="Using" type="Label" parent="SwipeContainer/HBoxContainer/Development/VBoxContainer"]
-custom_minimum_size = Vector2(1020, 460)
-=======
-[node name="Info" type="Label" parent="SwipeContainer/HBoxContainer/Updates/VBoxContainer"]
-custom_minimum_size = Vector2(1020, 840)
->>>>>>> dev
 layout_mode = 2
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("3_5ocvv")
 theme_override_font_sizes/font_size = 60
-<<<<<<< Updated upstream
 text = "New releases are published periodically as more features and improvements are added.
-=======
-<<<<<<< HEAD
->>>>>>> Stashed changes
-text = "Source code is availiable on github under MIT license.
-=======
-text = "New releases are published periodically as more features and improvements are added.
->>>>>>> dev
 
 Turn on 'Auto Check For Updates' to check for updates on launch.
 
@@ -380,66 +307,12 @@ theme_override_font_sizes/font_size = 60
 text = "View Source Code"
 uri = "https://github.com/akarshchauhan15/Periodic-Table-Element-Reviser"
 
-<<<<<<< Updated upstream
 [node name="Version" type="Label" parent="SwipeContainer/HBoxContainer/About"]
 layout_mode = 2
 offset_left = 40.0
 offset_top = 1457.0
 offset_right = 1040.0
 offset_bottom = 1507.0
-=======
-<<<<<<< HEAD
->>>>>>> Stashed changes
-[node name="UpdateButton" type="LinkButton" parent="SwipeContainer/HBoxContainer/Development/VBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("3_5ocvv")
-theme_override_font_sizes/font_size = 60
-text = "Check For Update Now"
-
-[node name="Update" type="Label" parent="SwipeContainer/HBoxContainer/Development/VBoxContainer/UpdateButton"]
-layout_mode = 1
-offset_top = 117.0
-offset_right = 1000.0
-offset_bottom = 192.0
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("3_5ocvv")
-theme_override_font_sizes/font_size = 60
-autowrap_mode = 2
-
-[node name="LinkButton" type="LinkButton" parent="SwipeContainer/HBoxContainer/Development/VBoxContainer/UpdateButton/Update"]
-visible = false
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = 11.0
-offset_right = 535.0
-offset_bottom = 111.0
-grow_vertical = 0
-theme_override_constants/outline_size = 4
-theme_override_constants/underline_spacing = 5
-theme_override_fonts/font = ExtResource("3_5ocvv")
-theme_override_font_sizes/font_size = 60
-text = "Download Latest"
-uri = "https://github.com/akarshchauhan15/Periodic-Table-Element-Reviser/releases/latest"
-
-[node name="Version" type="Label" parent="SwipeContainer/HBoxContainer/Development"]
-layout_mode = 2
-offset_left = 40.0
-offset_top = 1387.0
-offset_right = 1040.0
-offset_bottom = 1437.0
-=======
-[node name="Version" type="Label" parent="SwipeContainer/HBoxContainer/About"]
-layout_mode = 2
-offset_left = 40.0
-offset_top = 1457.0
-offset_right = 1040.0
-offset_bottom = 1507.0
->>>>>>> dev
 grow_vertical = 0
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("3_5ocvv")

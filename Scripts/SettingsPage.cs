@@ -7,7 +7,6 @@ public partial class SettingsPage : Control
 
     Vector2 StartPosition;
     bool IsDragging = false;
-    //double DragTime = 0;
     int PageCount = 0;
     int CurrentPage = 0;
 
@@ -23,10 +22,6 @@ public partial class SettingsPage : Control
         PageWidth = SwipeContainer.Size.X;
         LabelWidth = 800;
     }
-    /*public override void _PhysicsProcess(double delta)
-    {
-        if (IsDragging) DragTime += delta;
-    }*/
     public override void _GuiInput(InputEvent @event)
     {
         if (@event is InputEventScreenTouch Touch)
@@ -39,18 +34,7 @@ public partial class SettingsPage : Control
             else if (IsDragging)
             {
                 IsDragging = false;
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-                float Delta = (Touch.Position.X - StartPosition.X); //* (float) (1 + 1/(DragTime*100));
-=======
-                float Delta = (Touch.Position.X - StartPosition.X) * (float) (1 + 1/(DragTime*100));
->>>>>>> main
-=======
-                float Delta = (Touch.Position.X - StartPosition.X) * (float) (1 + 1/(DragTime*100));
-=======
-                float Delta = (Touch.Position.X - StartPosition.X); //* (float) (1 + 1/(DragTime*100));
->>>>>>> dev
->>>>>>> Stashed changes
+                float Delta = (Touch.Position.X - StartPosition.X);
                 Delta /= 300;
 
                 if (Delta < -1) CurrentPage++;
@@ -58,8 +42,6 @@ public partial class SettingsPage : Control
 
                 CurrentPage = Mathf.Clamp(CurrentPage, 0, PageCount - 1);
                 SnapToPage(CurrentPage);
-
-                //DragTime = 0;
             }
         }
     }
@@ -72,8 +54,6 @@ public partial class SettingsPage : Control
     {
         Tween tween = CreateTween();
         tween.SetParallel(true);
-<<<<<<< HEAD
-<<<<<<< Updated upstream
         tween.TweenCallback(Callable.From(() =>  LabelContainer.MouseFilter = MouseFilterEnum.Ignore));
         tween.TweenCallback(Callable.From(() =>  MouseFilter = MouseFilterEnum.Ignore));
 
@@ -84,26 +64,6 @@ public partial class SettingsPage : Control
 
         tween.TweenCallback(Callable.From(() => LabelContainer.MouseFilter = MouseFilterEnum.Pass)).SetDelay(Time);
         tween.TweenCallback(Callable.From(() => MouseFilter = MouseFilterEnum.Pass)).SetDelay(Time);
-=======
-        tween.TweenProperty(LabelContainer, "scroll_horizontal", 60 + TargetPage * LabelWidth, (100 + Mathf.Abs(LabelContainer.ScrollHorizontal - 60 - TargetPage * LabelWidth)) * 0.0008).SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Sine);
-        tween.TweenProperty(SwipeContainer, "scroll_horizontal", TargetPage * PageWidth, 0.6f).SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Cubic);
->>>>>>> main
-=======
-        tween.TweenProperty(LabelContainer, "scroll_horizontal", 60 + TargetPage * LabelWidth, (100 + Mathf.Abs(LabelContainer.ScrollHorizontal - 60 - TargetPage * LabelWidth)) * 0.0008).SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Sine);
-        tween.TweenProperty(SwipeContainer, "scroll_horizontal", TargetPage * PageWidth, 0.6f).SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Cubic);
-=======
-        tween.TweenCallback(Callable.From(() =>  LabelContainer.MouseFilter = MouseFilterEnum.Ignore));
-        tween.TweenCallback(Callable.From(() =>  MouseFilter = MouseFilterEnum.Ignore));
-
-        double Time = (100 + Mathf.Abs(LabelContainer.ScrollHorizontal - 60 - TargetPage * LabelWidth)) * 0.0008;
-
-        tween.TweenProperty(LabelContainer, "scroll_horizontal", 60 + TargetPage * LabelWidth, Time).SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Sine);
-        tween.TweenProperty(SwipeContainer, "scroll_horizontal", TargetPage * PageWidth, 0.6f).SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Cubic);
-
-        tween.TweenCallback(Callable.From(() => LabelContainer.MouseFilter = MouseFilterEnum.Pass)).SetDelay(Time);
-        tween.TweenCallback(Callable.From(() => MouseFilter = MouseFilterEnum.Pass)).SetDelay(Time);
->>>>>>> dev
->>>>>>> Stashed changes
     }
     private void OnExitPressed() => GetParent<Hud>().AnimatePages(this, Hud.Pages[0]);
 }

@@ -164,18 +164,7 @@ public partial class Settings : Control
         {
             int code = 2;
             if (response != 0) code++;
-<<<<<<< HEAD
-<<<<<<< Updated upstream
             UpdatesPart.UpdateCode(code);
-=======
-            DevelopmentPart.UpdateCode(code);
->>>>>>> main
-=======
-            DevelopmentPart.UpdateCode(code);
-=======
-            UpdatesPart.UpdateCode(code);
->>>>>>> dev
->>>>>>> Stashed changes
             return;
         }
 
