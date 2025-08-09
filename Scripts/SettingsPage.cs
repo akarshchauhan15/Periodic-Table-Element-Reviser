@@ -49,6 +49,7 @@ public partial class SettingsPage : Control
     {
         SwipeContainer.ScrollHorizontal = 0;
         LabelContainer.ScrollHorizontal = 60;
+        CurrentPage = 0;
     }
     private void SnapToPage(int TargetPage)
     {

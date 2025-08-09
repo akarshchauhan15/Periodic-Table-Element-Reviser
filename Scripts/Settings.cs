@@ -179,7 +179,6 @@ public partial class Settings : Control
 
         Dictionary FetchedData = (Dictionary)json.Data;
         string LatestVersion = FetchedData["tag_name"].ToString();
-        GD.Print(LatestVersion, "    ", ProjectSettings.GetSetting("application/config/version").ToString());
 
         bool UpdateAvailiable = (LatestVersion != ProjectSettings.GetSetting("application/config/version").ToString());
         int Code = (UpdateAvailiable) ? 0 : 1;
