@@ -13,8 +13,9 @@ public partial class CollectionPage : Control
         Type = GetNode<OptionButton>("Type");
         Collection = GetNode<OptionButton>("Collection");
 
-        Type.ItemSelected += OnTypeSelected;
-        Collection.ItemSelected += OnCollectionSelected;
+        Type.ItemSelected += (long Index) => { OnTypeSelected(Index); Hud.SendSoundAndFeedback(); };
+        Collection.ItemSelected += (long Index) => { OnCollectionSelected(Index); Hud.SendSoundAndFeedback(); };
+        
         GetNode<Button>("ContinueButton").Pressed += ProceedToConfirmation;
         GetNode<Button>("BackButton").Pressed += BackToSelection;
     }
@@ -33,9 +34,6 @@ public partial class CollectionPage : Control
         Collection.Clear();
         foreach (ElementCollection elementCollection in SelectedType)   
             Collection.AddItem(elementCollection.Get(ElementCollection.PropertyName.DisplayName).ToString());
-
-        Collection.Select(0);
-        Hud.UISelectAudio.Play();
     }
     private void ProceedToConfirmation()
     {
@@ -44,8 +42,8 @@ public partial class CollectionPage : Control
 
         SelectedCollection = SelectedType[Collection.Selected];
         GetNode<ConfirmationPage>("../ConfirmationPage").SetLabels();
-        GetParent<Hud>().ContinuePage(this);  
+        GetParent<Hud>().ContinuePage(this); 
     }
-    private void OnCollectionSelected(long Index) => Hud.UISelectAudio.Play();
+    private void OnCollectionSelected(long Index) => Hud.SendSoundAndFeedback();
     private void BackToSelection() => GetParent<Hud>().PreviousPage(this);
 }

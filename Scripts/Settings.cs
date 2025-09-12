@@ -4,6 +4,7 @@ using Godot.Collections;
 public partial class Settings : Control
 {
     public static float AnimationFadeDuration = 0.3f;
+    public static float VibrationFeedbackIntensity = 0f;
 
     Updates UpdatesPart;
     AudioStreamPlayer UISound;
@@ -12,6 +13,7 @@ public partial class Settings : Control
     OptionButton ThemeOption;
     OptionButton BackgroundOption;
     ToggleButton SoundButton;
+    ToggleButton FeedbackButton;
     ToggleButton UpdateButton;
     ToggleButton PromptButton;
     Timer UpdateCheckTimer;
@@ -41,6 +43,7 @@ public partial class Settings : Control
         ["ResultPage/WrongElements/GreatPanel"],
         ["SettingsPage/ExitButton", "ShadowedButton"],
         ["SettingsPage/SwipeContainer/HBoxContainer/Settings/SoundButton", "ShadowedButton"],
+        ["SettingsPage/SwipeContainer/HBoxContainer/Settings/FeedbackButton", "ShadowedButton"],
         ["SettingsPage/SwipeContainer/HBoxContainer/Settings/UpdateButton", "ShadowedButton"],
         ["SettingsPage/SwipeContainer/HBoxContainer/Settings/PromptButton", "ShadowedButton"],
         ["SettingsPage/SwipeContainer/HBoxContainer/Settings/ThemeOption"],
@@ -69,6 +72,7 @@ public partial class Settings : Control
         ThemeOption = GetNode<OptionButton>("ThemeOption");
         BackgroundOption = GetNode<OptionButton>("BackgroundOption");
         SoundButton = GetNode<ToggleButton>("SoundButton");
+        FeedbackButton = GetNode<ToggleButton>("FeedbackButton");
         UpdateButton = GetNode<ToggleButton>("UpdateButton");
         PromptButton = GetNode<ToggleButton>("PromptButton");
         UpdateCheckTimer = GetNode<Timer>("UpdateCheckTimer");
@@ -83,6 +87,7 @@ public partial class Settings : Control
         ThemeOption.ItemSelected += SetTheme;
         BackgroundOption.ItemSelected += SetBackground;
         SoundButton.Toggled += SoundButtonToggled;
+        FeedbackButton.Toggled += HapticFeedbackButtonToggled;
         UpdateButton.Toggled += UpdateButtonToggled;
         PromptButton.Toggled += PromptButtonToggled;
         UpdateCheckTimer.Timeout += CheckForUpdate;
@@ -111,6 +116,10 @@ public partial class Settings : Control
 
         ThemeOption.Select((int)ConfigController.Config.GetValue("Settings", "Theme", 0));
         SetTheme((long)ConfigController.Config.GetValue("Settings", "Theme", 0));
+
+        bool FeedbackEnabled = (bool)ConfigController.Config.GetValue("Settigs", "Feedback", true);
+        FeedbackButton.InitialValueSet(FeedbackEnabled);
+        HapticFeedbackButtonToggled(FeedbackEnabled);
     }
     private void SetTheme(long Index)
     {
@@ -127,31 +136,33 @@ public partial class Settings : Control
                 control.ThemeTypeVariation = Location[1];
         }
         ConfigController.SaveSettings("Settings", "Theme", Index);
-        UISound.Play();
+        Hud.SendSoundAndFeedback();
     }
     private void SetBackground(long Index)
     {
         GetTree().Root.GetNode<ColorRect>("Main/Background").Color = BackgroundColours[Index];
         ConfigController.SaveSettings("Settings", "Background", Index);
-        UISound.Play();
+        Hud.SendSoundAndFeedback();
     }
     private void SoundButtonToggled(bool SoundEnabled)
     {
         ConfigController.SaveSettings("Settings", "Sound", SoundEnabled);
 
         AudioServer.SetBusMute(1, !SoundEnabled);
-        UISound.Play();
     }
     private void UpdateButtonToggled(bool CheckForUpdatesEnabled)
     {
         ConfigController.SaveSettings("Settings", "CheckForUpdates", CheckForUpdatesEnabled);
-        UISound.Play();
     }
     private void PromptButtonToggled(bool PromptEnabled)
     {
         ((HomePage)Hud.Pages[0]).UpdateLabel.Visible = PromptEnabled;
         ConfigController.SaveSettings("Settings", "UpdatePrompt", PromptEnabled);
-        UISound.Play();
+    }
+    private void HapticFeedbackButtonToggled(bool FeedbackEnabled)
+    {
+        ConfigController.SaveSettings("Settings", "Feedback", FeedbackEnabled);
+        VibrationFeedbackIntensity = (FeedbackEnabled) ? 0.1f : 0;
     }
     public void CheckForUpdate()
     {
@@ -161,6 +172,8 @@ public partial class Settings : Control
 
         Error Err = VersionRequest.Request(url, Headers);
         if (Err != Error.Ok) UpdatesPart.UpdateCode(2);
+
+        Input.VibrateHandheld(20, VibrationFeedbackIntensity);
     }
     private void UpdateRequestCompleted(long result, long response, string[] headers, byte[] body)
     {

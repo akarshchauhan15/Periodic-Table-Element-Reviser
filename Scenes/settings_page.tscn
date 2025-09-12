@@ -125,8 +125,18 @@ theme_override_fonts/font = ExtResource("3_5ocvv")
 theme_override_font_sizes/font_size = 70
 text = "Sound"
 
+[node name="Feedback" type="Label" parent="SwipeContainer/HBoxContainer/Settings/Labels"]
+custom_minimum_size = Vector2(0, 185)
+layout_mode = 2
+theme_override_constants/line_spacing = -15
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_5ocvv")
+theme_override_font_sizes/font_size = 70
+text = "Haptic Feedback"
+autowrap_mode = 2
+
 [node name="Updates" type="Label" parent="SwipeContainer/HBoxContainer/Settings/Labels"]
-custom_minimum_size = Vector2(0, 180)
+custom_minimum_size = Vector2(0, 190)
 layout_mode = 2
 theme_override_constants/line_spacing = -15
 theme_override_constants/outline_size = 8
@@ -190,19 +200,26 @@ offset_top = 676.0
 offset_right = 999.0
 offset_bottom = 803.0
 
-[node name="UpdateButton" parent="SwipeContainer/HBoxContainer/Settings" instance=ExtResource("4_3uamq")]
+[node name="FeedbackButton" parent="SwipeContainer/HBoxContainer/Settings" instance=ExtResource("4_3uamq")]
 layout_mode = 0
 offset_left = 571.0
 offset_top = 865.0
 offset_right = 999.0
 offset_bottom = 992.0
 
+[node name="UpdateButton" parent="SwipeContainer/HBoxContainer/Settings" instance=ExtResource("4_3uamq")]
+layout_mode = 0
+offset_left = 571.0
+offset_top = 1058.0
+offset_right = 999.0
+offset_bottom = 1185.0
+
 [node name="PromptButton" parent="SwipeContainer/HBoxContainer/Settings" instance=ExtResource("4_3uamq")]
 layout_mode = 0
 offset_left = 571.0
-offset_top = 1056.0
+offset_top = 1251.0
 offset_right = 999.0
-offset_bottom = 1183.0
+offset_bottom = 1378.0
 
 [node name="UpdateCheckTimer" type="Timer" parent="SwipeContainer/HBoxContainer/Settings"]
 wait_time = 2.0
@@ -311,13 +328,13 @@ uri = "https://github.com/akarshchauhan15/Periodic-Table-Element-Reviser"
 [node name="Version" type="Label" parent="SwipeContainer/HBoxContainer/About"]
 layout_mode = 2
 offset_left = 40.0
-offset_top = 1457.0
+offset_top = 1461.0
 offset_right = 1040.0
-offset_bottom = 1507.0
+offset_bottom = 1524.0
 grow_vertical = 0
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("3_5ocvv")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 50
 text = "version???"
 
 [node name="ExitButton" type="Button" parent="."]

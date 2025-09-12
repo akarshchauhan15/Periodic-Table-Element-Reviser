@@ -10,6 +10,7 @@ public partial class Hud : Control
     public static AudioStreamPlayer UISelectAudio;
     public override void _Ready()
     {
+        UISelectAudio = GetNode<AudioStreamPlayer>("Audio/UI");
         string[] PageNames = ["Home", "Selection", "Collection", "Confirmation", "Action", "Result"];
 
         foreach (string PageName in PageNames)
@@ -26,9 +27,7 @@ public partial class Hud : Control
         Blank = GetNode<Control>("BlankPreventer");
         Blank.Show();
 
-        Pages[0].Show();
-
-        UISelectAudio = GetNode<AudioStreamPlayer>("Audio/UI");
+        Pages[0].Show();    
     }
     public void ContinuePage(Control CurrentPage)
     {
@@ -37,7 +36,7 @@ public partial class Hud : Control
             return;
         Control NextPage = Pages[CurrentIndex + 1];
         
-        AnimatePages(CurrentPage, NextPage);
+        AnimatePages(CurrentPage, NextPage);     
     }
     public void PreviousPage(Control CurrentPage)
     {
@@ -50,7 +49,7 @@ public partial class Hud : Control
     }
     public void AnimatePages(Control FromPage, Control ToPage)
     {
-        UISelectAudio.Play();
+        SendSoundAndFeedback();
 
         tween = CreateTween();
 
@@ -64,5 +63,10 @@ public partial class Hud : Control
         tween.SetParallel(false);
         tween.TweenCallback(Callable.From(() => Blank.MouseFilter = MouseFilterEnum.Ignore));
         tween.TweenCallback(Callable.From(() => FromPage.Hide()));
+    }
+    public static void SendSoundAndFeedback(int Intensity = 40)
+    {
+        UISelectAudio.Play();
+        Input.VibrateHandheld(Intensity, Settings.VibrationFeedbackIntensity);
     }
 }

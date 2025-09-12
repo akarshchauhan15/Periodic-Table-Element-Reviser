@@ -116,11 +116,12 @@ public partial class PeriodicTablePage : Control
         TableElementContainer.CustomMinimumSize = new Vector2(2950, 1660) * ScaleValues[TableScale];
 
         int Counter = 0;
-
+        
         foreach (Panel TableElement in TableElementContainer.GetChildren()) {
             SetPanelScale(TableElement, Counter);
             Counter++;
         }
+        Input.VibrateHandheld(20, Settings.VibrationFeedbackIntensity);
     }
     private void ReturnToHome() => GetParent<Hud>().AnimatePages(this, GetNode<HomePage>("../HomePage"));
 }

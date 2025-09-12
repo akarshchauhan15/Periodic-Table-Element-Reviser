@@ -14,8 +14,10 @@ public partial class SelectionPage : Control
         GivenOption = GetNode<OptionButton>("GivenOption");
         ReturnOption = GetNode<OptionButton>("ReturnOption");
 
-        GivenOption.ItemSelected += SelectGivenOption;
-        ReturnOption.ItemSelected += SelectReturnOption;
+        GivenOption.ItemSelected += (long Index) => { SelectGivenOption(Index); Hud.SendSoundAndFeedback(); };
+        GivenOption.Pressed += () => Hud.SendSoundAndFeedback();
+        ReturnOption.ItemSelected += (long Index) => { SelectReturnOption(Index); Hud.SendSoundAndFeedback(); };
+        ReturnOption.Pressed += () => Hud.SendSoundAndFeedback();
         GetNode<Button>("ContinueButton").Pressed += ProceedToCollection;
         GetNode<Button>("BackButton").Pressed += BackToHome;
     }
@@ -30,7 +32,7 @@ public partial class SelectionPage : Control
     private void SelectGivenOption(long Index)
     {
         GivenIndex = (int) Index;
-        SelectedGivenOption = SetValueToVariable(Index);
+        SelectedGivenOption = Element.Properties[(int)Index];
 
         for (int i = 0; i < 4; i++)
         {
@@ -46,18 +48,12 @@ public partial class SelectionPage : Control
 
         ReturnOption.Select(((int)Index + 1) % 4);
         SelectReturnOption((Index + 1) % 4);
-
-        Hud.UISelectAudio.Play();
     }
     private void SelectReturnOption(long Index)
     {
         ReturnIndex = (int) Index;
-        SelectedReturnOption = SetValueToVariable(Index);
-    }
-    private StringName SetValueToVariable(long Index)
-    {
-        Hud.UISelectAudio.Play();
-        return Element.Properties[(int) Index];
+        //SelectedReturnOption = SetValueToVariable(Index);
+        SelectedReturnOption = Element.Properties[(int)Index];
     }
     private void ProceedToCollection()
     {

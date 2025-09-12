@@ -98,6 +98,8 @@ public partial class ResultPage : Control
     {
         AllScoreListElementContainer.GetParent<Control>().Visible = !AllScoreListElementContainer.GetParent<Control>().Visible;
         WrongScoreListElementContainer.GetParent<Control>().Visible = !WrongScoreListElementContainer.GetParent<Control>().Visible;
+
+        Input.VibrateHandheld(20, Settings.VibrationFeedbackIntensity);
     }
     private void OnContinueButtonPressed() => GetParent<Hud>().AnimatePages(this, GetNode<SelectionPage>("../SelectionPage"));
     private void OnRetryButtonPressed()

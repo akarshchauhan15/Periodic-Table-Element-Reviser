@@ -70,5 +70,7 @@ public partial class ToggleButton : Button
         tween.TweenProperty(Switch, "bg_color", GetThemeColor(Color + "Color", "ToggleButtonSwitch"), 0.25f);
         tween.TweenProperty(SwitchPanel, "position", new Vector2(Direction * SwitchPanel.GetThemeConstant("Displacement"), 0), 0.25f).AsRelative().SetEase(Tween.EaseType.In).SetTrans(Tween.TransitionType.Quad);
         tween.TweenCallback(Callable.From(() => MouseFilter = MouseFilterEnum.Stop)).SetDelay(0.3f);
+
+        Hud.SendSoundAndFeedback();
     }
 }

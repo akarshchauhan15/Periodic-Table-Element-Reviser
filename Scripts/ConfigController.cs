@@ -19,6 +19,7 @@ public partial class ConfigController : Node
             Config.SetValue("Settings", "Theme", 0);
             Config.SetValue("Settings", "Background", 0);
             Config.SetValue("Settings", "Sound", true);
+            Config.SetValue("Settings", "Feedback", true);
             Config.SetValue("Settings", "CheckForUpdates", true);
             Config.SetValue("Settings", "UpdatePrompt", true);
             Config.Save(Path);
