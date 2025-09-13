@@ -81,7 +81,11 @@ public partial class ResultPage : Control
         }
 
         if (WrongCounter == 0 && Action.Counter >= Action.Length)
-        WrongScoreListElementContainer.AddChild(GreatPanelScene.Instantiate<Panel>());
+        {
+            Panel GreatPanel = GreatPanelScene.Instantiate<Panel>();
+            GreatPanel.Theme = GetNode<Button>("ContinueButton").Theme;
+            WrongScoreListElementContainer.AddChild(GreatPanel);
+        }
 
         AllScoreListElementContainer.AddChild(ListIndicatorScene.Instantiate<Label>());
         ((Label)AllScoreListElementContainer.GetChild(-1)).Text = "All Elements";

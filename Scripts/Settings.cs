@@ -17,9 +17,9 @@ public partial class Settings : Control
     ToggleButton UpdateButton;
     ToggleButton PromptButton;
     Timer UpdateCheckTimer;
-
+    
     Theme[] Themes;
-
+    
     string[][] ControlLocations = [
         ["HomePage/StartButton"],
         ["HomePage/PeriodicTableButton"],
