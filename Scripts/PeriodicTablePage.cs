@@ -7,6 +7,7 @@ public partial class PeriodicTablePage : Control
     PackedScene TableElementScene;
 
     Panel SelectedTableElement;
+    StyleBoxFlat Style;
 
     Color[] CategoryColors = [
         new Color(0.169f, 0.22f, 0.391f),
@@ -30,6 +31,7 @@ public partial class PeriodicTablePage : Control
         TableElementContainer = GetNode<Control>("ScrollContainer/Control");
         Selected = GetNode<Control>("Selected");
         TableElementScene = ResourceLoader.Load<PackedScene>("res://Scenes/table_element.tscn");
+        Style = (GetNode<Panel>("Selected/Name/Panel").Theme.GetStylebox("panel", "ElementNameHolder").Duplicate()) as StyleBoxFlat;
 
         GetNode<Button>("BackButton").Pressed += ReturnToHome;
 
@@ -38,6 +40,8 @@ public partial class PeriodicTablePage : Control
         GetNode<Button>("ScaleController/ResetScale").Pressed += () => { TableScale = 3; SetScale(); };
 
         SetTable();
+
+
     }
     private void SetTable()
     {
@@ -58,7 +62,6 @@ public partial class PeriodicTablePage : Control
             }
 
             TableElement.GetNode<Label>("AtomicMass").Text = element.AtomicMass.ToString().PadDecimals(1);
-            
 
             StyleBoxFlat Style = (StyleBoxFlat) GD.Load<StyleBoxFlat>("res://Themes/table_element.stylebox").Duplicate(); 
 
@@ -97,9 +100,18 @@ public partial class PeriodicTablePage : Control
 
         Selected.GetNode<Label>("AtomicMass").Text = Elements.ElementList[TableElement.GetChild<Label>(2).Text.ToInt() - 1].AtomicMass.ToString();
 
-        StyleBoxFlat Style = GD.Load<StyleBoxFlat>("res://Themes/panel_decorator.stylebox");
-
         Color StyleColor = (Color)TableElement.GetMeta("category_color", Colors.Transparent);
+        /*Style = (GetNode<Panel>("Selected/Name/Panel").Theme.GetStylebox("panel", "ElementNameHolder").Duplicate()) as StyleBoxFlat;
+        Style.BgColor = StyleColor.Darkened(0.4f);
+        Style.BorderColor = StyleColor.Lightened(0.1f);
+
+        GetNode<Panel>("Selected/Name/Panel").AddThemeStyleboxOverride("panel", Style);*/
+
+        SetHolderColor(StyleColor);
+    }
+    private void SetHolderColor(Color StyleColor)
+    {
+        Style = (GetNode<Panel>("Selected/Name/Panel").Theme.GetStylebox("panel", "ElementNameHolder").Duplicate()) as StyleBoxFlat;
         Style.BgColor = StyleColor.Darkened(0.4f);
         Style.BorderColor = StyleColor.Lightened(0.1f);
 

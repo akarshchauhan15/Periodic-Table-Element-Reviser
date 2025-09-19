@@ -64,9 +64,9 @@ public partial class Hud : Control
         tween.TweenCallback(Callable.From(() => Blank.MouseFilter = MouseFilterEnum.Ignore));
         tween.TweenCallback(Callable.From(() => FromPage.Hide()));
     }
-    public static void SendSoundAndFeedback(int Intensity = 40)
+    public static void SendSoundAndFeedback(int Duration = 30)
     {
         UISelectAudio.Play();
-        Input.VibrateHandheld(Intensity, Settings.VibrationFeedbackIntensity);
+        Input.VibrateHandheld(Duration);//Settings.VibrationFeedbackIntensity);
     }
 }

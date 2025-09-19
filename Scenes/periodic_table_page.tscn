@@ -1,24 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8qplk8fkwtb"]
+[gd_scene load_steps=5 format=3 uid="uid://c8qplk8fkwtb"]
 
 [ext_resource type="Script" uid="uid://c5ofi4hh13t25" path="res://Scripts/PeriodicTablePage.cs" id="1_6r23k"]
 [ext_resource type="Theme" uid="uid://bunmufssyl5ho" path="res://Themes/Modern.theme" id="2_6r23k"]
 [ext_resource type="FontFile" uid="uid://bwaqtqtpd6ns8" path="res://Assets/Fonts/Lexend-Light.ttf" id="3_f13fh"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f13fh"]
-bg_color = Color(0.2392, 0.29536, 0.52, 1)
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
-border_color = Color(0.507813, 0.437471, 0.406647, 1)
-corner_radius_top_left = 50
-corner_radius_top_right = 50
-corner_radius_bottom_right = 50
-corner_radius_bottom_left = 50
-corner_detail = 15
-expand_margin_left = 36.0
-expand_margin_right = 36.0
-anti_aliasing_size = 0.5
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6r23k"]
 
@@ -60,7 +44,8 @@ offset_top = -4.284
 offset_bottom = 12.633
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_f13fh")
+theme = ExtResource("2_6r23k")
+theme_type_variation = &"ElementNameHolder"
 
 [node name="Symbol" type="Label" parent="Selected"]
 layout_mode = 1

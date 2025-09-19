@@ -50,6 +50,7 @@ public partial class Settings : Control
         ["SettingsPage/SwipeContainer/HBoxContainer/Settings/BackgroundOption"],
         ["PeriodicTablePage/BackButton", "ShadowedButton"],
         ["PeriodicTablePage/Selected", "PeriodicLabelPanel"],
+        ["PeriodicTablePage/Selected/Name/Panel", "ElementNameHolder"],
         ["PeriodicTablePage/ScaleController", "HolderPanel"],
         ["PeriodicTablePage/ScaleController/IncreaseScale", "ShadowedButton"],
         ["PeriodicTablePage/ScaleController/DecreaseScale", "ShadowedButton"],
