@@ -58,7 +58,7 @@ public partial class SettingsPage : Control
         tween.TweenCallback(Callable.From(() =>  LabelContainer.MouseFilter = MouseFilterEnum.Ignore));
         tween.TweenCallback(Callable.From(() =>  MouseFilter = MouseFilterEnum.Ignore));
 
-        double Time = (100 + Mathf.Abs(LabelContainer.ScrollHorizontal - 60 - TargetPage * LabelWidth)) * 0.0008;
+        double Time = (100 + Mathf.Abs(LabelContainer.ScrollHorizontal - 60 - TargetPage * LabelWidth)) * 0.0006;
 
         tween.TweenProperty(LabelContainer, "scroll_horizontal", 60 + TargetPage * LabelWidth, Time).SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Sine);
         tween.TweenProperty(SwipeContainer, "scroll_horizontal", TargetPage * PageWidth, 0.6f).SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Cubic);

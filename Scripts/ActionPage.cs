@@ -125,6 +125,8 @@ public partial class ActionPage : Control
 
         InputValue.Unedit();
         GiveValue();
+
+        Godot.Input.VibrateHandheld(20, Settings.VibrationFeedbackIntensity);
     }
     private void EndGame()
     {

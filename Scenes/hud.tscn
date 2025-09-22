@@ -342,6 +342,7 @@ script = ExtResource("1_fccik")
 metadata/_edit_lock_ = true
 
 [node name="HomePage" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -712,7 +713,6 @@ theme = SubResource("Theme_5ep0j")
 text = "Return"
 
 [node name="ConfirmationPage" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -756,9 +756,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -399.0
-offset_top = 721.0
+offset_top = 699.0
 offset_right = 400.0
-offset_bottom = 844.0
+offset_bottom = 822.0
 grow_horizontal = 2
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("13_ba8gd")
@@ -796,10 +796,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -105.0
-offset_top = 479.0
+offset_left = -85.0
+offset_top = 484.0
 offset_right = 108.0
-offset_bottom = 692.0
+offset_bottom = 677.0
 grow_horizontal = 2
 texture = ExtResource("4_6fbih")
 expand_mode = 2

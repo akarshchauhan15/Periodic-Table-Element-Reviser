@@ -25,6 +25,8 @@ public partial class ToggleButton : Button
 
         Switch = GetThemeStylebox("panel", "ToggleButtonSwitch").Duplicate() as StyleBoxFlat;
         SwitchPanel.AddThemeStyleboxOverride("panel", Switch);
+
+        GetTree().Root.GetNode<Settings>("Main/HUD/SettingsPage/SwipeContainer/HBoxContainer/Settings").ThemeChanged += SetTheme;
     }
     public void InitialValueSet(bool Value)
     {

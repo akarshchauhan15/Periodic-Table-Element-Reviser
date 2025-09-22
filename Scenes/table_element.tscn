@@ -2,7 +2,17 @@
 
 [ext_resource type="FontFile" uid="uid://7qg7fidlmsb8" path="res://Assets/Fonts/Lexend-Medium.ttf" id="1_2va5o"]
 [ext_resource type="FontFile" uid="uid://bwaqtqtpd6ns8" path="res://Assets/Fonts/Lexend-Light.ttf" id="1_fmwlj"]
-[ext_resource type="StyleBox" uid="uid://c24rn0v3adc5" path="res://Themes/table_element.stylebox" id="1_kfsau"]
+[ext_resource type="Theme" uid="uid://bunmufssyl5ho" path="res://Themes/Modern.theme" id="1_kfsau"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mks7m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_akhgs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_016np"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kfsau"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2va5o"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fmwlj"]
 bg_color = Color(1, 1, 1, 0.12549)
@@ -11,37 +21,20 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2va5o"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kfsau"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_016np"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_akhgs"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mks7m"]
-
 [node name="TableElement" type="Panel"]
 custom_minimum_size = Vector2(100, 100)
 offset_right = 150.0
 offset_bottom = 150.0
 mouse_filter = 1
-theme_override_styles/panel = ExtResource("1_kfsau")
+theme = ExtResource("1_kfsau")
+theme_type_variation = &"TableElement"
 metadata/category_color = Color(0, 0, 0, 1)
 
 [node name="Name" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = 40.0
-offset_right = 50.0
-offset_bottom = 73.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_top = 110.0
+offset_right = 150.0
+offset_bottom = 143.0
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("1_2va5o")
 theme_override_font_sizes/font_size = 20
@@ -62,7 +55,7 @@ offset_right = 50.0
 offset_bottom = 37.55
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/outline_size = 6
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("1_fmwlj")
 theme_override_font_sizes/font_size = 60
 text = "H"
@@ -75,7 +68,7 @@ offset_left = 12.0
 offset_top = 5.0
 offset_right = 46.0
 offset_bottom = 43.0
-theme_override_constants/outline_size = 4
+theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("1_2va5o")
 theme_override_font_sizes/font_size = 26
 text = "1"
@@ -90,7 +83,8 @@ offset_top = 5.0
 offset_right = -11.0
 offset_bottom = 43.0
 grow_horizontal = 0
-theme_override_constants/outline_size = 4
+rotation = 0.0026708697
+theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("1_2va5o")
 theme_override_font_sizes/font_size = 26
 text = "1"
@@ -104,11 +98,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-theme_override_styles/focus = SubResource("StyleBoxFlat_fmwlj")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_2va5o")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_kfsau")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_016np")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_akhgs")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_mks7m")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_akhgs")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_016np")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_kfsau")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_2va5o")
+theme_override_styles/focus = SubResource("StyleBoxFlat_fmwlj")
 action_mode = 0
 metadata/_edit_lock_ = true

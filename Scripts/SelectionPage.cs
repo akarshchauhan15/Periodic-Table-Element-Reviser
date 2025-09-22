@@ -52,7 +52,6 @@ public partial class SelectionPage : Control
     private void SelectReturnOption(long Index)
     {
         ReturnIndex = (int) Index;
-        //SelectedReturnOption = SetValueToVariable(Index);
         SelectedReturnOption = Element.Properties[(int)Index];
     }
     private void ProceedToCollection()

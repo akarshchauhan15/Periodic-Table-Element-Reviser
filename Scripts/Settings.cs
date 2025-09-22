@@ -6,6 +6,9 @@ public partial class Settings : Control
     public static float AnimationFadeDuration = 0.3f;
     public static float VibrationFeedbackIntensity = 0f;
 
+    [Signal]
+    public delegate void ThemeChangedEventHandler();
+
     Updates UpdatesPart;
     AudioStreamPlayer UISound;
     HttpRequest VersionRequest;
@@ -138,6 +141,8 @@ public partial class Settings : Control
         }
         ConfigController.SaveSettings("Settings", "Theme", Index);
         Hud.SendSoundAndFeedback();
+
+        EmitSignal(SignalName.ThemeChanged);
     }
     private void SetBackground(long Index)
     {

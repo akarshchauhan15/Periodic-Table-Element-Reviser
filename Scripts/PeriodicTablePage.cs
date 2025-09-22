@@ -1,4 +1,6 @@
 using Godot;
+using System.Diagnostics.Metrics;
+using System.Xml.Linq;
 
 public partial class PeriodicTablePage : Control
 {
@@ -7,6 +9,7 @@ public partial class PeriodicTablePage : Control
     PackedScene TableElementScene;
 
     Panel SelectedTableElement;
+    Panel ElementNameHolder;
     StyleBoxFlat Style;
 
     Color[] CategoryColors = [
@@ -31,6 +34,8 @@ public partial class PeriodicTablePage : Control
         TableElementContainer = GetNode<Control>("ScrollContainer/Control");
         Selected = GetNode<Control>("Selected");
         TableElementScene = ResourceLoader.Load<PackedScene>("res://Scenes/table_element.tscn");
+
+        ElementNameHolder = GetNode<Panel>("Selected/Name/Panel");
         Style = (GetNode<Panel>("Selected/Name/Panel").Theme.GetStylebox("panel", "ElementNameHolder").Duplicate()) as StyleBoxFlat;
 
         GetNode<Button>("BackButton").Pressed += ReturnToHome;
@@ -39,31 +44,30 @@ public partial class PeriodicTablePage : Control
         GetNode<Button>("ScaleController/DecreaseScale").Pressed += () => { TableScale = Mathf.Clamp(TableScale - 1, 0, ScaleValues.Length - 1); SetScale(); };
         GetNode<Button>("ScaleController/ResetScale").Pressed += () => { TableScale = 3; SetScale(); };
 
+        GetNode<Settings>("../SettingsPage/SwipeContainer/HBoxContainer/Settings").ThemeChanged += SetTheme;
+
         SetTable();
-
-
     }
     private void SetTable()
     {
         TableElementContainer.CustomMinimumSize = new Vector2(2950, 1660) * ScaleValues[TableScale];
 
         int Counter = 0;
+
+        StyleBox ElementStyle = ElementNameHolder.Theme.GetStylebox("panel", "TableElement");
+        Vector2 LabelPosition = new Vector2(0, ElementNameHolder.Theme.GetConstant("LabelPositionY", "TableElement"));
+
         foreach (Element element in Elements.ElementList)
         {
             Panel TableElement = TableElementScene.Instantiate<Panel>();
 
-            int ChildCount = 3;
-            int Index = 0;
-
-            while (Index < ChildCount)
-            {
+            for (int Index = 0; Index < 3; Index++)
                 TableElement.GetChild<Label>(Index).Text = element.Get(Element.Properties[Index]).ToString();
-                Index++;
-            }
 
             TableElement.GetNode<Label>("AtomicMass").Text = element.AtomicMass.ToString().PadDecimals(1);
+            TableElement.GetNode<Label>("Name").Position = LabelPosition;
 
-            StyleBoxFlat Style = (StyleBoxFlat) GD.Load<StyleBoxFlat>("res://Themes/table_element.stylebox").Duplicate(); 
+            StyleBoxFlat Style = ElementStyle.Duplicate() as StyleBoxFlat; 
 
             Color CategoryColor = CategoryColors[(int)element.Category];
             Style.BgColor = CategoryColor;
@@ -101,17 +105,12 @@ public partial class PeriodicTablePage : Control
         Selected.GetNode<Label>("AtomicMass").Text = Elements.ElementList[TableElement.GetChild<Label>(2).Text.ToInt() - 1].AtomicMass.ToString();
 
         Color StyleColor = (Color)TableElement.GetMeta("category_color", Colors.Transparent);
-        /*Style = (GetNode<Panel>("Selected/Name/Panel").Theme.GetStylebox("panel", "ElementNameHolder").Duplicate()) as StyleBoxFlat;
-        Style.BgColor = StyleColor.Darkened(0.4f);
-        Style.BorderColor = StyleColor.Lightened(0.1f);
-
-        GetNode<Panel>("Selected/Name/Panel").AddThemeStyleboxOverride("panel", Style);*/
 
         SetHolderColor(StyleColor);
     }
     private void SetHolderColor(Color StyleColor)
     {
-        Style = (GetNode<Panel>("Selected/Name/Panel").Theme.GetStylebox("panel", "ElementNameHolder").Duplicate()) as StyleBoxFlat;
+        Style = (ElementNameHolder.Theme.GetStylebox("panel", "ElementNameHolder").Duplicate()) as StyleBoxFlat;
         Style.BgColor = StyleColor.Darkened(0.4f);
         Style.BorderColor = StyleColor.Lightened(0.1f);
 
@@ -134,6 +133,25 @@ public partial class PeriodicTablePage : Control
             Counter++;
         }
         Input.VibrateHandheld(20, Settings.VibrationFeedbackIntensity);
+    }
+    private void SetTheme()
+    {
+        StyleBox ElementStyle = ElementNameHolder.Theme.GetStylebox("panel", "TableElement");
+        Vector2 LabelPosition = new Vector2(0, ElementNameHolder.Theme.GetConstant("LabelPositionY", "TableElement"));
+
+        foreach (Panel TableElement in TableElementContainer.GetChildren())
+        {
+            TableElement.GetNode<Label>("Name").Position = LabelPosition;
+            Color CategoryColor = (Color)TableElement.GetMeta("category_color", Colors.Transparent);
+
+            StyleBoxFlat Style = ElementStyle.Duplicate() as StyleBoxFlat;
+            Style.BgColor = CategoryColor;
+            Style.BorderColor = CategoryColor.Darkened(0.25f);
+
+            TableElement.AddThemeStyleboxOverride("panel", Style);
+        }
+
+        SetHolderColor((Color)SelectedTableElement.GetMeta("category_color"));
     }
     private void ReturnToHome() => GetParent<Hud>().AnimatePages(this, GetNode<HomePage>("../HomePage"));
 }
