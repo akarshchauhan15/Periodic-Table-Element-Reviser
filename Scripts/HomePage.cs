@@ -15,12 +15,12 @@ public partial class HomePage : Control
     {
         if (!UpdateAvailiable)
         {
-            UpdateLabel.Position = new Vector2(1089, 1834);
+            UpdateLabel.Position = new Vector2(1089, UpdateLabel.Position.Y);
             return;
         }
 
         Tween tween = CreateTween();
-        tween.TweenProperty(UpdateLabel, "position", new Vector2(989, 1834), 0.3f).SetTrans(Tween.TransitionType.Quad).SetEase(Tween.EaseType.Out);
+        tween.TweenProperty(UpdateLabel, "position", new Vector2(989, UpdateLabel.Position.Y), 0.3f).SetTrans(Tween.TransitionType.Quad).SetEase(Tween.EaseType.Out);
     }
     private void ProceedToSelection()
     {

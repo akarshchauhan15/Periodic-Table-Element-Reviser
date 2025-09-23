@@ -24,7 +24,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = -122.0
 grow_horizontal = 2
 grow_vertical = 2
 horizontal_scroll_mode = 3
@@ -48,7 +47,7 @@ theme_override_font_sizes/font_size = 140
 text = "Settings"
 
 [node name="Updates" type="Label" parent="LabelContainer/Labels"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 931.0
 offset_top = 50.0
 offset_right = 1727.0
@@ -60,7 +59,7 @@ text = "Updates"
 autowrap_mode = 2
 
 [node name="About" type="Label" parent="LabelContainer/Labels"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 1734.0
 offset_top = 50.0
 offset_right = 2530.0
@@ -161,6 +160,7 @@ offset_left = 571.0
 offset_top = 299.0
 offset_right = 999.0
 offset_bottom = 426.0
+focus_mode = 0
 theme = ExtResource("3_giwlh")
 alignment = 1
 selected = 0
@@ -176,6 +176,7 @@ offset_left = 571.0
 offset_top = 490.0
 offset_right = 999.0
 offset_bottom = 617.0
+focus_mode = 0
 theme = ExtResource("3_giwlh")
 alignment = 1
 selected = 0
@@ -326,7 +327,7 @@ text = "View Source Code"
 uri = "https://github.com/akarshchauhan15/Periodic-Table-Element-Reviser"
 
 [node name="Version" type="Label" parent="SwipeContainer/HBoxContainer/About"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 40.0
 offset_top = 1461.0
 offset_right = 1040.0

@@ -94,13 +94,8 @@ public partial class PeriodicTablePage : Control
     {
         SelectedTableElement = TableElement;
 
-        int ChildCount = 3;
-        int Index = 0;
-        while (Index < ChildCount)
-        {
-            Selected.GetChild<Label>(Index).Text = TableElement.GetChild<Label>(Index).Text;
-            Index++;
-        }
+        for (int Index = 0; Index < 3; Index++)
+                Selected.GetChild<Label>(Index).Text = TableElement.GetChild<Label>(Index).Text;
 
         Selected.GetNode<Label>("AtomicMass").Text = Elements.ElementList[TableElement.GetChild<Label>(2).Text.ToInt() - 1].AtomicMass.ToString();
 

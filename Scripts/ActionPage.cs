@@ -91,6 +91,7 @@ public partial class ActionPage : Control
     {
         if (Counter >= Length) { EndGame(); return; }
 
+        Godot.Input.VibrateHandheld(20, Settings.VibrationFeedbackIntensity);
         GivenValueLabel.Text = ElementList[Counter].Get(Selection.SelectedGivenOption).ToString();
         Progress.Text = $"{Counter + 1} / {Length}";
         KeyboardTimer.Start();
@@ -124,9 +125,7 @@ public partial class ActionPage : Control
         Counter++;
 
         InputValue.Unedit();
-        GiveValue();
-
-        Godot.Input.VibrateHandheld(20, Settings.VibrationFeedbackIntensity);
+        GiveValue();  
     }
     private void EndGame()
     {

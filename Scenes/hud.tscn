@@ -342,7 +342,6 @@ script = ExtResource("1_fccik")
 metadata/_edit_lock_ = true
 
 [node name="HomePage" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -352,11 +351,10 @@ grow_vertical = 2
 script = ExtResource("2_8jye8")
 
 [node name="Label" type="RichTextLabel" parent="HomePage"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 86.0
 offset_top = 721.0
-offset_right = 1001.0
+offset_right = 1000.99976
 offset_bottom = 796.0
 theme_override_colors/table_border = Color(0.807986, 0.83449, 0.981456, 1)
 theme_override_constants/outline_size = 8
@@ -370,7 +368,6 @@ autowrap_mode = 0
 horizontal_alignment = 1
 
 [node name="SettingsButton" type="TextureButton" parent="HomePage"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -385,7 +382,6 @@ ignore_texture_size = true
 stretch_mode = 4
 
 [node name="StartButton" type="Button" parent="HomePage"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -425,9 +421,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -248.0
-offset_top = 720.0
+offset_top = 249.0
 offset_right = 249.0
-offset_bottom = 1048.0
+offset_bottom = 577.0
 grow_horizontal = 2
 texture = ExtResource("6_8bf2m")
 
@@ -713,6 +709,7 @@ theme = SubResource("Theme_5ep0j")
 text = "Return"
 
 [node name="ConfirmationPage" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1147,6 +1144,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 metadata/_edit_lock_ = true
 
 [node name="Audio" type="Node" parent="."]

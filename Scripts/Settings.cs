@@ -168,7 +168,7 @@ public partial class Settings : Control
     private void HapticFeedbackButtonToggled(bool FeedbackEnabled)
     {
         ConfigController.SaveSettings("Settings", "Feedback", FeedbackEnabled);
-        VibrationFeedbackIntensity = (FeedbackEnabled) ? 0.1f : 0;
+        VibrationFeedbackIntensity = (FeedbackEnabled) ? 0.15f : 0;
     }
     public void CheckForUpdate()
     {
