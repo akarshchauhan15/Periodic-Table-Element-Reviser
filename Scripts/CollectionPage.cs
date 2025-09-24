@@ -14,7 +14,9 @@ public partial class CollectionPage : Control
         Collection = GetNode<OptionButton>("Collection");
 
         Type.ItemSelected += (long Index) => { OnTypeSelected(Index); Hud.SendSoundAndFeedback(); };
-        Collection.ItemSelected += (long Index) => { OnCollectionSelected(Index); Hud.SendSoundAndFeedback(); };
+        Type.Pressed += () => Hud.SendSoundAndFeedback();
+        Collection.ItemSelected += (long Index) => { Hud.SendSoundAndFeedback(); };
+        Collection.Pressed += () => Hud.SendSoundAndFeedback();
         
         GetNode<Button>("ContinueButton").Pressed += ProceedToConfirmation;
         GetNode<Button>("BackButton").Pressed += BackToSelection;
@@ -44,6 +46,5 @@ public partial class CollectionPage : Control
         GetNode<ConfirmationPage>("../ConfirmationPage").SetLabels();
         GetParent<Hud>().ContinuePage(this); 
     }
-    private void OnCollectionSelected(long Index) => Hud.SendSoundAndFeedback();
     private void BackToSelection() => GetParent<Hud>().PreviousPage(this);
 }
