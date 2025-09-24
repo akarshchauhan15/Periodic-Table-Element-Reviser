@@ -17,6 +17,7 @@ public partial class Settings : Control
     OptionButton BackgroundOption;
     ToggleButton SoundButton;
     ToggleButton FeedbackButton;
+    ToggleButton ImmersiveButton;
     ToggleButton UpdateButton;
     ToggleButton PromptButton;
     Timer UpdateCheckTimer;
@@ -47,8 +48,9 @@ public partial class Settings : Control
         ["SettingsPage/ExitButton", "ShadowedButton"],
         ["SettingsPage/SwipeContainer/HBoxContainer/Settings/SoundButton", "ShadowedButton"],
         ["SettingsPage/SwipeContainer/HBoxContainer/Settings/FeedbackButton", "ShadowedButton"],
+        ["SettingsPage/SwipeContainer/HBoxContainer/Settings/ImmersiveButton", "ShadowedButton"],
         ["SettingsPage/SwipeContainer/HBoxContainer/Settings/UpdateButton", "ShadowedButton"],
-        ["SettingsPage/SwipeContainer/HBoxContainer/Settings/PromptButton", "ShadowedButton"],
+        ["SettingsPage/SwipeContainer/HBoxContainer/Settings/PromptButton", "ShadowedButtoton"],
         ["SettingsPage/SwipeContainer/HBoxContainer/Settings/ThemeOption"],
         ["SettingsPage/SwipeContainer/HBoxContainer/Settings/BackgroundOption"],
         ["PeriodicTablePage/BackButton", "ShadowedButton"],
@@ -77,6 +79,7 @@ public partial class Settings : Control
         BackgroundOption = GetNode<OptionButton>("BackgroundOption");
         SoundButton = GetNode<ToggleButton>("SoundButton");
         FeedbackButton = GetNode<ToggleButton>("FeedbackButton");
+        ImmersiveButton = GetNode<ToggleButton>("ImmersiveButton");
         UpdateButton = GetNode<ToggleButton>("UpdateButton");
         PromptButton = GetNode<ToggleButton>("PromptButton");
         UpdateCheckTimer = GetNode<Timer>("UpdateCheckTimer");
@@ -92,6 +95,7 @@ public partial class Settings : Control
         BackgroundOption.ItemSelected += SetBackground;
         SoundButton.Toggled += SoundButtonToggled;
         FeedbackButton.Toggled += HapticFeedbackButtonToggled;
+        ImmersiveButton.Toggled += ImmersiveModeButtonToggled;
         UpdateButton.Toggled += UpdateButtonToggled;
         PromptButton.Toggled += PromptButtonToggled;
         UpdateCheckTimer.Timeout += CheckForUpdate;
@@ -118,12 +122,16 @@ public partial class Settings : Control
         PromptButton.InitialValueSet(PromptEnabled);
         GetTree().Root.GetNode<Label>("Main/HUD/HomePage/UpdateLabel").Visible = PromptEnabled;
 
-        ThemeOption.Select((int)ConfigController.Config.GetValue("Settings", "Theme", 0));
-        SetTheme((long)ConfigController.Config.GetValue("Settings", "Theme", 0));
-
-        bool FeedbackEnabled = (bool)ConfigController.Config.GetValue("Settigs", "Feedback", true);
+        bool FeedbackEnabled = (bool)ConfigController.Config.GetValue("Settings", "Feedback", true);
         FeedbackButton.InitialValueSet(FeedbackEnabled);
         HapticFeedbackButtonToggled(FeedbackEnabled);
+
+        bool ImmersiveModeEnabled = (bool)ConfigController.Config.GetValue("Settings", "ImmersiveMode", true);
+        ImmersiveButton.InitialValueSet(ImmersiveModeEnabled);
+        ImmersiveModeButtonToggled(ImmersiveModeEnabled);
+
+        ThemeOption.Select((int)ConfigController.Config.GetValue("Settings", "Theme", 0));
+        SetTheme((long)ConfigController.Config.GetValue("Settings", "Theme", 0));
     }
     private void SetTheme(long Index)
     {
@@ -131,18 +139,15 @@ public partial class Settings : Control
         {
             Control control = GetTree().Root.GetNode<Hud>("Main/HUD").GetNode<Control>(Location[0]);
 
-            if (control == null)
-                continue;
-
             control.Theme = Themes[Index];
-
+            
             if (Location.Length == 2)
                 control.ThemeTypeVariation = Location[1];
         }
         ConfigController.SaveSettings("Settings", "Theme", Index);
-        Hud.SendSoundAndFeedback();
 
         EmitSignal(SignalName.ThemeChanged);
+        Hud.SendSoundAndFeedback();    
     }
     private void SetBackground(long Index)
     {
@@ -166,9 +171,14 @@ public partial class Settings : Control
         ConfigController.SaveSettings("Settings", "UpdatePrompt", PromptEnabled);
     }
     private void HapticFeedbackButtonToggled(bool FeedbackEnabled)
-    {
-        ConfigController.SaveSettings("Settings", "Feedback", FeedbackEnabled);
+    {   
         VibrationFeedbackIntensity = (FeedbackEnabled) ? 0.15f : 0;
+        ConfigController.SaveSettings("Settings", "Feedback", FeedbackEnabled);
+    }
+    private void ImmersiveModeButtonToggled(bool ImmersiveModeEnabled)
+    {       
+        DisplayServer.WindowSetMode(ImmersiveModeEnabled ? DisplayServer.WindowMode.Fullscreen : DisplayServer.WindowMode.Windowed);
+        ConfigController.SaveSettings("Settings", "ImmersiveMode", ImmersiveModeEnabled);
     }
     public void CheckForUpdate()
     {

@@ -134,6 +134,16 @@ theme_override_font_sizes/font_size = 70
 text = "Haptic Feedback"
 autowrap_mode = 2
 
+[node name="Immersive" type="Label" parent="SwipeContainer/HBoxContainer/Settings/Labels"]
+custom_minimum_size = Vector2(0, 185)
+layout_mode = 2
+theme_override_constants/line_spacing = -15
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_5ocvv")
+theme_override_font_sizes/font_size = 70
+text = "Immersive Mode"
+autowrap_mode = 2
+
 [node name="Updates" type="Label" parent="SwipeContainer/HBoxContainer/Settings/Labels"]
 custom_minimum_size = Vector2(0, 190)
 layout_mode = 2
@@ -208,19 +218,26 @@ offset_top = 865.0
 offset_right = 999.0
 offset_bottom = 992.0
 
+[node name="ImmersiveButton" parent="SwipeContainer/HBoxContainer/Settings" instance=ExtResource("4_3uamq")]
+layout_mode = 0
+offset_left = 572.0
+offset_top = 1055.0
+offset_right = 1000.0
+offset_bottom = 1182.0
+
 [node name="UpdateButton" parent="SwipeContainer/HBoxContainer/Settings" instance=ExtResource("4_3uamq")]
 layout_mode = 0
 offset_left = 571.0
-offset_top = 1058.0
+offset_top = 1248.0
 offset_right = 999.0
-offset_bottom = 1185.0
+offset_bottom = 1375.0
 
 [node name="PromptButton" parent="SwipeContainer/HBoxContainer/Settings" instance=ExtResource("4_3uamq")]
 layout_mode = 0
 offset_left = 571.0
-offset_top = 1251.0
+offset_top = 1441.0
 offset_right = 999.0
-offset_bottom = 1378.0
+offset_bottom = 1568.0
 
 [node name="UpdateCheckTimer" type="Timer" parent="SwipeContainer/HBoxContainer/Settings"]
 wait_time = 2.0
