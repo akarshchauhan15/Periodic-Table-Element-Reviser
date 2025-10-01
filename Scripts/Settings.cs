@@ -91,7 +91,7 @@ public partial class Settings : Control
         AddChild(VersionRequest);
         VersionRequest.RequestCompleted += UpdateRequestCompleted;
 
-        ThemeOption.ItemSelected += SetTheme;
+        ThemeOption.ItemSelected += (long Index) => { SetTheme(Index); Hud.SendSoundAndFeedback(); } ;
         BackgroundOption.ItemSelected += SetBackground;
         SoundButton.Toggled += SoundButtonToggled;
         FeedbackButton.Toggled += HapticFeedbackButtonToggled;
@@ -128,7 +128,9 @@ public partial class Settings : Control
 
         bool ImmersiveModeEnabled = (bool)ConfigController.Config.GetValue("Settings", "ImmersiveMode", true);
         ImmersiveButton.InitialValueSet(ImmersiveModeEnabled);
-        ImmersiveModeButtonToggled(ImmersiveModeEnabled);
+        DisplayServer.WindowSetMode(ImmersiveModeEnabled ? DisplayServer.WindowMode.Fullscreen : DisplayServer.WindowMode.Windowed);
+        Vector2 DisplayArea = ImmersiveModeEnabled ? DisplayServer.WindowGetSize() : DisplayServer.GetDisplaySafeArea().Size - new Vector2(0, 30);
+        GetTree().Root.GetNode<Hud>("Main/HUD").Size = DisplayArea;
 
         ThemeOption.Select((int)ConfigController.Config.GetValue("Settings", "Theme", 0));
         SetTheme((long)ConfigController.Config.GetValue("Settings", "Theme", 0));
@@ -147,7 +149,6 @@ public partial class Settings : Control
         ConfigController.SaveSettings("Settings", "Theme", Index);
 
         EmitSignal(SignalName.ThemeChanged);
-        Hud.SendSoundAndFeedback();    
     }
     private void SetBackground(long Index)
     {
@@ -178,6 +179,12 @@ public partial class Settings : Control
     private void ImmersiveModeButtonToggled(bool ImmersiveModeEnabled)
     {       
         DisplayServer.WindowSetMode(ImmersiveModeEnabled ? DisplayServer.WindowMode.Fullscreen : DisplayServer.WindowMode.Windowed);
+
+        Vector2 DisplayArea = ImmersiveModeEnabled ?  DisplayServer.WindowGetSize() : DisplayServer.GetDisplaySafeArea().Size - new Vector2(0, 30);
+
+        Tween tween = CreateTween();
+        tween.TweenProperty(GetTree().Root.GetNode<Hud>("Main/HUD"), "size", DisplayArea, 0.2).SetTrans(Tween.TransitionType.Quad).SetEase(Tween.EaseType.Out);
+
         ConfigController.SaveSettings("Settings", "ImmersiveMode", ImmersiveModeEnabled);
     }
     public void CheckForUpdate()

@@ -75,7 +75,10 @@ public partial class PeriodicTablePage : Control
 
             TableElement.AddThemeStyleboxOverride("panel", Style);
 
-            TableElement.GetNode<Button>("Button").Pressed += () =>
+            Button Button = TableElement.GetNode<Button>("Button");
+            StyleBox HighlightedStyle = ElementNameHolder.Theme.GetStylebox("highlight", "TableElement");
+            Button.AddThemeStyleboxOverride("focus", HighlightedStyle);
+            Button.Pressed += () =>
             {
                 if (SelectedTableElement != TableElement)
                     SelectElement(TableElement);
@@ -144,6 +147,9 @@ public partial class PeriodicTablePage : Control
             Style.BorderColor = CategoryColor.Darkened(0.25f);
 
             TableElement.AddThemeStyleboxOverride("panel", Style);
+
+            StyleBox HighlightedStyle = ElementNameHolder.Theme.GetStylebox("highlight", "TableElement");
+            TableElement.GetNode<Button>("Button").AddThemeStyleboxOverride("focus", HighlightedStyle);
         }
 
         SetHolderColor((Color)SelectedTableElement.GetMeta("category_color"));
