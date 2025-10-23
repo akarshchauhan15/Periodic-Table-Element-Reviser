@@ -59,8 +59,8 @@ After the quiz has been completed, the results are displayed on the next page. I
 ### Navigating UI
 
 - The Home page only contains buttons to start the game, switch to settings page or periodic table page.
-- - Periodic table page contains a periodic table and displays properties when a certain element is selected.
-- - Settings page houses all the buttons and knobs to customize the apps according to players need.
+  - Periodic table page contains a periodic table and displays properties when a certain element is selected.
+  - Settings page houses all the buttons and knobs to customize the apps according to players need.
 - The primary Selection page is used for selecting question and answer return format.
 - The secondary Selection page is used to define the range of elements.
 - The Confirmation page gives a quick summary of options selected in the previous two pages.
@@ -75,7 +75,7 @@ The game streches to completely fill the whole display to provide user an immers
 
 ### Controls
 
-All the actions are touch based. The input is given through Android's default keyboard.
+All the actions are touch based. Text input is accepted through Android's default keyboard.
 
 ### Feedback
 
