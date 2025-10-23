@@ -36,7 +36,7 @@ Android
 
 ### Development Software
 
-- **Godot 4.4** for game engine.
+- **Godot 4.5** for game engine.
 - **Visual Studio** for IDE.
 - **Inkscape** for vector graphics.
 
@@ -58,7 +58,9 @@ After the quiz has been completed, the results are displayed on the next page. I
 
 ### Navigating UI
 
-- The Home page has nothing except a start and settings button.
+- The Home page only contains buttons to start the game, switch to settings page or periodic table page.
+- - Periodic table page contains a periodic table and displays properties when a certain element is selected.
+- - Settings page houses all the buttons and knobs to customize the apps according to players need.
 - The primary Selection page is used for selecting question and answer return format.
 - The secondary Selection page is used to define the range of elements.
 - The Confirmation page gives a quick summary of options selected in the previous two pages.
@@ -74,3 +76,11 @@ The game streches to completely fill the whole display to provide user an immers
 ### Controls
 
 All the actions are touch based. The input is given through Android's default keyboard.
+
+### Feedback
+
+Both sound and vibration feedback are present along with options to disable them to enhance user experience.
+
+### Settings
+
+A page that houses all buttons and switches to change game experience completely. More information about the game itself and regarding its update policy is mentioned in it as well.
