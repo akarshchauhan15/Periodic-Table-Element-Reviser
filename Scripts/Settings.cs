@@ -3,7 +3,7 @@ using Godot.Collections;
 
 public partial class Settings : Control
 {
-    public static float AnimationFadeDuration = 0.3f;
+    public static float AnimationFadeDuration = 0.2f;
     public static float VibrationFeedbackIntensity = 0f;
 
     [Signal]
@@ -129,8 +129,12 @@ public partial class Settings : Control
         bool ImmersiveModeEnabled = (bool)ConfigController.Config.GetValue("Settings", "ImmersiveMode", true);
         ImmersiveButton.InitialValueSet(ImmersiveModeEnabled);
         DisplayServer.WindowSetMode(ImmersiveModeEnabled ? DisplayServer.WindowMode.Fullscreen : DisplayServer.WindowMode.Windowed);
-        Vector2 DisplayArea = ImmersiveModeEnabled ? DisplayServer.WindowGetSize() : DisplayServer.GetDisplaySafeArea().Size - new Vector2(0, 30);
-        GetTree().Root.GetNode<Hud>("Main/HUD").Size = DisplayArea;
+
+        if (OS.GetName() == "Android") 
+        {
+            Vector2 DisplayArea = ImmersiveModeEnabled ? DisplayServer.WindowGetSize() : DisplayServer.WindowGetSize(); //- new Vector2(0, 30);
+            GetTree().Root.GetNode<Hud>("Main/HUD").Size = DisplayArea;
+        }
 
         ThemeOption.Select((int)ConfigController.Config.GetValue("Settings", "Theme", 0));
         SetTheme((long)ConfigController.Config.GetValue("Settings", "Theme", 0));
@@ -182,9 +186,11 @@ public partial class Settings : Control
 
         Vector2 DisplayArea = ImmersiveModeEnabled ?  DisplayServer.WindowGetSize() : DisplayServer.GetDisplaySafeArea().Size - new Vector2(0, 30);
 
-        Tween tween = CreateTween();
-        tween.TweenProperty(GetTree().Root.GetNode<Hud>("Main/HUD"), "size", DisplayArea, 0.2).SetTrans(Tween.TransitionType.Quad).SetEase(Tween.EaseType.Out);
-
+        if (OS.GetName() == "Android")
+        { 
+            Tween tween = CreateTween();
+            tween.TweenProperty(GetTree().Root.GetNode<Hud>("Main/HUD"), "size", DisplayArea, 0.2).SetTrans(Tween.TransitionType.Quad).SetEase(Tween.EaseType.Out);
+        }
         ConfigController.SaveSettings("Settings", "ImmersiveMode", ImmersiveModeEnabled);
     }
     public void CheckForUpdate()
