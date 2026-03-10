@@ -17,6 +17,7 @@
 [ext_resource type="FontFile" uid="uid://7qg7fidlmsb8" path="res://Assets/Fonts/Lexend-Medium.ttf" id="13_ssfue"]
 [ext_resource type="Script" uid="uid://bxw2nvql1ubl1" path="res://Scripts/InputMethod/Text.cs" id="14_0iicw"]
 [ext_resource type="Texture2D" uid="uid://c810wodtuiy7r" path="res://Assets/Icons/change_icon.svg" id="14_8bf2m"]
+[ext_resource type="Script" uid="uid://ctjbce84m5yjs" path="res://Scripts/InputMethod/Choice.cs" id="15_ajim5"]
 [ext_resource type="PackedScene" uid="uid://sek0xt2nipgc" path="res://Scenes/settings_page.tscn" id="17_pbtju"]
 [ext_resource type="PackedScene" uid="uid://b8xk7mnua7lyk" path="res://Scenes/great_panel.tscn" id="17_yidpd"]
 [ext_resource type="AudioStream" uid="uid://dg78h3dtuxpyi" path="res://Assets/Audio/ui.ogg" id="18_36s6t"]
@@ -914,9 +915,12 @@ text = "1/5"
 autowrap_mode = 2
 
 [node name="InputInterface" type="Control" parent="ActionPage" unique_id=1758061099]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Text" type="Control" parent="ActionPage/InputInterface" unique_id=1434707180]
 visible = false
@@ -942,49 +946,101 @@ emoji_menu_enabled = false
 caret_blink = true
 caret_blink_interval = 0.5
 
+[node name="Hint" type="Label" parent="ActionPage/InputInterface/Text" unique_id=72936453]
+layout_mode = 0
+offset_left = 318.0
+offset_top = 771.0
+offset_right = 750.0
+offset_bottom = 809.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.28235295)
+theme_override_fonts/font = ExtResource("13_ssfue")
+theme_override_font_sizes/font_size = 32
+text = "Type the correct value"
+horizontal_alignment = 1
+uppercase = true
+
 [node name="KeyboardTimer" type="Timer" parent="ActionPage/InputInterface/Text" unique_id=1286679877]
 wait_time = 0.3
 one_shot = true
 
-[node name="Choice" type="GridContainer" parent="ActionPage/InputInterface" unique_id=1133433592]
+[node name="Choice" type="Control" parent="ActionPage/InputInterface" unique_id=361822849]
 visible = false
-layout_mode = 0
-offset_top = 873.0
-offset_right = 1080.0
-offset_bottom = 1359.0
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("15_ajim5")
+
+[node name="ButtonContainer" type="GridContainer" parent="ActionPage/InputInterface/Choice" unique_id=1133433592]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -516.0
+offset_top = -914.0
+offset_right = 508.0
+offset_bottom = -490.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("4_4f5kr")
 columns = 2
 
-[node name="Option1" type="Button" parent="ActionPage/InputInterface/Choice" unique_id=1126762878]
-custom_minimum_size = Vector2(500, 160)
+[node name="1" type="Button" parent="ActionPage/InputInterface/Choice/ButtonContainer" unique_id=1126762878]
+custom_minimum_size = Vector2(500, 180)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
-theme = ExtResource("4_4f5kr")
+focus_mode = 0
 text = "1"
 
-[node name="Option2" type="Button" parent="ActionPage/InputInterface/Choice" unique_id=758820743]
-custom_minimum_size = Vector2(500, 160)
+[node name="2" type="Button" parent="ActionPage/InputInterface/Choice/ButtonContainer" unique_id=758820743]
+custom_minimum_size = Vector2(500, 180)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
-theme = ExtResource("4_4f5kr")
+focus_mode = 0
 text = "2"
 
-[node name="Option3" type="Button" parent="ActionPage/InputInterface/Choice" unique_id=1815165328]
-custom_minimum_size = Vector2(500, 160)
+[node name="3" type="Button" parent="ActionPage/InputInterface/Choice/ButtonContainer" unique_id=1815165328]
+custom_minimum_size = Vector2(500, 180)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
-theme = ExtResource("4_4f5kr")
+focus_mode = 0
 text = "3"
 
-[node name="Option4" type="Button" parent="ActionPage/InputInterface/Choice" unique_id=2021799806]
-custom_minimum_size = Vector2(500, 160)
+[node name="4" type="Button" parent="ActionPage/InputInterface/Choice/ButtonContainer" unique_id=2021799806]
+custom_minimum_size = Vector2(500, 180)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
-theme = ExtResource("4_4f5kr")
+focus_mode = 0
 text = "4"
+
+[node name="Hint" type="Label" parent="ActionPage/InputInterface/Choice" unique_id=680448366]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -291.0
+offset_top = -946.0
+offset_right = 288.0
+offset_bottom = -906.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0.28235295)
+theme_override_fonts/font = ExtResource("13_ssfue")
+theme_override_font_sizes/font_size = 32
+text = "Select the correct option"
+horizontal_alignment = 1
+uppercase = true
 
 [node name="TimeElapsed" type="Label" parent="ActionPage" unique_id=190786038]
 layout_mode = 0

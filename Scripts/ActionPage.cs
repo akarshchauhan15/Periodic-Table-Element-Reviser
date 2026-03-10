@@ -74,7 +74,7 @@ public partial class ActionPage : Control
         CallFunctionOnInputHandler("Initialize");
         GiveValue();
     }
-        public void AddScore(bool Correct, string Answer)
+    public void AddScore(bool Correct, string Answer)
     {
         if (Correct)
         {
@@ -98,7 +98,7 @@ public partial class ActionPage : Control
                 GetNode<Text>("InputInterface/Text").Call(Function);
                 return;
             case InputType.MultipleChoice:
-                GetNode<Text>("InputInterface/Text").Call(Function);
+                GetNode<Choice>("InputInterface/Choice").Call(Function);
                 return;
         }
     }
@@ -107,7 +107,11 @@ public partial class ActionPage : Control
         if (Counter >= Length) { EndGame(); return; }
 
         Godot.Input.VibrateHandheld(20, Settings.VibrationFeedbackIntensity);
-        GivenValueLabel.Text = ElementList[Counter].Get(Selection.SelectedGivenOption).ToString();
+
+        string Text = ElementList[Counter].Get(Selection.SelectedGivenOption).ToString();
+        if (Selection.SelectedGivenOption == Element.PropertyName.AtomicMass) Text = Text.PadDecimals(3) + " amu";
+        GivenValueLabel.Text = Text;
+
         Progress.Text = $"{Counter + 1} / {Length}";
 
         CallFunctionOnInputHandler("OnNewQuestionArrival");
@@ -117,6 +121,7 @@ public partial class ActionPage : Control
         isPlaying = false;
         GetNode<ResultPage>("../ResultPage").SetResults();
         GetParent<Hud>().ContinuePage(this);
+        CallFunctionOnInputHandler("hide");
     }
     private void ExitButtonDown()
     {
