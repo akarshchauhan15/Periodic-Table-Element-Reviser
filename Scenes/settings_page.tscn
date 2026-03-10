@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://sek0xt2nipgc"]
+[gd_scene format=3 uid="uid://sek0xt2nipgc"]
 
 [ext_resource type="Script" uid="uid://b8vnwldftqfdu" path="res://Scripts/SettingsPage.cs" id="1_4nau8"]
 [ext_resource type="Script" uid="uid://cro5320o6vsw5" path="res://Scripts/Settings.cs" id="2_giwlh"]
@@ -10,7 +10,7 @@
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_57quh"]
 
-[node name="SettingsPage" type="Control"]
+[node name="SettingsPage" type="Control" unique_id=1008028674]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,7 +21,7 @@ mouse_filter = 1
 mouse_force_pass_scroll_events = false
 script = ExtResource("1_4nau8")
 
-[node name="LabelContainer" type="ScrollContainer" parent="."]
+[node name="LabelContainer" type="ScrollContainer" parent="." unique_id=15079564]
 clip_contents = false
 layout_mode = 1
 anchors_preset = 15
@@ -33,12 +33,12 @@ horizontal_scroll_mode = 3
 vertical_scroll_mode = 3
 scroll_deadzone = 50
 
-[node name="Labels" type="Control" parent="LabelContainer"]
+[node name="Labels" type="Control" parent="LabelContainer" unique_id=283112226]
 custom_minimum_size = Vector2(2800, 0)
 layout_mode = 2
 mouse_filter = 1
 
-[node name="Settings" type="Label" parent="LabelContainer/Labels"]
+[node name="Settings" type="Label" parent="LabelContainer/Labels" unique_id=1721434230]
 layout_mode = 0
 offset_left = 128.0
 offset_top = 50.0
@@ -49,7 +49,7 @@ theme_override_fonts/font = ExtResource("3_5ocvv")
 theme_override_font_sizes/font_size = 140
 text = "Settings"
 
-[node name="Updates" type="Label" parent="LabelContainer/Labels"]
+[node name="Updates" type="Label" parent="LabelContainer/Labels" unique_id=1236994937]
 layout_mode = 0
 offset_left = 931.0
 offset_top = 50.0
@@ -61,7 +61,7 @@ theme_override_font_sizes/font_size = 140
 text = "Updates"
 autowrap_mode = 2
 
-[node name="About" type="Label" parent="LabelContainer/Labels"]
+[node name="About" type="Label" parent="LabelContainer/Labels" unique_id=2068828108]
 layout_mode = 0
 offset_left = 1734.0
 offset_top = 50.0
@@ -73,7 +73,7 @@ theme_override_font_sizes/font_size = 140
 text = "About"
 autowrap_mode = 2
 
-[node name="SwipeContainer" type="ScrollContainer" parent="."]
+[node name="SwipeContainer" type="ScrollContainer" parent="." unique_id=2043302070]
 clip_contents = false
 layout_mode = 1
 anchors_preset = 15
@@ -85,17 +85,17 @@ mouse_filter = 2
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SwipeContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="SwipeContainer" unique_id=1582900916]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Settings" type="Control" parent="SwipeContainer/HBoxContainer"]
+[node name="Settings" type="Control" parent="SwipeContainer/HBoxContainer" unique_id=480066319]
 custom_minimum_size = Vector2(1080, 1672)
 layout_mode = 2
 mouse_filter = 2
 script = ExtResource("2_giwlh")
 
-[node name="Labels" type="VBoxContainer" parent="SwipeContainer/HBoxContainer/Settings"]
+[node name="Labels" type="VBoxContainer" parent="SwipeContainer/HBoxContainer/Settings" unique_id=1443918187]
 layout_mode = 0
 offset_left = 84.0
 offset_top = 320.0
@@ -103,7 +103,7 @@ offset_right = 516.0
 offset_bottom = 1052.0
 mouse_filter = 2
 
-[node name="Theme" type="Label" parent="SwipeContainer/HBoxContainer/Settings/Labels"]
+[node name="Theme" type="Label" parent="SwipeContainer/HBoxContainer/Settings/Labels" unique_id=8336063]
 custom_minimum_size = Vector2(0, 180)
 layout_mode = 2
 theme_override_constants/outline_size = 8
@@ -111,7 +111,7 @@ theme_override_fonts/font = ExtResource("3_5ocvv")
 theme_override_font_sizes/font_size = 70
 text = "Theme"
 
-[node name="Background" type="Label" parent="SwipeContainer/HBoxContainer/Settings/Labels"]
+[node name="Background" type="Label" parent="SwipeContainer/HBoxContainer/Settings/Labels" unique_id=1456062598]
 custom_minimum_size = Vector2(0, 180)
 layout_mode = 2
 theme_override_constants/outline_size = 8
@@ -119,7 +119,7 @@ theme_override_fonts/font = ExtResource("3_5ocvv")
 theme_override_font_sizes/font_size = 70
 text = "Background"
 
-[node name="Sound" type="Label" parent="SwipeContainer/HBoxContainer/Settings/Labels"]
+[node name="Sound" type="Label" parent="SwipeContainer/HBoxContainer/Settings/Labels" unique_id=1017889139]
 custom_minimum_size = Vector2(0, 160)
 layout_mode = 2
 theme_override_constants/outline_size = 8
@@ -127,7 +127,7 @@ theme_override_fonts/font = ExtResource("3_5ocvv")
 theme_override_font_sizes/font_size = 70
 text = "Sound"
 
-[node name="Feedback" type="Label" parent="SwipeContainer/HBoxContainer/Settings/Labels"]
+[node name="Feedback" type="Label" parent="SwipeContainer/HBoxContainer/Settings/Labels" unique_id=1144782442]
 custom_minimum_size = Vector2(0, 185)
 layout_mode = 2
 theme_override_constants/line_spacing = -15
@@ -137,7 +137,7 @@ theme_override_font_sizes/font_size = 70
 text = "Haptic Feedback"
 autowrap_mode = 2
 
-[node name="Immersive" type="Label" parent="SwipeContainer/HBoxContainer/Settings/Labels"]
+[node name="Immersive" type="Label" parent="SwipeContainer/HBoxContainer/Settings/Labels" unique_id=1974906708]
 custom_minimum_size = Vector2(0, 185)
 layout_mode = 2
 theme_override_constants/line_spacing = -15
@@ -147,7 +147,7 @@ theme_override_font_sizes/font_size = 70
 text = "Immersive Mode"
 autowrap_mode = 2
 
-[node name="Updates" type="Label" parent="SwipeContainer/HBoxContainer/Settings/Labels"]
+[node name="Updates" type="Label" parent="SwipeContainer/HBoxContainer/Settings/Labels" unique_id=33771940]
 custom_minimum_size = Vector2(0, 190)
 layout_mode = 2
 theme_override_constants/line_spacing = -15
@@ -157,7 +157,7 @@ theme_override_font_sizes/font_size = 70
 text = "Auto Check For Updates"
 autowrap_mode = 2
 
-[node name="Updates2" type="Label" parent="SwipeContainer/HBoxContainer/Settings/Labels"]
+[node name="Updates2" type="Label" parent="SwipeContainer/HBoxContainer/Settings/Labels" unique_id=1034810397]
 custom_minimum_size = Vector2(0, 180)
 layout_mode = 2
 theme_override_constants/line_spacing = -15
@@ -167,7 +167,7 @@ theme_override_font_sizes/font_size = 70
 text = "Update Prompt"
 autowrap_mode = 2
 
-[node name="ThemeOption" type="OptionButton" parent="SwipeContainer/HBoxContainer/Settings"]
+[node name="ThemeOption" type="OptionButton" parent="SwipeContainer/HBoxContainer/Settings" unique_id=1502955348]
 layout_mode = 0
 offset_left = 571.0
 offset_top = 299.0
@@ -183,7 +183,7 @@ popup/item_0/id = 0
 popup/item_1/text = "Metro"
 popup/item_1/id = 1
 
-[node name="BackgroundOption" type="OptionButton" parent="SwipeContainer/HBoxContainer/Settings"]
+[node name="BackgroundOption" type="OptionButton" parent="SwipeContainer/HBoxContainer/Settings" unique_id=130580450]
 layout_mode = 0
 offset_left = 571.0
 offset_top = 490.0
@@ -207,53 +207,53 @@ popup/item_4/id = 4
 popup/item_5/text = "Black"
 popup/item_5/id = 5
 
-[node name="SoundButton" parent="SwipeContainer/HBoxContainer/Settings" instance=ExtResource("4_3uamq")]
+[node name="SoundButton" parent="SwipeContainer/HBoxContainer/Settings" unique_id=408880337 instance=ExtResource("4_3uamq")]
 layout_mode = 0
 offset_left = 571.0
 offset_top = 676.0
 offset_right = 999.0
 offset_bottom = 803.0
 
-[node name="FeedbackButton" parent="SwipeContainer/HBoxContainer/Settings" instance=ExtResource("4_3uamq")]
+[node name="FeedbackButton" parent="SwipeContainer/HBoxContainer/Settings" unique_id=1841253399 instance=ExtResource("4_3uamq")]
 layout_mode = 0
 offset_left = 571.0
 offset_top = 865.0
 offset_right = 999.0
 offset_bottom = 992.0
 
-[node name="ImmersiveButton" parent="SwipeContainer/HBoxContainer/Settings" instance=ExtResource("4_3uamq")]
+[node name="ImmersiveButton" parent="SwipeContainer/HBoxContainer/Settings" unique_id=1211274534 instance=ExtResource("4_3uamq")]
 layout_mode = 0
 offset_left = 572.0
 offset_top = 1055.0
 offset_right = 1000.0
 offset_bottom = 1182.0
 
-[node name="UpdateButton" parent="SwipeContainer/HBoxContainer/Settings" instance=ExtResource("4_3uamq")]
+[node name="UpdateButton" parent="SwipeContainer/HBoxContainer/Settings" unique_id=94594598 instance=ExtResource("4_3uamq")]
 layout_mode = 0
 offset_left = 571.0
 offset_top = 1248.0
 offset_right = 999.0
 offset_bottom = 1375.0
 
-[node name="PromptButton" parent="SwipeContainer/HBoxContainer/Settings" instance=ExtResource("4_3uamq")]
+[node name="PromptButton" parent="SwipeContainer/HBoxContainer/Settings" unique_id=1406038118 instance=ExtResource("4_3uamq")]
 layout_mode = 0
 offset_left = 571.0
 offset_top = 1441.0
 offset_right = 999.0
 offset_bottom = 1568.0
 
-[node name="UpdateCheckTimer" type="Timer" parent="SwipeContainer/HBoxContainer/Settings"]
+[node name="UpdateCheckTimer" type="Timer" parent="SwipeContainer/HBoxContainer/Settings" unique_id=532189651]
 wait_time = 2.0
 one_shot = true
 autostart = true
 
-[node name="Updates" type="Control" parent="SwipeContainer/HBoxContainer"]
+[node name="Updates" type="Control" parent="SwipeContainer/HBoxContainer" unique_id=868909374]
 custom_minimum_size = Vector2(1080, 1672)
 layout_mode = 2
 mouse_filter = 2
 script = ExtResource("6_jm8mn")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SwipeContainer/HBoxContainer/Updates"]
+[node name="VBoxContainer" type="VBoxContainer" parent="SwipeContainer/HBoxContainer/Updates" unique_id=205841038]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 307.0
@@ -261,7 +261,7 @@ offset_right = 1040.0
 offset_bottom = 786.0
 mouse_filter = 2
 
-[node name="Info" type="Label" parent="SwipeContainer/HBoxContainer/Updates/VBoxContainer"]
+[node name="Info" type="Label" parent="SwipeContainer/HBoxContainer/Updates/VBoxContainer" unique_id=1116936611]
 custom_minimum_size = Vector2(1020, 840)
 layout_mode = 2
 theme_override_constants/outline_size = 4
@@ -274,7 +274,7 @@ Turn on 'Auto Check For Updates' to check for updates on launch.
 'Update Prompt' will remind of any update, if availiable."
 autowrap_mode = 2
 
-[node name="UpdateButton" type="LinkButton" parent="SwipeContainer/HBoxContainer/Updates/VBoxContainer"]
+[node name="UpdateButton" type="LinkButton" parent="SwipeContainer/HBoxContainer/Updates/VBoxContainer" unique_id=1126196120]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_constants/outline_size = 5
@@ -282,7 +282,7 @@ theme_override_fonts/font = ExtResource("3_5ocvv")
 theme_override_font_sizes/font_size = 60
 text = "Check For Update Now"
 
-[node name="Update" type="Label" parent="SwipeContainer/HBoxContainer/Updates/VBoxContainer/UpdateButton"]
+[node name="Update" type="Label" parent="SwipeContainer/HBoxContainer/Updates/VBoxContainer/UpdateButton" unique_id=1604192941]
 layout_mode = 1
 offset_top = 117.0
 offset_right = 1000.0
@@ -292,7 +292,7 @@ theme_override_fonts/font = ExtResource("3_5ocvv")
 theme_override_font_sizes/font_size = 60
 autowrap_mode = 2
 
-[node name="LinkButton" type="LinkButton" parent="SwipeContainer/HBoxContainer/Updates/VBoxContainer/UpdateButton/Update"]
+[node name="LinkButton" type="LinkButton" parent="SwipeContainer/HBoxContainer/Updates/VBoxContainer/UpdateButton/Update" unique_id=1593383842]
 visible = false
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 1
@@ -310,12 +310,12 @@ theme_override_font_sizes/font_size = 60
 text = "Download Latest"
 uri = "https://github.com/akarshchauhan15/Periodic-Table-Element-Reviser/releases/latest"
 
-[node name="About" type="Control" parent="SwipeContainer/HBoxContainer"]
+[node name="About" type="Control" parent="SwipeContainer/HBoxContainer" unique_id=1969478816]
 custom_minimum_size = Vector2(1080, 1672)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="SwipeContainer/HBoxContainer/About"]
+[node name="TextureRect" type="TextureRect" parent="SwipeContainer/HBoxContainer/About" unique_id=672722528]
 layout_mode = 0
 offset_left = 217.0
 offset_top = 752.0
@@ -326,7 +326,7 @@ texture = ExtResource("7_5ocvv")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SwipeContainer/HBoxContainer/About"]
+[node name="VBoxContainer" type="VBoxContainer" parent="SwipeContainer/HBoxContainer/About" unique_id=1120599388]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 307.0
@@ -334,7 +334,7 @@ offset_right = 1060.0
 offset_bottom = 1491.0
 mouse_filter = 2
 
-[node name="Info" type="RichTextLabel" parent="SwipeContainer/HBoxContainer/About/VBoxContainer"]
+[node name="Info" type="RichTextLabel" parent="SwipeContainer/HBoxContainer/About/VBoxContainer" unique_id=1336850605]
 custom_minimum_size = Vector2(1020, 1080)
 layout_mode = 2
 mouse_filter = 2
@@ -356,7 +356,7 @@ One can help to contribute in its development by suggesting features, hunting bu
 autowrap_mode = 2
 custom_effects = [SubResource("RichTextEffect_57quh")]
 
-[node name="LinkButton" type="LinkButton" parent="SwipeContainer/HBoxContainer/About/VBoxContainer"]
+[node name="LinkButton" type="LinkButton" parent="SwipeContainer/HBoxContainer/About/VBoxContainer" unique_id=1560258266]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_constants/outline_size = 5
@@ -366,7 +366,7 @@ theme_override_font_sizes/font_size = 60
 text = "View Source Code"
 uri = "https://github.com/akarshchauhan15/Periodic-Table-Element-Reviser"
 
-[node name="Version" type="Label" parent="SwipeContainer/HBoxContainer/About"]
+[node name="Version" type="Label" parent="SwipeContainer/HBoxContainer/About" unique_id=87775982]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 1538.0
@@ -377,7 +377,7 @@ theme_override_fonts/font = ExtResource("3_5ocvv")
 theme_override_font_sizes/font_size = 60
 text = "version???"
 
-[node name="ExitButton" type="Button" parent="."]
+[node name="ExitButton" type="Button" parent="." unique_id=2145832587]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
