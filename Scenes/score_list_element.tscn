@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cedfb0i70wjc5"]
+[gd_scene format=3 uid="uid://cedfb0i70wjc5"]
 
 [ext_resource type="FontFile" uid="uid://bwaqtqtpd6ns8" path="res://Assets/Fonts/Lexend-Light.ttf" id="1_4t8le"]
 
@@ -14,31 +14,29 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="ScoreListElement" type="Panel"]
-custom_minimum_size = Vector2(1000, 120)
+[node name="ScoreListElement" type="Panel" unique_id=597394416]
+custom_minimum_size = Vector2(1000, 110)
 offset_right = 1080.0
-offset_bottom = 120.0
+offset_bottom = 100.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_q6f7p")
 
-[node name="Given" type="Label" parent="."]
+[node name="Given" type="Label" parent="." unique_id=1310564706]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 34.0
+offset_left = 19.0
 offset_top = -41.5
-offset_right = 334.0
+offset_right = 319.0
 offset_bottom = 41.5
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 0.784314)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("1_4t8le")
-theme_override_font_sizes/font_size = 70
-text = "Hydrogen"
+theme_override_font_sizes/font_size = 60
 
-[node name="Return" type="Label" parent="."]
-visible = false
+[node name="Return" type="Label" parent="." unique_id=695620153]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -54,12 +52,10 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0.365982, 0.557667, 0.761719, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("1_4t8le")
-theme_override_font_sizes/font_size = 70
-text = "1"
+theme_override_font_sizes/font_size = 60
 horizontal_alignment = 2
 
-[node name="Wrong" type="Label" parent="."]
-visible = false
+[node name="Wrong" type="Label" parent="." unique_id=966122886]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -75,18 +71,16 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0.717647, 0.435294, 0.435294, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("1_4t8le")
-theme_override_font_sizes/font_size = 70
-text = "1"
+theme_override_font_sizes/font_size = 60
 horizontal_alignment = 2
 
-[node name="Correct" type="Label" parent="Wrong"]
+[node name="Correct" type="Label" parent="Wrong" unique_id=199119269]
 layout_mode = 1
-offset_left = -462.0
-offset_right = -60.0
+offset_left = -454.0
+offset_right = -52.0
 offset_bottom = 83.0
 theme_override_colors/font_color = Color(0.418656, 0.695313, 0.361237, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("1_4t8le")
-theme_override_font_sizes/font_size = 70
-text = "1"
+theme_override_font_sizes/font_size = 60
 horizontal_alignment = 2

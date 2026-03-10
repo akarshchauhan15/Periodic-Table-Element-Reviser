@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://de3muv8dqxejj" path="res://Scenes/toggle_button.tscn" id="4_3uamq"]
 [ext_resource type="Script" uid="uid://b4ynrekbq76uh" path="res://Scripts/Updates.cs" id="6_jm8mn"]
 [ext_resource type="Texture2D" uid="uid://d1q7ixidhmajc" path="res://Assets/Icons/icon_only_blueprint.png" id="7_5ocvv"]
+[ext_resource type="FontFile" uid="uid://7qg7fidlmsb8" path="res://Assets/Fonts/Lexend-Medium.ttf" id="8_teaqg"]
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_57quh"]
 
@@ -367,14 +368,18 @@ text = "View Source Code"
 uri = "https://github.com/akarshchauhan15/Periodic-Table-Element-Reviser"
 
 [node name="Version" type="Label" parent="SwipeContainer/HBoxContainer/About" unique_id=87775982]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
 offset_left = 40.0
-offset_top = 1538.0
+offset_top = -112.0
 offset_right = 1040.0
-offset_bottom = 1613.0
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("3_5ocvv")
-theme_override_font_sizes/font_size = 60
+offset_bottom = -49.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0.28235295)
+theme_override_fonts/font = ExtResource("8_teaqg")
+theme_override_font_sizes/font_size = 50
 text = "version???"
 
 [node name="ExitButton" type="Button" parent="." unique_id=2145832587]
@@ -392,3 +397,21 @@ grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("3_giwlh")
 text = "Back"
+
+[node name="Hint" type="Label" parent="." unique_id=1488810007]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_top = -132.0
+offset_right = 540.0
+offset_bottom = -60.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0.28235295)
+theme_override_constants/line_spacing = -8
+theme_override_fonts/font = ExtResource("8_teaqg")
+theme_override_font_sizes/font_size = 32
+text = "Swipe across the screen to change pages"
+autowrap_mode = 2
+uppercase = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8qplk8fkwtb"]
+[gd_scene format=3 uid="uid://c8qplk8fkwtb"]
 
 [ext_resource type="Script" uid="uid://c5ofi4hh13t25" path="res://Scripts/PeriodicTablePage.cs" id="1_6r23k"]
 [ext_resource type="Theme" uid="uid://bunmufssyl5ho" path="res://Themes/Modern.theme" id="2_6r23k"]
@@ -6,7 +6,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6r23k"]
 
-[node name="PeriodicTablePage" type="Control"]
+[node name="PeriodicTablePage" type="Control" unique_id=43896857]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,14 +15,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6r23k")
 
-[node name="Selected" type="Panel" parent="."]
+[node name="Selected" type="Panel" parent="." unique_id=2074427924]
 layout_mode = 0
 offset_right = 1080.0
-offset_bottom = 572.0
+offset_bottom = 500.0
 theme = ExtResource("2_6r23k")
 theme_type_variation = &"PeriodicLabelPanel"
 
-[node name="Name" type="Label" parent="Selected"]
+[node name="Name" type="Label" parent="Selected" unique_id=1412590984]
 layout_mode = 1
 offset_left = 73.0
 offset_top = 102.0
@@ -33,7 +33,7 @@ theme_override_fonts/font = ExtResource("3_f13fh")
 theme_override_font_sizes/font_size = 100
 metadata/_edit_group_ = true
 
-[node name="Panel" type="Panel" parent="Selected/Name"]
+[node name="Panel" type="Panel" parent="Selected/Name" unique_id=1873997799]
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = -1
@@ -47,7 +47,7 @@ grow_vertical = 2
 theme = ExtResource("2_6r23k")
 theme_type_variation = &"ElementNameHolder"
 
-[node name="Symbol" type="Label" parent="Selected"]
+[node name="Symbol" type="Label" parent="Selected" unique_id=1278342612]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -62,15 +62,15 @@ theme_override_fonts/font = ExtResource("3_f13fh")
 theme_override_font_sizes/font_size = 160
 horizontal_alignment = 2
 
-[node name="AtomicNumber" type="Label" parent="Selected"]
+[node name="AtomicNumber" type="Label" parent="Selected" unique_id=1565351248]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -504.0
-offset_top = 323.0
-offset_right = -78.0
-offset_bottom = 419.0
+offset_left = -498.0
+offset_top = 277.0
+offset_right = -72.0
+offset_bottom = 365.0
 grow_horizontal = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
@@ -78,59 +78,59 @@ theme_override_fonts/font = ExtResource("3_f13fh")
 theme_override_font_sizes/font_size = 70
 horizontal_alignment = 2
 
-[node name="AtomicMass" type="Label" parent="Selected"]
+[node name="AtomicMass" type="Label" parent="Selected" unique_id=2089842290]
 layout_mode = 0
-offset_left = 529.0
-offset_top = 435.0
-offset_right = 1020.0
-offset_bottom = 531.0
+offset_left = 521.0
+offset_top = 370.0
+offset_right = 1012.0
+offset_bottom = 458.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("3_f13fh")
 theme_override_font_sizes/font_size = 70
 horizontal_alignment = 2
 
-[node name="AtomicNumberLabel" type="Label" parent="Selected"]
+[node name="AtomicNumberLabel" type="Label" parent="Selected" unique_id=2124610533]
 layout_mode = 0
-offset_left = 38.0
-offset_top = 323.0
-offset_right = 464.0
-offset_bottom = 460.0
+offset_left = 61.0
+offset_top = 277.0
+offset_right = 487.0
+offset_bottom = 365.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("3_f13fh")
 theme_override_font_sizes/font_size = 70
 text = "Atomic No."
 
-[node name="AtomicMassLabel" type="Label" parent="Selected"]
+[node name="AtomicMassLabel" type="Label" parent="Selected" unique_id=1336610479]
 layout_mode = 0
-offset_left = 38.0
-offset_top = 435.0
-offset_right = 529.0
-offset_bottom = 572.0
+offset_left = 61.0
+offset_top = 370.0
+offset_right = 552.0
+offset_bottom = 458.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("3_f13fh")
 theme_override_font_sizes/font_size = 70
 text = "Atomic Mass"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=2035862795]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 609.0
+offset_top = 508.0
 offset_right = 2.0
 offset_bottom = -203.0
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 3
 
-[node name="Control" type="Control" parent="ScrollContainer"]
+[node name="Control" type="Control" parent="ScrollContainer" unique_id=138944440]
 custom_minimum_size = Vector2(2950, 1660)
 layout_mode = 2
 mouse_filter = 1
 
-[node name="BackButton" type="Button" parent="."]
+[node name="BackButton" type="Button" parent="." unique_id=360120707]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -147,7 +147,7 @@ theme = ExtResource("2_6r23k")
 theme_type_variation = &"ShadowedButton"
 text = "Return"
 
-[node name="ScaleController" type="Panel" parent="."]
+[node name="ScaleController" type="Panel" parent="." unique_id=918837429]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -164,7 +164,7 @@ theme = ExtResource("2_6r23k")
 theme_type_variation = &"HolderPanel"
 metadata/_edit_group_ = true
 
-[node name="IncreaseScale" type="Button" parent="ScaleController"]
+[node name="IncreaseScale" type="Button" parent="ScaleController" unique_id=1779586665]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -183,7 +183,7 @@ theme_type_variation = &"ShadowedButton"
 theme_override_styles/focus = SubResource("StyleBoxEmpty_6r23k")
 text = "+"
 
-[node name="DecreaseScale" type="Button" parent="ScaleController"]
+[node name="DecreaseScale" type="Button" parent="ScaleController" unique_id=877291336]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -203,7 +203,7 @@ theme_type_variation = &"ShadowedButton"
 theme_override_styles/focus = SubResource("StyleBoxEmpty_6r23k")
 text = "-"
 
-[node name="ResetScale" type="Button" parent="ScaleController"]
+[node name="ResetScale" type="Button" parent="ScaleController" unique_id=1530129478]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5

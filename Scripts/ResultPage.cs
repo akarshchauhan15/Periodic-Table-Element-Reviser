@@ -55,7 +55,9 @@ public partial class ResultPage : Control
         {
             Panel ScoreElement = ScoreListElementScene.Instantiate<Panel>();
 
-            ScoreElement.GetNode<Label>("Given").Text = Action.ElementList[i].Get(Selection.SelectedGivenOption).ToString();
+            string Given = Action.ElementList[i].Get(Selection.SelectedGivenOption).ToString();
+            if (Selection.SelectedGivenOption == Element.PropertyName.AtomicMass) Given = Given.PadDecimals(3);
+            ScoreElement.GetNode<Label>("Given").Text = Given;
 
             string Returned = Action.ElementList[i].Get(Selection.SelectedReturnOption).ToString();
 
