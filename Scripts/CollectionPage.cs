@@ -43,7 +43,7 @@ public partial class CollectionPage : Control
         ConfigController.SaveSettings("LastSelected", "ElementCollectionList", Collection.Selected);
 
         SelectedCollection = SelectedType[Collection.Selected];
-        GetNode<ConfirmationPage>("../ConfirmationPage").SetLabels();
+        GetNode<ConfirmationPage>("../ConfirmationPage").SetParameters();
         GetParent<Hud>().ContinuePage(this); 
     }
     private void BackToSelection() => GetParent<Hud>().PreviousPage(this);

@@ -58,11 +58,13 @@ public partial class Hud : Control
         tween.TweenProperty(FromPage, "modulate:a", 0, Settings.AnimationFadeDuration).From(1);
 
         tween.TweenCallback(Callable.From(() => ToPage.Show()));
-        tween.TweenProperty(ToPage, "modulate:a", 1, Settings.AnimationFadeDuration).From(0);
+        tween.TweenProperty(ToPage, "modulate:a", 1, Settings.AnimationFadeDuration);
 
         tween.SetParallel(false);
-        tween.TweenCallback(Callable.From(() => Blank.MouseFilter = MouseFilterEnum.Ignore));
-        tween.TweenCallback(Callable.From(() => FromPage.Hide()));
+        tween.TweenCallback(Callable.From(() => { 
+            Blank.MouseFilter = MouseFilterEnum.Ignore; 
+            FromPage.Hide();
+            }));
     }
     public static void SendSoundAndFeedback(int Duration = 30)
     {

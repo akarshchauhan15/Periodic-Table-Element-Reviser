@@ -39,7 +39,7 @@ public partial class Settings : Control
         ["ConfirmationPage/ContinueButton", "HighlightedButton"],
         ["ConfirmationPage/BackButton", "ShadowedButton"],
         ["ActionPage/ExitButton", "ShadowedButton"],
-        ["ActionPage/LineEdit"],
+        ["ActionPage/InputInterface/Text/LineEdit"],
         ["ActionPage/ExitTip"],
         ["ResultPage/ContinueButton", "HighlightedButton"],
         ["ResultPage/RetryButton", "ShadowedButton"],

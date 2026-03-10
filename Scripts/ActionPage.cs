@@ -1,16 +1,16 @@
+using System;
 using Godot;
 using Godot.Collections;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
 
 public partial class ActionPage : Control
 {
+
+    public enum InputType { TypeInto, MultipleChoice}
+
     Label DisplayLabel;
     Label GivenValueLabel;
-    LineEdit InputValue;
     Label Progress;
     public Label TimeLabel;
-    Timer KeyboardTimer;
     Button ExitButton;
     Panel Tip;
     Tween tween;
@@ -18,9 +18,9 @@ public partial class ActionPage : Control
     public Array<Element> ElementList;
     public Array<bool> ElementCorrect = new Array<bool>();
     public Array<string> WrongReturns = new Array<string>();
-    SelectionPage Selection;
+    public SelectionPage Selection;
 
-    LineEdit.VirtualKeyboardTypeEnum KeyboardType;
+    public InputType InputMethod;
     public int Score = 0;
     public static bool isPlaying = false;
     public double TimeElapsed = 0;
@@ -33,15 +33,11 @@ public partial class ActionPage : Control
     {
         DisplayLabel = GetNode<Label>("DisplayLabel");
         GivenValueLabel = GetNode<Label>("GivenValueLabel");
-        InputValue = GetNode<LineEdit>("LineEdit");
         Progress = GetNode<Label>("Progress");
         TimeLabel = GetNode<Label>("TimeElapsed");
-        KeyboardTimer = GetNode<Timer>("KeyboardTimer");
         ExitButton = GetNode<Button>("ExitButton");
         Tip = GetNode<Panel>("ExitTip");
 
-        InputValue.TextSubmitted += GetInput;
-        KeyboardTimer.Timeout += OnKeyboardTimerEnds;
         ExitButton.ButtonDown += ExitButtonDown;
         ExitButton.ButtonUp += () => ExitTime = 0;
 
@@ -65,15 +61,6 @@ public partial class ActionPage : Control
         ElementList = CollectionPage.SelectedCollection.GetElementsList();
         ElementList.Shuffle();
 
-        InputValue.PlaceholderText = Element.OptionValues[Selection.ReturnIndex];
-
-        if (Selection.SelectedReturnOption == Element.PropertyName.AtomicNumber || Selection.SelectedReturnOption == Element.PropertyName.AtomicMass)
-            KeyboardType = LineEdit.VirtualKeyboardTypeEnum.NumberDecimal;
-        else
-            KeyboardType = LineEdit.VirtualKeyboardTypeEnum.Default;
-
-        InputValue.VirtualKeyboardType = KeyboardType;
-
         Tip.Modulate = new Color(1, 1, 1, 0);
 
         Counter = 0;
@@ -81,11 +68,39 @@ public partial class ActionPage : Control
         ElementCorrect = [];
         WrongReturns = [];
         TimeElapsed = 0;
-        InputValue.Text = "";
         Length = ElementList.Count;
         isPlaying = true;
 
+        CallFunctionOnInputHandler("Initialize");
         GiveValue();
+    }
+        public void AddScore(bool Correct, string Answer)
+    {
+        if (Correct)
+        {
+            Score++;
+            ElementCorrect.Add(true);
+        }
+        else
+        {
+            WrongReturns.Add(Answer);
+            ElementCorrect.Add(false);
+        }
+
+        Counter++;
+        GiveValue();  
+    }
+    private void CallFunctionOnInputHandler(String Function)
+    {
+        switch (InputMethod)
+        {
+            case InputType.TypeInto:
+                GetNode<Text>("InputInterface/Text").Call(Function);
+                return;
+            case InputType.MultipleChoice:
+                GetNode<Text>("InputInterface/Text").Call(Function);
+                return;
+        }
     }
     private void GiveValue()
     {
@@ -94,48 +109,14 @@ public partial class ActionPage : Control
         Godot.Input.VibrateHandheld(20, Settings.VibrationFeedbackIntensity);
         GivenValueLabel.Text = ElementList[Counter].Get(Selection.SelectedGivenOption).ToString();
         Progress.Text = $"{Counter + 1} / {Length}";
-        KeyboardTimer.Start();
-    }
-    private void GetInput(string Input)
-    {
-        if (Input == "")
-            return;
 
-        bool Correct = false;
-
-        if (Selection.SelectedReturnOption == Element.PropertyName.AtomicNumber)
-            Correct = Input.ToFloat() == (float)ElementList[Counter].Get(Selection.SelectedReturnOption);
-        else if (Selection.SelectedReturnOption == Element.PropertyName.AtomicMass)
-            Correct = (Mathf.Abs(Input.ToFloat() - (float)ElementList[Counter].Get(Selection.SelectedReturnOption))) < 0.4f;
-        else
-            Correct = Input.ToLower() == ElementList[Counter].Get(Selection.SelectedReturnOption).ToString().ToLower();
-
-        if (Correct)
-        {
-            Score++;
-            ElementCorrect.Add(true);
-        }
-        else
-        {
-            WrongReturns.Add(Input);
-            ElementCorrect.Add(false);
-        }
-
-        InputValue.Text = "";
-        Counter++;
-
-        InputValue.Unedit();
-        GiveValue();  
+        CallFunctionOnInputHandler("OnNewQuestionArrival");
     }
     private void EndGame()
     {
         isPlaying = false;
         GetNode<ResultPage>("../ResultPage").SetResults();
         GetParent<Hud>().ContinuePage(this);
-    }
-    private void OnKeyboardTimerEnds() {
-        InputValue.GrabFocus();
-        InputValue.Edit();
     }
     private void ExitButtonDown()
     {
