@@ -1,12 +1,19 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Perodic Table Element Reviser", "Perodic Table Element Reviser.csproj", "{4AF290C8-5064-4A19-8652-E6425778240D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Periodic Table Element Reviser", "Periodic Table Element Reviser.csproj", "{4AF290C8-5064-4A19-8652-E6425778240D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 	Debug|Any CPU = Debug|Any CPU
 	ExportDebug|Any CPU = ExportDebug|Any CPU
 	ExportRelease|Any CPU = ExportRelease|Any CPU
+
+
+
+
+
+
+
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{4AF290C8-5064-4A19-8652-E6425778240D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

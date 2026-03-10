@@ -1,7 +1,7 @@
-﻿<Project Sdk="Godot.NET.Sdk/4.5.0">
+﻿<Project Sdk="Godot.NET.Sdk/4.6.1">
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
-    <RootNamespace>PerodicTableElementReviser</RootNamespace>
+    <RootNamespace>PeriodicTableElementReviser</RootNamespace>
   </PropertyGroup>
 </Project>
