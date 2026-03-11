@@ -197,8 +197,9 @@ public partial class Settings : Control
     }
     public void CheckForUpdate()
     {
-        string url = "https://api.github.com/repos/akarshchauhan15/Periodic-Table-Element-Reviser/releases/latest";
+        UpdatesPart.UpdateCode(4);
 
+        string url = "https://api.github.com/repos/akarshchauhan15/Periodic-Table-Element-Reviser/releases/latest";
         string[] Headers = ["User-Agent: MyGodotApp"];
 
         Error Err = VersionRequest.Request(url, Headers);
@@ -224,8 +225,8 @@ public partial class Settings : Control
         Dictionary FetchedData = (Dictionary)json.Data;
         string LatestVersion = FetchedData["tag_name"].ToString();
 
-        bool UpdateAvailiable = (LatestVersion != ProjectSettings.GetSetting("application/config/version").ToString());
-        int Code = (UpdateAvailiable) ? 0 : 1;
+        bool UpdateAvailiable = LatestVersion != ProjectSettings.GetSetting("application/config/version").ToString();
+        int Code = UpdateAvailiable ? 0 : 1;
         ((HomePage)Hud.Pages[0]).PopupUpdatePrompt(UpdateAvailiable);
 
         UpdatesPart.UpdateCode(Code);
