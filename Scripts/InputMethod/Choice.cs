@@ -31,7 +31,7 @@ public partial class Choice : Control
     {
         bool Correct = false;
 
-        if (ChoiceButton.Text == CorrectValue) Correct = true;
+        if (ChoiceButton.Text.PadDecimals(3) == CorrectValue.PadDecimals(3)) Correct = true;
 
         Action.AddScore(Correct, ChoiceButton.Text); 
     }
@@ -56,7 +56,9 @@ public partial class Choice : Control
 
         foreach (Button ChoiceButton in ButtonContainer.GetChildren())
         {
-            ChoiceButton.Text = RandomValues[Option];
+            string Text = RandomValues[Option];
+            if (Action.Selection.SelectedReturnOption == Element.PropertyName.AtomicMass) Text = Text.PadDecimals(3);
+            ChoiceButton.Text = Text;
             Option++;
         }
     }
